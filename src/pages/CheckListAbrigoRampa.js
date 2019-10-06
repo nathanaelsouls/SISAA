@@ -1,15 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default class AbrigoRampa extends React.Component{
     static navigationOptions = {
-        title: 'Sisaa',
+        title: 'Abrigo de Rampa',
       };
     render() {
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>Abrigo de Rampa</Text>
-                
             </View>
         );
     }

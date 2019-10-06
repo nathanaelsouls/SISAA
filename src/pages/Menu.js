@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
-import * as React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
 
 export default class Menu extends React.Component{
     static navigationOptions = {
