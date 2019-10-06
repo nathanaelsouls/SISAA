@@ -129,17 +129,17 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: "white",
-    fontSize: 35
+    fontSize: 30
   },
   forgotText:{
     color: "blue",
     textDecorationLine: "underline"
   },
   titleText:{
-    fontSize: 30,
+    fontSize: 25,
     alignItems: 'center',
     textAlign: 'center',
-    color: "#012060"
+    color: "#012060",
   },
   inputStyle:{
     height: height * 0.06, 

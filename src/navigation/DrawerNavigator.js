@@ -6,9 +6,7 @@ import Menu from '../pages/Menu'
 
 const DrawerNavigator = createDrawerNavigator(
     {
-        Home: {
-            screen: Menu
-        },
+        Menu,
     },
 );
 
