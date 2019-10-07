@@ -5,9 +5,6 @@ import Routes from './routes'
 
 import firebase from 'firebase';
 
-//const App = () => <Routes/>;
-
-//export default App;
 class App extends React.Component {
     componentWillMount () {
       //Posso Fazer qualquer tipo de configuração global aqui como por exemplo o Firebase
@@ -26,7 +23,7 @@ class App extends React.Component {
   
     render() {
       return (
-        <Routes/>
+        <Routes/>        
       );
     }
   }

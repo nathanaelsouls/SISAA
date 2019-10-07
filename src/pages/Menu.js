@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, StatusBar, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, StatusBar, Image, Button } from 'react-native';
 import firebase from "firebase";
+import DrawerNavigation from '../navigation/DrawerNavigator'
 
 var { height, width } = Dimensions.get('window');
 
@@ -21,7 +22,14 @@ export default class Dashboard extends React.Component {
     return (
       <View style={styles.container}>
           <StatusBar backgroundColor="#001A4D" barStyle="light-content" />         
-        
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+            <Button title='Cadastro de funcionário'
+            onPress={() => this.props.navigation.navigate('Cadastro')}>
+            </Button>
+            <Button title="opções" >
+                <DrawerNavigation/>
+            </Button>
+        </View>
         <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>          
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>

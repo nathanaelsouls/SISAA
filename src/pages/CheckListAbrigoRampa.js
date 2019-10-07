@@ -44,7 +44,7 @@ export default class CheckList extends React.Component {
     };
   }
 
-  /*componentDidMount(){
+  componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
         if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
           this.setState({userUid: user.uid});
@@ -66,7 +66,7 @@ export default class CheckList extends React.Component {
             userData: userData
         })
     })
-  }*/
+  }
 
   render() {
     console.log("Dados do usuario", this.state.userData)
@@ -301,11 +301,12 @@ export default class CheckList extends React.Component {
                   onChangeText={(text1) => this.setState({txt_observacao: text1})}
                   placeholder="Observação"
                   value={this.state.txt_observacao}
-                />
+                  />
+                <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
+                  <Text style={styles.buttonText}>Enviar CheckList</Text>
+                </TouchableOpacity>
               </Card>
-              <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
-                <Text style={styles.buttonText}>Enviar CheckList</Text>
-              </TouchableOpacity>
+              
           </View>
         </ScrollView>
     );
@@ -330,8 +331,8 @@ export default class CheckList extends React.Component {
         [
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () => 
-            this.openAlert()
-            /*this.confirmRegister(this.state.userData.nome,
+            //this.openAlert()
+            this.confirmRegister(this.state.userData.nome,
                                 this.state.userData.matricula,
                                 this.state.PickerValue,
                                 this.state.txt_A1_P1_EAD,
@@ -351,7 +352,7 @@ export default class CheckList extends React.Component {
                                 this.state.txt_A4_P4_HD,
                                 this.state.txt_A5_P1_UFC,
                                 this.state.txt_A5_P2_SUEA,
-                                this.state.txt_observacao,)*/
+                                this.state.txt_observacao,)
           },
         ],
         { cancelable: false }
@@ -661,7 +662,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: width * 0.9,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });

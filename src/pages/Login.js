@@ -4,6 +4,7 @@ import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
 
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -14,21 +15,22 @@ export default class Login extends React.Component {
       senha: "123456"
     };
   }
-  /*
+  
+  
+
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {
       if(user) {
         console.log("Current user")
         console.log(JSON.stringify(user))
         if (user){
-          //Actions.dashboard();
-          this.props.navigation.navigate('AbrigoRampa');
+          () => this.props.navigation.navigate('Menu');
         }
       } else{
         console.log("Deu Erro amigo");
       }
     });
-  } */
+  } 
 
   render() {   
 
@@ -50,8 +52,8 @@ export default class Login extends React.Component {
           secureTextEntry
           value={this.state.senha}
         />
-        <TouchableOpacity /*onPress={ ()=> this.loginUser(this.state.email, this.state.senha)}*/
-         style={styles.loginButton} onPress={() => this.props.navigation.navigate('Menu')} >
+        <TouchableOpacity //onPress={ ()=> this.loginUser(this.state.email, this.state.senha)}
+         style={styles.loginButton} onPress={() => this.props.navigation.navigate('Menu')}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.askForgotPassword()} style={styles.forgotButton} >
@@ -78,7 +80,7 @@ export default class Login extends React.Component {
         { cancelable: false }
       )
     }
-  }
+  }  
 
   resetPassword(){
     const email = this.state.email
@@ -96,9 +98,8 @@ export default class Login extends React.Component {
   loginUser(email, password){
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((function(){
-        //onPress={() => this.props.navigation.navigate('AbrigoRampa')}
-        //Actions.dashboard();
-      this.props.navigation.navigate('Menu');
+      () => this.props.navigation.navigate('Menu');
+      
     }))
     .catch(function(error) {
       if(error.code == "auth/user-not-found"){
