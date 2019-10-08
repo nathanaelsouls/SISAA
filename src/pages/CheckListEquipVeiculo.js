@@ -9,7 +9,7 @@ var {height, width} = Dimensions.get('window');
 
 export default class CheckList extends React.Component {
     static navigationOptions = {
-        title: 'Equipamento e Veículo',
+        title: 'Equipamentos e Veículos',
       };
 
   constructor(props) {
@@ -17,7 +17,7 @@ export default class CheckList extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
+      Fiscal_Patio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
       txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "",
       txt_A2_P1_DP:   "", txt_A2_P2_PQ:   "", txt_A2_P3_PA:   "", txt_A2_P4_VA:     "",
       txt_A3_P1_UEPC: "", txt_A3_P2_LC:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
@@ -80,6 +80,7 @@ export default class CheckList extends React.Component {
             
             <Card style={styles.containercard}>
                 
+                <Text>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>
                 <Picker
                 style = {{width:'100%'}}
                 selectedValue={this.state.PickerValue}
@@ -394,7 +395,7 @@ export default class CheckList extends React.Component {
     var data = this.state.PickerValue;
     if(data == ""){
       Alert.alert(
-        'ERRO', 'Selecione a empresa!!!'
+        'Atenção', 'Por favor, Selecione a empresa!'
       )
     }else{
 
@@ -424,7 +425,10 @@ export default class CheckList extends React.Component {
                                 this.state.txt_A4_P3_FED,
                                 this.state.txt_A4_P4_HD,
                                 this.state.txt_A5_P1_UFC,
-                                this.state.txt_A5_P2_SUEA,
+                                this.state.txt_A6_P2_SUEA,
+                                this.state.txt_A6_P2_SUEA,
+                                this.state.txt_A7_P2_SUEA,
+                                this.state.txt_A7_P2_SUEA,
                                 this.state.txt_observacao,)
           },
         ],
@@ -434,7 +438,7 @@ export default class CheckList extends React.Component {
   }
   confirmRegister () {
     const userData = {
-      Fiscal_Pátio:   this.state.userData.nome,
+      Fiscal_Patio:   this.state.userData.nome,
       Fiscal_Matricula: this.state.userData.matricula,
       txtA_empresa:   this.state.PickerValue,
       txt_A1_P1_EAD:  this.state.txt_A1_P1_EAD,
@@ -456,255 +460,297 @@ export default class CheckList extends React.Component {
       txt_A5_P2_SUEA: this.state.txt_A5_P2_SUEA,
       txt_observacao: this.state.txt_observacao
     }
-      firebase.database().ref("CheckListAbrigoDeRampa/").push(userData)
+      firebase.database().ref("CheckListEquipVeiculo/").push(userData)
       .then((snapshot) => {
         Alert.alert("Sucesso!", "Check List Enviado");
         this.props.navigation.navigate('AbrigoRampa');
       })
       .catch((error) =>{
         console.log("Error: ", error);
-        Alert.alert("Errou na persistência!", error.code)
+        Alert.alert("Erro na persistência dos dados!", error.code)
       })      
   }
 
-  Ac_EADCheck1(){
+  equip_CDPCheck1(){
     this.setState({
-      Ac_EADCheck1:!this.state.Ac_EADCheck1,
-      Ac_EADCheck2: false,
-      txt_A1_P1_EAD: "Sim" 
+      equip_CDPCheck1:!this.state.equip_CDPCheck1,
+      equip_CDPCheck2: false,
+      txt_A1_P1_EAD: "Normal" 
     })
   };
-  Ac_EADCheck2(){
+  equip_CDPCheck2(){
     this.setState({
-      Ac_EADCheck2:!this.state.Ac_EADCheck2,
-      Ac_EADCheck1: false,
-      txt_A1_P1_EAD: "Não"
+      equip_CDPCheck2:!this.state.equip_CDPCheck2,
+      equip_CDPCheck1: false,
+      txt_A1_P1_EAD: "Irregular"
     })
   };
-  Ac_UFECheck1(){
+  equip_PDLCheck1(){
     this.setState({
-    Ac_UFECheck1:!this.state.Ac_UFECheck1,
-    Ac_UFECheck2: false,
-    txt_A1_P2_UFE: "Sim" 
+    equip_PDLCheck1:!this.state.equip_PDLCheck1,
+    equip_PDLCheck2: false,
+    txt_A1_P2_UFE: "Normal" 
     })
   };
-  Ac_UFECheck2(){
+  equip_PDLCheck2(){
     this.setState({
-    Ac_UFECheck2:!this.state.Ac_UFECheck2,
-    Ac_UFECheck1: false,
-    txt_A1_P2_UFE: "Não"
-    })
-  };
-
-  Aqsm_DPCheck1(){
-    this.setState({
-        Aqsm_DPCheck1:!this.state.Aqsm_DPCheck1,
-        Aqsm_DPCheck2: false,
-        txt_A2_P1_DP: "Sim"
-    })
-  };
-  Aqsm_DPCheck2(){
-    this.setState({
-        Aqsm_DPCheck2:!this.state.Aqsm_DPCheck2,
-        Aqsm_DPCheck1: false,
-        txt_A2_P1_DP: "Não"
-    })    
-  };
-  Aqsm_PQCheck1(){
-    this.setState({
-      Aqsm_PQCheck1:!this.state.Aqsm_PQCheck1,
-      Aqsm_PQCheck2: false,
-      txt_A2_P2_PQ: "Sim"
-    })
-  };
-  Aqsm_PQCheck2(){
-    this.setState({
-      Aqsm_PQCheck2:!this.state.Aqsm_PQCheck2,
-      Aqsm_PQCheck1: false,
-      txt_A2_P2_PQ: "Não"
-    })
-  };
-  Aqsm_PACheck1(){
-    this.setState({
-      Aqsm_PACheck1:!this.state.Aqsm_PACheck1,
-      Aqsm_PACheck2: false,
-      txt_A2_P3_PA: "Sim"
-    })    
-  };
-  Aqsm_PACheck2(){
-    this.setState({
-      Aqsm_PACheck2:!this.state.Aqsm_PACheck2,
-      Aqsm_PACheck1: false,
-      txt_A2_P3_PA: "Não"
-    })
-  };
-  Aqsm_VACheck1(){
-    this.setState({
-      Aqsm_VACheck1:!this.state.Aqsm_VACheck1,
-      Aqsm_VACheck2: false,
-      txt_A2_P4_VA: "Sim"
-    })
-  };
-  Aqsm_VACheck2(){
-    this.setState({
-        Aqsm_VACheck2:!this.state.Aqsm_VACheck2,
-        Aqsm_VACheck1: false,
-        txt_A2_P4_VA: "Não"
+    equip_PDLCheck2:!this.state.equip_PDLCheck2,
+    equip_PDLCheck1: false,
+    txt_A1_P2_UFE: "Irregular"
     })
   };
 
-  Agso_UEPCCheck1(){
+  equip_LIDCheck1(){
     this.setState({
-      Agso_UEPCCheck1:!this.state.Agso_UEPCCheck1,
-      Agso_UEPCCheck2: false,
-      txt_A3_P1_UEPC: "Sim"
+        equip_LIDCheck1:!this.state.equip_LIDCheck1,
+        equip_LIDCheck2: false,
+        txt_A2_P1_DP: "Normal"
     })
   };
-  Agso_UEPCCheck2(){
+  equip_LIDCheck2(){
     this.setState({
-      Agso_UEPCCheck2:!this.state.Agso_UEPCCheck2,
-      Agso_UEPCCheck1: false,
-      txt_A3_P1_UEPC: "Não"
-    })
-  };
-  Agso_LCCheck1(){
-    this.setState({
-      Agso_LCCheck1:!this.state.Agso_LCCheck1,
-      Agso_LCCheck2: false,
-      txt_A3_P2_LC: "Sim"
+        equip_LIDCheck2:!this.state.equip_LIDCheck2,
+        equip_LIDCheck1: false,
+        txt_A2_P1_DP: "Irregular"
     })    
   };
-  Agso_LCCheck2(){
+  equip_PIACheck1(){
     this.setState({
-      Agso_LCCheck2:!this.state.Agso_LCCheck2,
-      Agso_LCCheck1: false,
-      txt_A3_P2_LC: "Não"
+      equip_PIACheck1:!this.state.equip_PIACheck1,
+      equip_PIACheck2: false,
+      txt_A2_P2_PQ: "Normal"
     })
   };
-  Agso_GCCheck1(){
+  equip_PIACheck2(){
     this.setState({
-      Agso_GCCheck1:!this.state.Agso_GCCheck1,
-      Agso_GCCheck2: false,
-      txt_A3_P3_GC: "Sim"
+      equip_PIACheck2:!this.state.equip_PIACheck2,
+      equip_PIACheck1: false,
+      txt_A2_P2_PQ: "Irregular"
     })
   };
-  Agso_GCCheck2(){
+  equip_PNECheck1(){
     this.setState({
-      Agso_GCCheck2:!this.state.Agso_GCCheck2,
-      Agso_GCCheck1: false,
-      txt_A3_P3_GC: "Não"
+      equip_PNECheck1:!this.state.equip_PNECheck1,
+      equip_PNECheck2: false,
+      txt_A2_P3_PA: "Normal"
+    })    
+  };
+  equip_PNECheck2(){
+    this.setState({
+      equip_PNECheck2:!this.state.equip_PNECheck2,
+      equip_PNECheck1: false,
+      txt_A2_P3_PA: "Irregular"
     })
   };
-  Agso_ODCheck1(){
+  equip_EXTCheck1(){
     this.setState({
-      Agso_ODCheck1:!this.state.Agso_ODCheck1,
-      Agso_ODCheck2: false,
-      txt_A3_P4_OD: "Sim"
+      equip_EXTCheck1:!this.state.equip_EXTCheck1,
+      equip_EXTCheck2: false,
+      txt_A2_P4_VA: "Normal"
     })
   };
-  Agso_ODCheck2(){
+  equip_EXTCheck2(){
     this.setState({
-      Agso_ODCheck2:!this.state.Agso_ODCheck2,
-      Agso_ODCheck1: false,
-      txt_A3_P4_OD: "Não"
+        equip_EXTCheck2:!this.state.equip_EXTCheck2,
+        equip_EXTCheck1: false,
+        txt_A2_P4_VA: "Irregular"
     })
   };
-  Agso_FERCheck1(){
+
+  equip_MOTCheck1(){
     this.setState({
-      Agso_FERCheck1:!this.state.Agso_FERCheck1,
-      Agso_FERCheck2: false,
-      txt_A3_P5_FER: "Sim"
+      equip_MOTCheck1:!this.state.equip_MOTCheck1,
+      equip_MOTCheck2: false,
+      txt_A3_P1_UEPC: "Normal"
     })
   };
-  Agso_FERCheck2(){
+  equip_MOTCheck2(){
     this.setState({
-      Agso_FERCheck2:!this.state.Agso_FERCheck2,
-      Agso_FERCheck1: false,
-      txt_A3_P5_FER: "Não"
+      equip_MOTCheck2:!this.state.equip_MOTCheck2,
+      equip_MOTCheck1: false,
+      txt_A3_P1_UEPC: "Irregular"
     })
   };
-  Am_MDCheck1(){
+  equip_PAECheck1(){
     this.setState({
-      Am_MDCheck1:!this.state.Am_MDCheck1,
-      Am_MDCheck2: false,
-      txt_A4_P1_MD: "Sim"
+      equip_PAECheck1:!this.state.equip_PAECheck1,
+      equip_PAECheck2: false,
+      txt_A3_P2_LC: "Normal"
+    })    
+  };
+  equip_PAECheck2(){
+    this.setState({
+      equip_PAECheck2:!this.state.equip_PAECheck2,
+      equip_PAECheck1: false,
+      txt_A3_P2_LC: "Irregular"
     })
   };
-  Am_MDCheck2(){
+  equip_DIRCheck1(){
     this.setState({
-      Am_MDCheck2:!this.state.Am_MDCheck2,
-      Am_MDCheck1: false,
-      txt_A4_P1_MD: "Não"
+      equip_DIRCheck1:!this.state.equip_DIRCheck1,
+      equip_DIRCheck2: false,
+      txt_A3_P3_GC: "Normal"
     })
   };
-  Am_IDCheck1(){
+  equip_DIRCheck2(){
     this.setState({
-      Am_IDCheck1:!this.state.Am_IDCheck1,
-      Am_IDCheck2: false,
-      txt_A4_P2_ID: "Sim"
+      equip_DIRCheck2:!this.state.equip_DIRCheck2,
+      equip_DIRCheck1: false,
+      txt_A3_P3_GC: "Irregular"
     })
   };
-  Am_IDCheck2(){
+  equip_VOCCheck1(){
     this.setState({
-      Am_IDCheck2:!this.state.Am_IDCheck2,
-      Am_IDCheck1: false,
-      txt_A4_P2_ID: "Não"
+      equip_VOCCheck1:!this.state.equip_VOCCheck1,
+      equip_VOCCheck2: false,
+      txt_A3_P4_OD: "Normal"
     })
   };
-  Am_FEDCheck1(){
+  equip_VOCCheck2(){
     this.setState({
-      Am_FEDCheck1:!this.state.Am_FEDCheck1,
-      Am_FEDCheck2: false,
-      txt_A4_P3_FED: "Sim"
+      equip_VOCCheck2:!this.state.equip_VOCCheck2,
+      equip_VOCCheck1: false,
+      txt_A3_P4_OD: "Irregular"
     })
   };
-  Am_FEDCheck2(){
+  equip_LUPCheck1(){
     this.setState({
-      Am_FEDCheck2:!this.state.Am_FEDCheck2,
-      Am_FEDCheck1: false,
-      txt_A4_P3_FED: "Não"
+      equip_LUPCheck1:!this.state.equip_LUPCheck1,
+      equip_LUPCheck2: false,
+      txt_A3_P5_FER: "Normal"
     })
   };
-  Am_HDCheck1(){
+  equip_LUPCheck2(){
     this.setState({
-      Am_HDCheck1:!this.state.Am_HDCheck1,
-      Am_HDCheck2: false,
-      txt_A4_P4_HD: "Sim"
+      equip_LUPCheck2:!this.state.equip_LUPCheck2,
+      equip_LUPCheck1: false,
+      txt_A3_P5_FER: "Irregular"
     })
   };
-  Am_HDCheck2(){
+  equip_MECCheck1(){
     this.setState({
-      Am_HDCheck2:!this.state.Am_HDCheck2,
-      Am_HDCheck1: false,
-      txt_A4_P4_HD: "Não"
+      equip_MECCheck1:!this.state.equip_MECCheck1,
+      equip_MECCheck2: false,
+      txt_A4_P1_MD: "Normal"
     })
   };
-  App_UFCCheck1(){
+  equip_MECCheck2(){
     this.setState({
-      App_UFCCheck1:!this.state.App_UFCCheck1,
-      App_UFCCheck2: false,
-      txt_A5_P1_UFC: "Sim"
+      equip_MECCheck2:!this.state.equip_MECCheck2,
+      equip_MECCheck1: false,
+      txt_A4_P1_MD: "Irregular"
     })
   };
-  App_UFCCheck2(){
+  equip_ACECheck1(){
     this.setState({
-      App_UFCCheck2:!this.state.App_UFCCheck2,
-      App_UFCCheck1: false,
-      txt_A5_P1_UFC: "Não"
+      equip_ACECheck1:!this.state.equip_ACECheck1,
+      equip_ACECheck2: false,
+      txt_A4_P2_ID: "Normal"
     })
   };
-  App_SUEACheck1(){
+  equip_ACECheck2(){
     this.setState({
-      App_SUEACheck1:!this.state.App_SUEACheck1,
-      App_SUEACheck2: false,
-      txt_A5_P2_SUEA: "Sim"
+      equip_ACECheck2:!this.state.equip_ACECheck2,
+      equip_ACECheck1: false,
+      txt_A4_P2_ID: "Irregular"
     })
   };
-  App_SUEACheck2(){
+  equip_VETCheck1(){
     this.setState({
-      App_SUEACheck2:!this.state.App_SUEACheck2,
-      App_SUEACheck1: false,
-      txt_A5_P2_SUEA: "Não"
+      equip_VETCheck1:!this.state.equip_VETCheck1,
+      equip_VETCheck2: false,
+      txt_A4_P3_FED: "Normal"
+    })
+  };
+  equip_VETCheck2(){
+    this.setState({
+      equip_VETCheck2:!this.state.equip_VETCheck2,
+      equip_VETCheck1: false,
+      txt_A4_P3_FED: "Irregular"
+    })
+  };
+  equip_REBCheck1(){
+    this.setState({
+      equip_REBCheck1:!this.state.equip_REBCheck1,
+      equip_REBCheck2: false,
+      txt_A4_P4_HD: "Normal"
+    })
+  };
+  equip_REBCheck2(){
+    this.setState({
+      equip_REBCheck2:!this.state.equip_REBCheck2,
+      equip_REBCheck1: false,
+      txt_A4_P4_HD: "Irregular"
+    })
+  };
+  equip_AVACheck1(){
+    this.setState({
+      equip_AVACheck1:!this.state.equip_AVACheck1,
+      equip_AVACheck2: false,
+      txt_A5_P1_UFC: "Normal"
+    })
+  };
+  equip_AVACheck2(){
+    this.setState({
+      equip_AVACheck2:!this.state.equip_AVACheck2,
+      equip_AVACheck1: false,
+      txt_A5_P1_UFC: "Irregular"
+    })
+  };
+  equip_RUICheck1(){
+    this.setState({
+      equip_RUICheck1:!this.state.equip_RUICheck1,
+      equip_RUICheck2: false,
+      txt_A5_P2_SUEA: "Normal"
+    })
+  };
+  equip_RUICheck2(){
+    this.setState({
+      equip_RUICheck2:!this.state.equip_RUICheck2,
+      equip_RUICheck1: false,
+      txt_A5_P2_SUEA: "Irregular"
+    })
+  };
+  equip_GLICheck1(){
+    this.setState({
+      equip_GLICheck1:!this.state.equip_GLICheck1,
+      equip_GLICheck2: false,
+      txt_A5_P2_SUEA: "Normal"
+    })
+  };
+  equip_GLICheck2(){
+    this.setState({
+      equip_GLICheck2:!this.state.equip_GLICheck2,
+      equip_GLICheck1: false,
+      txt_A5_P2_SUEA: "Irregular"
+    })
+  };
+  equip_ZEBCheck1(){
+    this.setState({
+      equip_ZEBCheck1:!this.state.equip_ZEBCheck1,
+      equip_ZEBCheck2: false,
+      txt_A5_P2_SUEA: "Normal"
+    })
+  };
+  equip_ZEBCheck2(){
+    this.setState({
+      equip_ZEBCheck2:!this.state.equip_ZEBCheck2,
+      equip_ZEBCheck1: false,
+      txt_A5_P2_SUEA: "Irregular"
+    })
+  };
+  equip_RADCheck1(){
+    this.setState({
+      equip_RADCheck1:!this.state.equip_RADCheck1,
+      equip_RADCheck2: false,
+      txt_A5_P2_SUEA: "Normal"
+    })
+  };
+  equip_RADCheck2(){
+    this.setState({
+      equip_RADCheck2:!this.state.equip_RADCheck2,
+      equip_RADCheck1: false,
+      txt_A5_P2_SUEA: "Irregular"
     })
   };
 }
