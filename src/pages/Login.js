@@ -6,6 +6,10 @@ var {height, width} = Dimensions.get('window');
 
 
 export default class Login extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +41,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-        <Image style={{ width: '50%', height: '37%' }} source={require('../imagens/sisaa.png')}/>
+        <Image style={{ width: '55%', height: '37%' }} source={require('../imagens/sisaa.png')}/>
         <Text style={styles.titleText}>SISAA</Text>
         <TextInput
           style={styles.inputStyle}
