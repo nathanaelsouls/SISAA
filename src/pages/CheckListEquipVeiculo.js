@@ -24,23 +24,26 @@ export default class CheckList extends React.Component {
       txt_A4_P1_MD:   "", txt_A4_P2_ID:   "", txt_A4_P3_FED:  "", txt_A4_P4_HD:     "",
       txt_A5_P1_UFC:  "", txt_A5_P2_SUEA: "", PickerValue:    '',
       userData: {      },
-      Ac_EADCheck1:    false,   Ac_EADCheck2:    false,
-      Ac_UFECheck1:    false,   Ac_UFECheck2:    false,      
-      Aqsm_DPCheck1:   false,   Aqsm_DPCheck2:   false,
-      Aqsm_PQCheck1:   false,   Aqsm_PQCheck2:   false,
-      Aqsm_PACheck1:   false,   Aqsm_PACheck2:   false,
-      Aqsm_VACheck1:   false,   Aqsm_VACheck2:   false,
-      Agso_UEPCCheck1: false,   Agso_UEPCCheck2: false, 
-      Agso_LCCheck1:   false,   Agso_LCCheck2:   false,
-      Agso_GCCheck1:   false,   Agso_GCCheck2:   false,
-      Agso_ODCheck1:   false,   Agso_ODCheck2:   false,
-      Agso_FERCheck1:  false,   Agso_FERCheck2:  false,
-      Am_MDCheck1:     false,   Am_MDCheck2:     false,
-      Am_IDCheck1:     false,   Am_IDCheck2:     false,
-      Am_FEDCheck1:    false,   Am_FEDCheck2:    false,
-      Am_HDCheck1:     false,   Am_HDCheck2:     false,
-      App_UFCCheck1:   false,   App_UFCCheck2:   false,
-      App_SUEACheck1:  false,   App_SUEACheck2:  false,
+      equip_CDPCheck1:    false,   equip_CDPCheck2:    false,
+      equip_PDLCheck1:    false,   equip_PDLCheck2:    false,
+      equip_LIDCheck1:    false,   equip_LIDCheck2:    false,
+      equip_PIACheck1:    false,   equip_PIACheck2:    false,
+      equip_PNECheck1:    false,   equip_PNECheck2:    false,
+      equip_EXTCheck1:    false,   equip_EXTCheck2:    false,
+      equip_MOTCheck1:    false,   equip_MOTCheck2:    false,
+      equip_PAECheck1:    false,   equip_PAECheck2:    false,
+      equip_DIRCheck1:    false,   equip_DIRCheck2:    false,
+      equip_VOCCheck1:    false,   equip_VOCCheck2:    false,
+      equip_LUPCheck1:    false,   equip_LUPCheck2:    false,
+      equip_MECCheck1:    false,   equip_MECCheck2:    false,
+      equip_ACECheck1:    false,   equip_ACECheck2:    false,
+      equip_VETCheck1:    false,   equip_VETCheck2:    false,
+      equip_REBCheck1:    false,   equip_REBCheck2:    false,
+      equip_AVACheck1:    false,   equip_AVACheck2:    false,
+      equip_RUICheck1:    false,   equip_RUICheck2:    false,
+      equip_GLICheck1:    false,   equip_GLICheck2:    false,
+      equip_ZEBCheck1:    false,   equip_ZEBCheck2:    false,
+      equip_RADCheck1:    false,   equip_RADCheck2:    false,
     };
   }
 
@@ -125,11 +128,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Certificado de Propriedade</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_CDPCheck1} onChange={()=>this.equip_CDPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_CDPCheck2} onChange={()=>this.equip_CDPCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -137,11 +140,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Pintura da lataria (limpeza e conservação)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_PDLCheck1} onChange={()=>this.equip_PDLCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_PDLCheck2} onChange={()=>this.equip_PDLCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -150,11 +153,11 @@ export default class CheckList extends React.Component {
                 <Text style={styles.estiloTexto}> Logotipo/ Identificação (Alfanumérica)</Text>
                 <Text style={styles.estiloTexto}> da Empresa (Padrão NBR-8919)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_LIDCheck1} onChange={()=>this.equip_LIDCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_LIDCheck2} onChange={()=>this.equip_LIDCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -162,11 +165,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Pintura Amarela</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_PIACheck1} onChange={()=>this.equip_PIACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_PIACheck2} onChange={()=>this.equip_PIACheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -174,11 +177,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Pneus (estado de uso)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_PNECheck1} onChange={()=>this.equip_PNECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_PNECheck2} onChange={()=>this.equip_PNECheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -186,11 +189,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Extintores (Carga e aspecto de funcionamento)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_EXTCheck1} onChange={()=>this.equip_EXTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_EXTCheck2} onChange={()=>this.equip_EXTCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -198,11 +201,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Motor (estado de funcionamento)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_MOTCheck1} onChange={()=>this.equip_MOTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_MOTCheck2} onChange={()=>this.equip_MOTCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -210,11 +213,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Parte Elétrica (buzina, sinaleiros, faróis, etc.)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_PAECheck1} onChange={()=>this.equip_PAECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_PAECheck2} onChange={()=>this.equip_PAECheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -222,11 +225,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Direção (Folga excessiva, puxando para o lado, etc.)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_DIRCheck1} onChange={()=>this.equip_DIRCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_DIRCheck2} onChange={()=>this.equip_DIRCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -234,11 +237,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Vazamento de oléo e combustíveis</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_VOCCheck1} onChange={()=>this.equip_VOCCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_VOCCheck2} onChange={()=>this.equip_VOCCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -246,11 +249,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Lubificação Periódica</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_LUPCheck1} onChange={()=>this.equip_LUPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_LUPCheck2} onChange={()=>this.equip_LUPCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -258,11 +261,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Mecânicas (caixa de marcha, freios, embreagem, etc.)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_MECCheck1} onChange={()=>this.equip_MECCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_MECCheck2} onChange={()=>this.equip_MECCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -270,11 +273,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Acessórios</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_ACECheck1} onChange={()=>this.equip_ACECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_ACECheck2} onChange={()=>this.equip_ACECheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -282,11 +285,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Vidraças e espelhos retrovisores (estado em geral)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_VETCheck1} onChange={()=>this.equip_VETCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_VETCheck2} onChange={()=>this.equip_VETCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -294,11 +297,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Reboque (toldos, pneus, pintura, etc.)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_REBCheck1} onChange={()=>this.equip_REBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_REBCheck2} onChange={()=>this.equip_REBCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -306,11 +309,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Avarias (partes: frouxas, faltando, quebradas)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_AVACheck1} onChange={()=>this.equip_AVACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_AVACheck2} onChange={()=>this.equip_AVACheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -318,11 +321,11 @@ export default class CheckList extends React.Component {
                 
                 <Text style={styles.estiloTexto}> Ruídos (níveis suportáveis)</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_RUICheck1} onChange={()=>this.equip_RUICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_RUICheck2} onChange={()=>this.equip_RUICheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -331,11 +334,11 @@ export default class CheckList extends React.Component {
                 <Text style={styles.estiloTexto}> Giroflex ou Luz Intermitente bem visível</Text>
                 <Text style={styles.estiloTexto}> sobre o veículo, em conformidade</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_GLICheck1} onChange={()=>this.equip_GLICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_GLICheck2} onChange={()=>this.equip_GLICheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -343,11 +346,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Zebrados</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_ZEBCheck1} onChange={()=>this.equip_ZEBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_ZEBCheck2} onChange={()=>this.equip_ZEBCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
@@ -355,11 +358,11 @@ export default class CheckList extends React.Component {
 
                 <Text style={styles.estiloTexto}> Radiocomunicador</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                  <CheckBox value={this.state.equip_RADCheck1} onChange={()=>this.equip_RADCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Normal</Text>
                   </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                  <CheckBox value={this.state.equip_RADCheck2} onChange={()=>this.equip_RADCheck2()}/>
                   <View style={{ justifyContent: 'center'}}>
                     <Text style={styles.estiloTexto}> Irregular</Text>
                   </View>
