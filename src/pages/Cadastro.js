@@ -53,7 +53,7 @@ export default class SignUp extends React.Component {
         <TextInput
           style={styles.inputStyle}
           onChangeText={(text) => this.setState({email: text})}
-          placeholder="Email"
+          placeholder="E-mail"
           value={this.state.email}
           placeholderTextColor = "#CDC5BF" 
         />
@@ -68,7 +68,7 @@ export default class SignUp extends React.Component {
         <TextInput
           style={styles.inputStyle}
           onChangeText={(text) => this.setState({matricula: text})}
-          placeholder="Matricula"
+          placeholder="Matrícula"
           value={this.state.matricula}
           placeholderTextColor = "#CDC5BF" 
         />
