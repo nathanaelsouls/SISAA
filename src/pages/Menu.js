@@ -39,7 +39,7 @@ export default class Dashboard extends React.Component {
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => this.openAlert()} style={styles.menuButton} >
+              <TouchableOpacity onPress={() => this.EquipVeiculo()} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/veiculosEquipamentos.png')}/>
                 <Text style={styles.buttonText}>Equipamentos</Text>
                 <Text style={styles.buttonText}>Veículos</Text>
@@ -75,8 +75,8 @@ export default class Dashboard extends React.Component {
   AbrigoRampa(){
     this.props.navigation.navigate('AbrigoRampa');
   }
-  VeiculoEquipamentos(){
-    this.props.navigation.navigate('AbrigoRampa');
+  EquipVeiculo(){
+    this.props.navigation.navigate('EquipVeiculo');
   }
   Cadastro(){
     Actions.signup();
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     flexDirection: 'column', 
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
   },
   titleText:{
     fontSize: 25,

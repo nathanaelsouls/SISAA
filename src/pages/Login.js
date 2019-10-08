@@ -1,5 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, StatusBar, Dimensions,TextInput} from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  TouchableOpacity, 
+  Alert, 
+  Image, 
+  StatusBar, 
+  Dimensions,
+  TextInput
+} from 'react-native';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
@@ -15,13 +25,11 @@ export default class Login extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      email: "nathanaelotaku@hotmail.com",
+      email: "allefluziano@gmail.com",
       senha: "123456"
     };
   }
   
-  
-
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {
       if(user) {
@@ -31,7 +39,7 @@ export default class Login extends React.Component {
           () => this.props.navigation.navigate('Menu');
         }
       } else{
-        console.log("Deu Erro amigo");
+        console.log("Current user error");
       }
     });
   } 
@@ -41,7 +49,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-        <Image style={{ width: '55%', height: '37%' }} source={require('../imagens/sisaa.png')}/>
+        <Image style={{ width: '56%', height: '40%' }} source={require('../imagens/sisaa.png')}/>
         <Text style={styles.titleText}>SISAA</Text>
         <TextInput
           style={styles.inputStyle}
@@ -69,12 +77,12 @@ export default class Login extends React.Component {
 
   askForgotPassword(){
     if (this.state.email == ""){
-      Alert.alert("Erro", "Você precisa informar o seu e-mail");
+      Alert.alert("Erro !", "Você precisa informar o seu e-mail.");
     }
     else {
       Alert.alert(
-        'Recuperar senha',
-        'Deseja realmente recuperar a senha do e-mail?\n' + this.state.email + '?',
+        'Recuperar Senha',
+        'Deseja recuperar a senha do e-mail: ' + this.state.email + ' ?',
         [
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () =>
@@ -90,7 +98,7 @@ export default class Login extends React.Component {
     const email = this.state.email
     firebase.auth().sendPasswordResetEmail(email)
       .then(() => {
-        Alert.alert('Sucesso', "Um e-mail de recuperação de senha foi enviado para: "+email);
+        Alert.alert('Sucesso !', "Um e-mail de recuperação de senha foi enviado para: "+email);
       })
       .catch((error) => this.resetPasswordFail(error))
   }
