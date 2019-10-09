@@ -72,7 +72,7 @@ export default class SignUp extends React.Component {
           value={this.state.matricula}
           placeholderTextColor = "#CDC5BF" 
         />
-        <TouchableOpacity onPress={()=> this.openAlert()} style={styles.registerButton} >
+        <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
           <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>
         </View>

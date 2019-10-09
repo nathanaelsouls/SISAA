@@ -1,0 +1,59 @@
+* [33mcommit 06acc42a350a46d44d3c5e4e4d8eb3b44af7aa9c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+[31m|[m Author: Allef <allefluziano@gmail.com>
+[31m|[m Date:   Tue Oct 8 17:28:17 2019 -0300
+[31m|[m 
+[31m|[m     alterando outras variaveis
+[31m|[m 
+* [33mcommit c7eea1b57ce2d428202f52cfe4a14aede0891d37[m
+[31m|[m Author: Allef <allefluziano@gmail.com>
+[31m|[m Date:   Tue Oct 8 16:14:21 2019 -0300
+[31m|[m 
+[31m|[m     ajustando variaveis equip.
+[31m|[m 
+* [33mcommit 634e826357de7d3258d48e739685e107ee966d8e[m
+[31m|[m Author: Allef <allefluziano@gmail.com>
+[31m|[m Date:   Tue Oct 8 15:51:28 2019 -0300
+[31m|[m 
+[31m|[m     implementando equip. e veiculos
+[31m|[m 
+* [33mcommit eca8b8863ab07d40d513504e981724ea286ba96e[m
+[31m|[m Author: Nathanael <nathanaelotaku28@gmail.com>
+[31m|[m Date:   Mon Oct 7 22:19:23 2019 -0300
+[31m|[m 
+[31m|[m     Ajustando logo tela login
+[31m|[m 
+* [33mcommit a6cbc39d253057c12d910c6f16a346a21a0aeb39[m
+[31m|[m Author: Allef <allefluziano@gmail.com>
+[31m|[m Date:   Mon Oct 7 22:07:54 2019 -0300
+[31m|[m 
+[31m|[m     Ajustando tela menu e textos cadastro
+[31m|[m 
+* [33mcommit bf0f619cdcedf5409007120fda75f58f0fdd97d0[m
+[31m|[m Author: Nathanael <nathanaelotaku28@gmail.com>
+[31m|[m Date:   Sun Oct 6 21:51:17 2019 -0300
+[31m|[m 
+[31m|[m     Rotas e telas
+[31m|[m 
+* [33mcommit 5a86835321a9e32988fc37b61f1c3ba550169cd4[m
+[31m|[m Author: Nathanael <nathanaelotaku28@gmail.com>
+[31m|[m Date:   Sun Oct 6 19:38:41 2019 -0300
+[31m|[m 
+[31m|[m     splash-icone-nome
+[31m|[m 
+* [33mcommit d9786a947d0716497823a56132791c37594d80e0[m
+[31m|[m Author: Nathanael <nathanaelotaku28@gmail.com>
+[31m|[m Date:   Sun Oct 6 17:45:25 2019 -0300
+[31m|[m 
+[31m|[m     Abrigo de rampa e Menu
+[31m|[m 
+* [33mcommit e4622fcadea0a598239136db06a1814f6297549f[m
+[31m|[m Author: Nathanael <nathanaelotaku28@gmail.com>
+[31m|[m Date:   Sun Oct 6 17:01:30 2019 -0300
+[31m|[m 
+[31m|[m     tela de login
+[31m|[m 
+* [33mcommit d754123f5626244f361dd56dbc6077835a5f8801[m
+  Author: Nathanael <nathanaelotaku28@gmail.com>
+  Date:   Sun Oct 6 16:22:57 2019 -0300
+  
+      Projeto Sisaa com Navegation-stack

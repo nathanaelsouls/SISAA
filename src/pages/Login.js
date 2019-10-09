@@ -1,16 +1,8 @@
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  TouchableOpacity, 
-  Alert, 
-  Image, 
-  StatusBar, 
-  Dimensions,
-  TextInput
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, 
+         StatusBar, Dimensions, TextInput } from 'react-native';
 import firebase from "firebase";
+import Menu from './Menu';
 
 var {height, width} = Dimensions.get('window');
 
@@ -25,7 +17,7 @@ export default class Login extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      email: "allefluziano@gmail.com",
+      email: "nathanaelotaku@hotmail.com",
       senha: "123456"
     };
   }
@@ -49,7 +41,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-        <Image style={{ width: '56%', height: '40%' }} source={require('../imagens/sisaa.png')}/>
+        <Image style={{ width: '59%', height: '40%' }} source={require('../imagens/sisaa.png')}/>
         <Text style={styles.titleText}>SISAA</Text>
         <TextInput
           style={styles.inputStyle}
@@ -65,7 +57,7 @@ export default class Login extends React.Component {
           value={this.state.senha}
         />
         <TouchableOpacity //onPress={ ()=> this.loginUser(this.state.email, this.state.senha)}
-         style={styles.loginButton} onPress={() => this.props.navigation.navigate('Menu')}>
+         style={styles.loginButton} onPress={ () => this.loginUser(this.state.email, this.state.senha)}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.askForgotPassword()} style={styles.forgotButton} >
@@ -108,22 +100,20 @@ export default class Login extends React.Component {
   }
 
   loginUser(email, password){
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((function(){
-      () => this.props.navigation.navigate('Menu');
-      
-    }))
-    .catch(function(error) {
-      if(error.code == "auth/user-not-found"){
-        Alert.alert("Atenção!", "Usuário não encontrado");
-      }
-      else{
-        Alert.alert("Atenção", "DEU RUIM AMIGO, PROCURE O DESENVOLVEDOR");
-      }
-    });
 
-  }
- 
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      this.props.navigation.navigate('Menu');
+    })
+    .catch((err) => {
+
+        if(err.code == 'auth/user-not-found'){
+          Alert.alert('Atenção!', 'Usuário não encontrado.')
+        } else {
+          Alert.alert('Atenção!', 'Erro ao logar no App.')
+        }
+    })
+  } 
 }
 
 const styles = StyleSheet.create({
