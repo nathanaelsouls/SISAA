@@ -6,8 +6,8 @@ import Routes from './routes'
 import firebase from 'firebase';
 
 class App extends React.Component {
-    componentWillMount () {
-      //Posso Fazer qualquer tipo de configuração global aqui como por exemplo o Firebase
+    UNSAFE_componentWillMount () {
+      
       if (firebase.apps.length === 0) {
         firebase.initializeApp({
           apiKey: "AIzaSyDyO12YhogvbaAFeid9CMBncayDTfrAHgY",
