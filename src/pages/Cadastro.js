@@ -97,6 +97,7 @@ export default class SignUp extends React.Component {
     )
   }
 
+
   registerUser (email, password, nome, matricula) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((currentUser) => {
@@ -106,8 +107,15 @@ export default class SignUp extends React.Component {
         nome: nome,
         matricula: matricula
       });
-      Alert.alert("Sucesso!", "Usuário criado");
-      Actions.pop();
+      Alert.alert(
+        "Sucesso!",
+        "Usuário criado",
+        [
+          {text: 'OK', onPress: () =>
+            this.props.navigation.navigate('Menu')
+          }
+        ]);
+      //this.Actions.pop();
     })
     .catch((error) => { 
       console.log("firebase error: " + error);
