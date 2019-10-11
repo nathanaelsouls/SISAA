@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, StatusBar, Image, Button } from 'react-native';
 import firebase from "firebase";
-import DrawerNavigation from '../navigation/DrawerNavigator'
+import DrawerNavigation from '../navigation/DrawerNavigator';
+import Login from './Login';
 
 var { height, width } = Dimensions.get('window');
 
 export default class Dashboard extends React.Component {
     static navigationOptions = {
         title: 'Menu',
-        DrawerNavigation: 'Teste'
       };
 
   constructor(props) {
@@ -23,13 +23,13 @@ export default class Dashboard extends React.Component {
     return (
       <View style={styles.container}>
           <StatusBar backgroundColor="#001A4D" barStyle="light-content" />         
-        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+        <View style={{flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between'}}>
             <Button title='Cadastro de funcionário'
             onPress={() => this.props.navigation.navigate('Cadastro')}>
             </Button>
-            <Button title="opções" >
-                <DrawerNavigation/>
-            </Button>
+            <Text>       </Text>
+            <Button title="Logout" onPress={()=> this.logout()}/>               
+            
         </View>
         <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>          
           <View style={styles.colunasMenu}>
@@ -88,10 +88,10 @@ export default class Dashboard extends React.Component {
         
   logout(){
       firebase.auth().signOut()
-        .then(function () {
-          Actions.login();
+        .then( () => {
+          this.props.navigation.navigate('Login');
         })
-        .catch(function (error) {
+        .catch((error) => {
           alert.alert("Atenção", "DEu ruim meu chapa");
         });
     }
