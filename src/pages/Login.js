@@ -56,8 +56,8 @@ export default class Login extends React.Component {
           secureTextEntry
           value={this.state.senha}
         />
-        <TouchableOpacity //onPress={ ()=> this.loginUser(this.state.email, this.state.senha)}
-         style={styles.loginButton} onPress={ () => this.loginUser(this.state.email, this.state.senha)}>
+        <TouchableOpacity onPress={ () => this.loginUser(this.state.email, this.state.senha)}
+         style={styles.loginButton} >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> this.askForgotPassword()} style={styles.forgotButton} >

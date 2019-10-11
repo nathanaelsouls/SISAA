@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Dimensions, StatusBar, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Alert, Dimensions, StatusBar, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import firebase from "firebase"
 
 var {height, width} = Dimensions.get('window');
@@ -41,41 +41,43 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({nome: text})}
-          placeholder="Nome"
-          value={this.state.nome}
-          placeholderTextColor = "#CDC5BF" 
-        />
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({email: text})}
-          placeholder="E-mail"
-          value={this.state.email}
-          placeholderTextColor = "#CDC5BF" 
-        />
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({senha: text})}
-          placeholder="Senha"
-          secureTextEntry
-          value={this.state.senha}
-          placeholderTextColor = "#CDC5BF" 
-        />
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({matricula: text})}
-          placeholder="Matrícula"
-          value={this.state.matricula}
-          placeholderTextColor = "#CDC5BF" 
-        />
-        <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
-          <Text style={styles.buttonText}>Cadastrar</Text>
-        </TouchableOpacity>
-        </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({nome: text})}
+            placeholder="Nome"
+            value={this.state.nome}
+            placeholderTextColor = "#CDC5BF" 
+          />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({email: text})}
+            placeholder="E-mail"
+            value={this.state.email}
+            placeholderTextColor = "#CDC5BF" 
+          />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({senha: text})}
+            placeholder="Senha"
+            secureTextEntry
+            value={this.state.senha}
+            placeholderTextColor = "#CDC5BF" 
+          />
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({matricula: text})}
+            placeholder="Matrícula"
+            value={this.state.matricula}
+            placeholderTextColor = "#CDC5BF" 
+          />
+          <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
+            <Text style={styles.buttonText}>Cadastrar</Text>
+          </TouchableOpacity>
+          </View>
+        </ScrollView>
     );
   }
 

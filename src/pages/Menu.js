@@ -8,6 +8,7 @@ var { height, width } = Dimensions.get('window');
 export default class Dashboard extends React.Component {
     static navigationOptions = {
         title: 'Menu',
+        DrawerNavigation: 'Teste'
       };
 
   constructor(props) {
