@@ -27,7 +27,7 @@ export default class Dashboard extends React.Component {
             <Button title='Cadastro de funcionário'
             onPress={() => this.props.navigation.navigate('Cadastro')}>
             </Button>
-            <Text>       </Text>
+            <Text>        </Text>
             <Button title="Logout" onPress={()=> this.logout()}/>               
             
         </View>
