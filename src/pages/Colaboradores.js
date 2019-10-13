@@ -2,10 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default class Colaboradores extends React.Component{
-    static navigationOptions = {
-        title: 'Colaboradores',
-      };
-
     render() {
         return(
             <View style={styles.container}>

@@ -1,16 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, StatusBar, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, Button, ImageBackground } from 'react-native';
 import firebase from "firebase";
-import DrawerNavigation from '../navigation/DrawerNavigator';
-import Login from './Login';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 var { height, width } = Dimensions.get('window');
 
-export default class Dashboard extends React.Component {
-    static navigationOptions = {
-        title: 'Menu',
-      };
-
+export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,17 +16,23 @@ export default class Dashboard extends React.Component {
   
   render() {
     return (
-      <View style={styles.container}>
-          <StatusBar backgroundColor="#001A4D" barStyle="light-content" />         
-        <View style={{flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between'}}>
-            <Button title='Cadastro de funcionário'
-            onPress={() => this.props.navigation.navigate('Cadastro')}>
-            </Button>
-            <Text>        </Text>
-            <Button title="Logout" onPress={()=> this.logout()}/>               
-            
-        </View>
-        <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>          
+      <View style={styles.container}>        
+        <View style={{width: '100%', height: 45, flexDirection: 'row', justifyContent: 'space-around'}}>
+          <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
+            width: '20%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
+            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/cadastro.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
+            width: '20%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
+            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/informacao.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
+            width: '20%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
+            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/logout.png')}/>
+          </TouchableOpacity>    
+        </View>        
+        
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
               <Text style={styles.titleText}>CheckLists</Text>
@@ -79,9 +80,6 @@ export default class Dashboard extends React.Component {
   EquipVeiculo(){
     this.props.navigation.navigate('EquipVeiculo');
   }
-  Cadastro(){
-    Actions.signup();
-  }        
   openAlert(){
     alert('Em Desenvolvimento !');
   }
@@ -136,8 +134,8 @@ const styles = StyleSheet.create({
   colunasMenu:{
     flex: 1, 
     flexDirection: 'column', 
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent:'flex-start',
+    alignItems:'flex-start',
   },
   titleText:{
     fontSize: 25,

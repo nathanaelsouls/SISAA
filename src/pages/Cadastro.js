@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import { StyleSheet, Text, View, Alert, Dimensions, StatusBar, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import firebase from "firebase"
@@ -15,9 +7,6 @@ var {height, width} = Dimensions.get('window');
 
 
 export default class SignUp extends React.Component {
-    static navigationOptions = {
-        title: 'Cadastro De Usuário',
-      };
 
   constructor(props) {
     super(props);
@@ -43,7 +32,6 @@ export default class SignUp extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
           <TextInput
             style={styles.inputStyle}
             onChangeText={(text) => this.setState({nome: text})}

@@ -8,10 +8,6 @@ var {height, width} = Dimensions.get('window');
 
 
 export default class CheckList extends React.Component {
-    static navigationOptions = {
-        title: 'Equipamentos e Veículos',
-      };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -75,9 +71,7 @@ export default class CheckList extends React.Component {
     console.log("Dados do usuario", this.state.userData)
     return (
         <ScrollView>
-          <View style={styles.container}>
-            <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-            
+          <View style={styles.container}>            
             <Card style={styles.containercard}>
                 
                 <Text>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>

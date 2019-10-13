@@ -1,7 +1,11 @@
 
 import React from 'react';
 
-import Routes from './routes'
+import Routes from './routes';
+
+import './config/StatusBarConfig'
+
+import Drawer from './navigation/DrawerNavigator';
 
 import firebase from 'firebase';
 
@@ -23,6 +27,7 @@ class App extends React.Component {
   
     render() {
       return (
+        //<Drawer/>
         <Routes/>        
       );
     }

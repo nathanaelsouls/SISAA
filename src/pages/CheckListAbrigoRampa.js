@@ -8,10 +8,6 @@ var {height, width} = Dimensions.get('window');
 
 
 export default class CheckList extends React.Component {
-    static navigationOptions = {
-        title: 'Abrigo de Rampa',
-      };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -72,9 +68,7 @@ export default class CheckList extends React.Component {
     console.log("Dados do usuario", this.state.userData)
     return (
         <ScrollView>
-          <View style={styles.container}>
-            <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
-            
+          <View style={styles.container}>            
             <Card style={styles.containercard}>
                 
                 <Picker

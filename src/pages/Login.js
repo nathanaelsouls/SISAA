@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, 
-         StatusBar, Dimensions, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Image,
+         Dimensions, TextInput } from 'react-native';
 import firebase from "firebase";
 import Menu from './Menu';
 
@@ -8,10 +8,6 @@ var {height, width} = Dimensions.get('window');
 
 
 export default class Login extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -22,25 +18,24 @@ export default class Login extends React.Component {
     };
   }
   
-  componentDidMount(){
-    firebase.auth().onAuthStateChanged(function(user) {
-      if(user) {
-        console.log("Current user")
-        console.log(JSON.stringify(user))
-        if (user){
-          () => this.props.navigation.navigate('Menu');
-        }
-      } else{
-        console.log("Current user error");
-      }
-    });
-  } 
+  //componentDidMount(){
+  //  firebase.auth().onAuthStateChanged(function(user) {
+  //    if(user) {
+  //      console.log("Current user")
+  //      console.log(JSON.stringify(user))
+  //      if (user.uid =! null){
+  //        () => this.props.navigation.navigate('Menu');
+  //      }
+  //    } else{
+  //      console.log("Current user error");
+  //    }
+  //  });
+  //} 
 
   render() {   
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#001A4D" barStyle="light-content" />
         <Image style={{ width: '59%', height: '40%' }} source={require('../imagens/sisaa.png')}/>
         <Text style={styles.titleText}>SISAA</Text>
         <TextInput
@@ -101,7 +96,7 @@ export default class Login extends React.Component {
 
   loginUser(email, password){
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {
+    .then(() => {      
       this.props.navigation.navigate('Menu');
     })
     .catch((err) => {
@@ -111,7 +106,7 @@ export default class Login extends React.Component {
         } else {
           Alert.alert('Atenção!', 'Erro ao logar no App.')
         }
-    })
+    })    
   } 
 }
 
