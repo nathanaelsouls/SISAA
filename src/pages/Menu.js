@@ -17,46 +17,46 @@ export default class Menu extends React.Component {
   render() {
     return (
       <View style={styles.container}>        
-        <View style={{width: '100%', height: 45, flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View style={{width: '100%', height: '10%', flexDirection: 'row', justifyContent: 'space-around',
+                      alignItems: 'center'}}>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
-            width: '20%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
+            width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
             <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/cadastro.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
-            width: '20%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
+            width: '25%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
             <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/informacao.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
-            width: '20%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
+            width: '25%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
             <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/logout.png')}/>
-          </TouchableOpacity>    
-        </View>        
-        
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text/>          
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center'}}>
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
               <Text style={styles.titleText}>CheckLists</Text>
               <TouchableOpacity onPress={() => this.AbrigoRampa()} style={styles.menuButton} >
                 <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/abrigoRampa.png')}/>
+                <Text/>
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.EquipVeiculo()} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/veiculosEquipamentos.png')}/>
-                <Text style={styles.buttonText}>Equipamentos</Text>
-                <Text style={styles.buttonText}>Veículos</Text>
+                <Text style={styles.buttonText}>Equipamentos e Veículos</Text>                
               </TouchableOpacity>
             </TouchableOpacity>
           </View>
-
-
           <View style={styles.colunasMenu}>            
             <TouchableOpacity style={styles.colunasBotao}>
               <Text style={styles.titleText}>Formulários</Text>
               <TouchableOpacity onPress={() => this.openAlert()} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/aeronave.png')}/>
-                <Text style={styles.buttonText}>Cadastro de</Text>
-                <Text style={styles.buttonText}>Aeronave</Text>
+                <Text style={styles.buttonText}>Cadastro de Aeronave</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.openAlert()} style={styles.menuButton} >
@@ -67,12 +67,11 @@ export default class Menu extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        
+        <Text> Versão 1.0</Text>
       </View>
       
     );
-  }
-   
+  }  
   
   AbrigoRampa(){
     this.props.navigation.navigate('AbrigoRampa');
@@ -119,17 +118,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: "center",
     alignItems: 'center',
-    width: '87%',
-    height: '55%'    
+    width: '110%',
+    height: '80%'    
   },
   menuButton: {
     backgroundColor: "#001A4D",
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     borderRadius: 10,
     padding: 10,
-    width: '75%',
-    height: '40%'    
+    width: '80%',
+    height: '42%'    
   },
   colunasMenu:{
     flex: 1, 
