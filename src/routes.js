@@ -3,13 +3,19 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native';
 
+import Login from './pages/Login';
+import Menu from './pages/Menu';
 import Sisaa from './pages/Sisaa';
 import Colaboradores from './pages/Colaboradores';
-import Menu from './pages/Menu';
+import Cadastro from './pages/Cadastro';
 import AbrigoRampa from './pages/CheckListAbrigoRampa';
 import EquipVeiculo from './pages/CheckListEquipVeiculo';
-import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
+import CadastroAeronave from './pages/FormularioCadastroAeronave';
+import MenuDape from './pages/MenuDape';
+import Formulario400Hz from './pages/Formulario_400Hz';
+import FormularioAmbulift from './pages/Formulario_Ambulift';
+import FormularioLavagemTecnica from './pages/Formulario_LavagemTecnica';
+import FormularioTripulanteDesembarque from './pages/Formulario_TripulanteDesembarque';
 
 const StcakNavigator = createStackNavigator({
     Login: {
@@ -21,9 +27,10 @@ const StcakNavigator = createStackNavigator({
     Menu: {
         screen: Menu,
         navigationOptions: () => ({
-            title: 'Menu',
+            headerTitle: 'Menu',
+            headerTitleAlign: 'center',
             headerStyle:{
-              backgroundColor: "#104E8B",            
+              backgroundColor: "#104E8B",                                   
             },
             headerTintColor: "#FFF",
         })
@@ -31,7 +38,10 @@ const StcakNavigator = createStackNavigator({
     Sisaa: {
         screen: Sisaa,
         navigationOptions: () => ({
-            title: 'Sisaa',
+            headerTitle: 'Sisaa',
+            headerTitleAlign: 'center',
+            headerBackTitleVisible: true,
+            headerBackTitle: 'Menu',
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -41,7 +51,8 @@ const StcakNavigator = createStackNavigator({
     Colaboradores: {
         screen: Colaboradores,
         navigationOptions: () => ({
-            title: 'Colaboladores',
+            headerTitle: 'Colaboladores',
+            headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -51,7 +62,8 @@ const StcakNavigator = createStackNavigator({
     AbrigoRampa: {
         screen: AbrigoRampa,
         navigationOptions: () => ({
-            title: 'Abrigo de Rampa',
+            headerTitle: 'Abrigo de Rampa',
+            headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -61,7 +73,8 @@ const StcakNavigator = createStackNavigator({
     EquipVeiculo: {
         screen: EquipVeiculo,
         navigationOptions: () => ({
-            title: 'Equipamento e Veículos',
+            headerTitle: 'Equipamento e Veículos',
+            headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -71,7 +84,74 @@ const StcakNavigator = createStackNavigator({
     Cadastro: {
         screen: Cadastro,
         navigationOptions: () => ({
-            title: 'Cadastro',
+            headerTitle: 'Cadastro',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",            
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    CadastroAeronave: {
+        screen: CadastroAeronave,
+        navigationOptions: () => ({
+            headerTitle: 'Cadastro de Aeronave',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",           
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    MenuDape: {
+        screen: MenuDape,
+        navigationOptions: () => ({
+            headerTitle: 'Menu Dape',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",            
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    Formulario400Hz: {
+        screen: Formulario400Hz,
+        navigationOptions: () => ({
+            headerTitle: 'Formulário 400 Hz',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",            
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    FormularioAmbulift: {
+        screen: FormularioAmbulift,
+        navigationOptions: () => ({
+            headerTitle: 'Formulário Ambulift',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",            
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    FormularioLavagemTecnica: {
+        screen: FormularioLavagemTecnica,
+        navigationOptions: () => ({
+            headerTitle: 'Formulário Lavagem Técnica',
+            headerTitleAlign: 'center',
+            headerStyle:{
+              backgroundColor: "#104E8B",            
+            },
+            headerTintColor: "#FFF"
+        })
+    },
+    FormularioTripulanteDesembarque: {
+        screen: FormularioTripulanteDesembarque,
+        navigationOptions: () => ({
+            headerTitle: 'Formulário Tripulante e/ou Desembarque Híbrido',
+            headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
             },

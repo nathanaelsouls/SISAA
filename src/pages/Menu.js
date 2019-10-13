@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, Button, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 import firebase from "firebase";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -33,19 +33,20 @@ export default class Menu extends React.Component {
           </TouchableOpacity>
         </View>
         <View>
+          <Text/>
           <Text/>          
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center'}}>
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
               <Text style={styles.titleText}>CheckLists</Text>
-              <TouchableOpacity onPress={() => this.AbrigoRampa()} style={styles.menuButton} >
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('AbrigoRampa')} style={styles.menuButton} >
                 <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/abrigoRampa.png')}/>
                 <Text/>
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => this.EquipVeiculo()} style={styles.menuButton} >
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('EquipVeiculo')} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/veiculosEquipamentos.png')}/>
                 <Text style={styles.buttonText}>Equipamentos e Veículos</Text>                
               </TouchableOpacity>
@@ -54,35 +55,25 @@ export default class Menu extends React.Component {
           <View style={styles.colunasMenu}>            
             <TouchableOpacity style={styles.colunasBotao}>
               <Text style={styles.titleText}>Formulários</Text>
-              <TouchableOpacity onPress={() => this.openAlert()} style={styles.menuButton} >
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('CadastroAeronave')} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/aeronave.png')}/>
                 <Text style={styles.buttonText}>Cadastro de Aeronave</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => this.openAlert()} style={styles.menuButton} >
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('MenuDape')} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/dape.png')}/>
-                <Text style={styles.buttonText}> </Text>
+                <Text/>
                 <Text style={styles.buttonText}>Dape</Text>                
               </TouchableOpacity>
             </TouchableOpacity>
           </View>
         </View>
-        <Text> Versão 1.0</Text>
+        <Text style={{color: 'black'}}> Versão 1.0 </Text>
       </View>
       
     );
-  }  
-  
-  AbrigoRampa(){
-    this.props.navigation.navigate('AbrigoRampa');
   }
-  EquipVeiculo(){
-    this.props.navigation.navigate('EquipVeiculo');
-  }
-  openAlert(){
-    alert('Em Desenvolvimento !');
-  }
-        
+         
   logout(){
       firebase.auth().signOut()
         .then( () => {
@@ -103,8 +94,8 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: "white",
-    fontSize: 15,
-    textAlign: "center",    
+    fontSize: 16,
+    textAlign: "center",  
   },
   logoutText:{
     color: "#012060",
@@ -116,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#104E8B",
     justifyContent: 'space-around',
     borderRadius: 15,
-    alignSelf: "center",
+    alignSelf: 'center',
     alignItems: 'center',
     width: '110%',
     height: '80%'    
@@ -127,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     padding: 10,
-    width: '80%',
+    width: '78%',
     height: '42%'    
   },
   colunasMenu:{

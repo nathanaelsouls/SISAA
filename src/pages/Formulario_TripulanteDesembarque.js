@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class CadastroAeronave extends React.Component{
+export default class Formulario_TripulanteDesembarque extends React.Component{
     render() {
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Formulário de Cadastro de Aeronave</Text>
+                <Text style={styles.text}>Formulário Tripulante e/ou Desembarque</Text>
             </View>
         );
     }
