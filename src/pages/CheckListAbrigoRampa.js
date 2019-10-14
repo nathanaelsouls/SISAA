@@ -67,7 +67,7 @@ export default class CheckList extends React.Component {
   render() {
     console.log("Dados do usuario", this.state.userData)
     return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
                 
@@ -299,9 +299,9 @@ export default class CheckList extends React.Component {
                 <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
                   <Text style={styles.buttonText}>Enviar CheckList</Text>
                 </TouchableOpacity>
-              </Card>
-              
+              </Card>              
           </View>
+          <Text> </Text>
         </ScrollView>
     );
   }
@@ -634,11 +634,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',    
-    backgroundColor: '#012060'
+    backgroundColor: '#012060',
   },
   containercard:{
-    flex: 1,
-    width:'100%'
+    flex: 2,
+    width:'90%',
+    margin: 10,
+    borderRadius: 1
   },
   inputStyle:{
     height: height * 0.06, 
@@ -655,7 +657,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#001A4D",
     borderRadius: 10,
     padding: 10,
-    margin: 20,
+    margin: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },

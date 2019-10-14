@@ -1,24 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView,} from 'react-native';
+import { Card } from 'react-native-elements';
+
+var {height, width} = Dimensions.get('window');
 
 export default class Colaboradores extends React.Component{
     render() {
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Colaboradores</Text>
+                
+                <Text style={styles.Titulo}>Colaboradores</Text>
+                
             </View>
+ 
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex:1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        flexDirection: 'column',
         justifyContent: 'center'
     },
-    text: {
-        fontSize: 30,
-    }
+    Titulo: {
+        fontSize: 25,
+        color: 'black',
+        fontWeight: "bold",
+        alignItems: 'center',        
+        alignSelf: 'center'
+    },
 });

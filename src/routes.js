@@ -106,7 +106,7 @@ const StcakNavigator = createStackNavigator({
     MenuDape: {
         screen: MenuDape,
         navigationOptions: () => ({
-            headerTitle: 'Menu Dape',
+            headerTitle: 'Menu Dape - Formulários',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
@@ -117,7 +117,7 @@ const StcakNavigator = createStackNavigator({
     Formulario400Hz: {
         screen: Formulario400Hz,
         navigationOptions: () => ({
-            headerTitle: 'Formulário 400 Hz',
+            headerTitle: '400 Hz',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
@@ -128,7 +128,7 @@ const StcakNavigator = createStackNavigator({
     FormularioAmbulift: {
         screen: FormularioAmbulift,
         navigationOptions: () => ({
-            headerTitle: 'Formulário Ambulift',
+            headerTitle: 'Ambulift',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
@@ -139,7 +139,7 @@ const StcakNavigator = createStackNavigator({
     FormularioLavagemTecnica: {
         screen: FormularioLavagemTecnica,
         navigationOptions: () => ({
-            headerTitle: 'Formulário Lavagem Técnica',
+            headerTitle: 'Lavagem Técnica',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
@@ -150,7 +150,7 @@ const StcakNavigator = createStackNavigator({
     FormularioTripulanteDesembarque: {
         screen: FormularioTripulanteDesembarque,
         navigationOptions: () => ({
-            headerTitle: 'Formulário Tripulante e/ou Desembarque Híbrido',
+            headerTitle: 'Tripulante e/ou Desembarque Híbrido',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            
