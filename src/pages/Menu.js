@@ -17,19 +17,19 @@ export default class Menu extends React.Component {
   render() {
     return (
       <View style={styles.container}>        
-        <View style={{width: '100%', height: '10%', flexDirection: 'row', justifyContent: 'space-around',
+        <View style={{width: '100%', height: '15%', flexDirection: 'row', justifyContent: 'space-around',
                       alignItems: 'center'}}>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
-            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/cadastro.png')}/>
+            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/cadastro.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
-            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/informacao.png')}/>
+            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/informacao.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
-            <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/logout.png')}/>
+            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/logout.png')}/>
           </TouchableOpacity>
         </View>
         <View>
@@ -39,7 +39,6 @@ export default class Menu extends React.Component {
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center'}}>
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
-              <Text style={styles.titleText}>CheckLists</Text>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('AbrigoRampa')} style={styles.menuButton} >
                 <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/abrigoRampa.png')}/>
                 <Text/>
@@ -54,7 +53,6 @@ export default class Menu extends React.Component {
           </View>
           <View style={styles.colunasMenu}>            
             <TouchableOpacity style={styles.colunasBotao}>
-              <Text style={styles.titleText}>Formulários</Text>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CadastroAeronave')} style={styles.menuButton} >
               <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/aeronave.png')}/>
                 <Text style={styles.buttonText}>Cadastro de Aeronave</Text>
@@ -97,12 +95,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",  
   },
-  logoutText:{
-    color: "#012060",
-    fontSize: 15,
-    textAlign: "center",
-    fontWeight: "bold"
-  },
   colunasBotao:{
     backgroundColor: "#104E8B",
     justifyContent: 'space-around',
@@ -126,18 +118,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column', 
     justifyContent:'flex-start',
     alignItems:'flex-start',
-  },
-  titleText:{
-    fontSize: 25,
-    alignItems: 'center',
-    textAlign: 'center',
-    color: "white"
-  },
-  menuText:{
-    fontSize: 30,
-    alignItems: 'center',
-    textAlign: 'center',
-    color: "white"
   },
   logout: {
     backgroundColor: "transparent",

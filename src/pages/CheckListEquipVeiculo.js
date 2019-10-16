@@ -13,10 +13,9 @@ export default class CheckList extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      Fiscal_Patio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
-      txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "",
-      txt_A2_P1_DP:   "", txt_A2_P2_PQ:   "", txt_A2_P3_PA:   "", txt_A2_P4_VA:     "",
-      txt_A3_P1_UEPC: "", txt_A3_P2_LC:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
+      Fiscal_Patio:   "", txtA_empresa:   "", txt_observacao:   "", Fiscal_Matricula: "",
+      TipoEquip: "", Modelo: "", Placa: "", N_Serie: "", N_ATIV: "", Validade_ATIV: "", Contato: "",
+      TelefoneForm:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
       txt_A4_P1_MD:   "", txt_A4_P2_ID:   "", txt_A4_P3_FED:  "", txt_A4_P4_HD:     "",
       txt_A5_P1_UFC:  "", txt_A5_P2_SUEA: "", PickerValue:    '',
       userData: {      },
@@ -68,19 +67,19 @@ export default class CheckList extends React.Component {
   }
 
   render() {
-    console.log("Dados do usuario", this.state.userData)
+    //console.log("Dados do usuario", this.state.userData)
     return (
         <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
                 
-                <Text>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>
+                <Text style={styles.estiloTexto}>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>
                 <Picker
-                style = {{width:'100%'}}
+                style = {{width:'100%', height:'3%'}}                
                 selectedValue={this.state.PickerValue}
                 onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
                 >
-                  <Picker.Item label="Selecione Empresa" value=""/>
+                  <Picker.Item label="Selecione Empresa" value="" fontSize/>
                   <Picker.Item label="Azul"              value="Azul"/>
                   <Picker.Item label="Gol"               value="Gol"/>
                   <Picker.Item label="LATAM"             value="LATAM"/>
@@ -88,37 +87,69 @@ export default class CheckList extends React.Component {
                   <Picker.Item label="Quicklink"         value="Quicklink"/>
                   <Picker.Item label="Swissport"         value="Swissport"/>                  
                 </Picker>
+                <Text style={styles.textPerguntas}>Tipo de Equipamento:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({TipoEquip: text})} 
                   placeholder="Tipo de Equipamento"
+                  value={this.state.TipoEquip}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Modelo:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({Modelo: text})} 
                   placeholder="Modelo"
+                  value={this.state.Modelo}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Placa:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({Placa: text})} 
                   placeholder="Placa"
+                  value={this.state.Placa}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Número de Série:</Text>
                 <TextInput
-                  style={styles.inputStyle}
-                  placeholder="N° de Série"
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({N_Serie: text})} 
+                  placeholder="Nº de Série"
+                  value={this.state.N_Serie}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Número ATIV:</Text>
                 <TextInput
-                  style={styles.inputStyle}
-                  placeholder="N° ATIV"
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({N_ATIV: text})} 
+                  placeholder="Nº ATIV"
+                  value={this.state.N_ATIV}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Validade ATIV:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({Validade_ATIV: text})} 
                   placeholder="Validade ATIV"
+                  value={this.state.Validade_ATIV}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Contato:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({Contato: text})} 
                   placeholder="Contato"
+                  value={this.state.Contato}
+                  underlineColorAndroid='#0000'
                 />
+                <Text style={styles.textPerguntas}>Telefone:</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({TelefoneForm: text})} 
                   placeholder="Telefone"
+                  value={this.state.TelefoneForm}
+                  underlineColorAndroid='#0000'
                 />
 
                 <Text style={styles.estiloTexto}> Certificado de Propriedade</Text>
@@ -759,12 +790,22 @@ const styles = StyleSheet.create({
     flex: 2,
     width:'90%'
   },
+  inputBox:{
+    height: 40, 
+    borderWidth: 1,
+    backgroundColor: '#FFFAFA',
+    borderRadius: 25,
+    textAlign: 'center',
+    paddingHorizontal: 16,
+    marginVertical: 10,
+    fontSize: 15
+  },
   inputStyle:{
     height: height * 0.06, 
     width: width * 0.80, 
-    borderBottomColor: 'gray', 
+    borderColor: 'gray', 
     borderBottomWidth: 1,
-    margin: width * 0.04
+    margin: width * 0.02
   },
   buttonText:{
     color: "white",
@@ -774,8 +815,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#001A4D",
     borderRadius: 10,
     padding: 10,
-    margin: 1,
+    margin: 30,
     alignItems: 'center',
     justifyContent: 'center'
   },
+  textPerguntas: {
+    color: 'black',
+    alignSelf: 'flex-start',
+    fontSize: 15
+  },
+  estiloTexto:{
+    fontSize: 15,
+    color: 'black'
+  }
 });
