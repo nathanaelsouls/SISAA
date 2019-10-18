@@ -21,15 +21,15 @@ export default class Menu extends React.Component {
                       alignItems: 'center'}}>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
-            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/cadastro.png')}/>
+            <Image style={{ width: '47%', height: '31%' }} source={require('../imagens/cadastro.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
-            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/informacao.png')}/>
+            <Image style={{ width: '47%', height: '31%' }} source={require('../imagens/informacao.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
-            <Image style={{ width: '42%', height: '31%' }} source={require('../imagens/logout.png')}/>
+            <Image style={{ width: '47%', height: '31%' }} source={require('../imagens/logout.png')}/>
           </TouchableOpacity>
         </View>
         <View>

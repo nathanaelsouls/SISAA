@@ -1,20 +1,29 @@
 import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
-         StatusBar, Dimensions, Picker, CheckBox, ScrollView,TextInput} from 'react-native';
+         StatusBar, Dimensions, Picker, CheckBox, ScrollView,TextInput } from 'react-native';
 import { Card } from 'react-native-elements';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
+//var dia = new Date().getDate();
+//var mes = new Date().getMonth();
+//var ano = new Date().getFullYear();
 
+//var horas = new Date().getHours();
+//var minutos = new Date().getMinutes();
+//var segundos = new Date().getSeconds();
 
 export default class CheckList extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
+      chosenDate: new Date(),      
+
       deviceWidth: width,
       deviceHeight: height,
-      Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
-      txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "",
+      Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "", Cadastro: "",
+      txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "", Data: "",
       txt_A2_P1_DP:   "", txt_A2_P2_PQ:   "", txt_A2_P3_PA:   "", txt_A2_P4_VA:     "",
       txt_A3_P1_UEPC: "", txt_A3_P2_LC:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
       txt_A4_P1_MD:   "", txt_A4_P2_ID:   "", txt_A4_P3_FED:  "", txt_A4_P4_HD:     "",
@@ -38,6 +47,11 @@ export default class CheckList extends React.Component {
       App_UFCCheck1:   false,   App_UFCCheck2:   false,
       App_SUEACheck1:  false,   App_SUEACheck2:  false,
     };
+    this.setDate = this.setDate.bind(this);
+  }
+
+  setDate(newDate) {
+    this.setState({chosenDate: newDate});
   }
 
   componentDidMount(){
@@ -64,6 +78,8 @@ export default class CheckList extends React.Component {
     })
   }
 
+  
+
   render() {
     console.log("Dados do usuario", this.state.userData)
     return (
@@ -72,11 +88,11 @@ export default class CheckList extends React.Component {
             <Card style={styles.containercard}>
                 
                 <Picker
-                style = {{width:'100%'}}
+                style = {styles.pickerStyle}
                 selectedValue={this.state.PickerValue}
                 onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
                 >
-                  <Picker.Item label="Selecione Empresa" value=""/>
+                  <Picker.Item label="Selecione Empresa..." value=""/>
                   <Picker.Item label="Azul"              value="Azul"/>
                   <Picker.Item label="Gol"               value="Gol"/>
                   <Picker.Item label="LATAM"             value="LATAM"/>
@@ -84,6 +100,15 @@ export default class CheckList extends React.Component {
                   <Picker.Item label="Quicklink"         value="Quicklink"/>
                   <Picker.Item label="Swissport"         value="Swissport"/>                  
                 </Picker>
+                
+                <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Data:</Text>
+                <TextInput
+                  style={styles.inputBox}
+                  onChangeText={(text) => this.setState({Data: text})} 
+                  placeholder="dd/mm/aaaa"
+                  value={this.state.Data}
+                  underlineColorAndroid='#0000'
+                />
 
                 <Text style={styles.estiloTexto}>Há Equipamentos fora da área delimitada?</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
@@ -291,7 +316,7 @@ export default class CheckList extends React.Component {
                 
                 <Text style={styles.estiloTexto}>Outros: Relatar</Text>
                 <TextInput
-                  style={styles.inputStyle}
+                  style={styles.inputBox}
                   onChangeText={(text1) => this.setState({txt_observacao: text1})}
                   placeholder="Observação"
                   value={this.state.txt_observacao}
@@ -311,7 +336,7 @@ export default class CheckList extends React.Component {
   }
 
   askRegister(){
-
+    //Cadastro = dia+'/'+mes+'/'+ano+'  '+horas+':'+minutos+':'+segundos ;
     var data = this.state.PickerValue;
     if(data == ""){
       Alert.alert(
@@ -326,7 +351,8 @@ export default class CheckList extends React.Component {
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () => 
             //this.openAlert()
-            this.confirmRegister(this.state.userData.nome,
+            this.confirmRegister(this.state.Data,
+                                this.state.userData.nome,
                                 this.state.userData.matricula,
                                 this.state.PickerValue,
                                 this.state.txt_A1_P1_EAD,
@@ -354,33 +380,34 @@ export default class CheckList extends React.Component {
     }  
   }
   confirmRegister () {
-    const userData = {
-      Fiscal_Pátio:   this.state.userData.nome,
+    const userData = {      
+      Fiscal_Pátio:     this.state.userData.nome,
       Fiscal_Matricula: this.state.userData.matricula,
-      txtA_empresa:   this.state.PickerValue,
-      txt_A1_P1_EAD:  this.state.txt_A1_P1_EAD,
-      txt_A1_P2_UFE:  this.state.txt_A1_P2_UFE,
-      txt_A2_P1_DP:   this.state.txt_A2_P1_DP,
-      txt_A2_P2_PQ:   this.state.txt_A2_P2_PQ,
-      txt_A2_P3_PA:   this.state.txt_A2_P3_PA,
-      txt_A2_P4_VA:   this.state.txt_A2_P4_VA,
-      txt_A3_P1_UEPC: this.state.txt_A3_P1_UEPC,
-      txt_A3_P2_LC:   this.state.txt_A3_P2_LC,
-      txt_A3_P3_GC:   this.state.txt_A3_P3_GC,
-      txt_A3_P4_OD:   this.state.txt_A3_P4_OD,
-      txt_A3_P5_FER:  this.state.txt_A3_P5_FER,
-      txt_A4_P1_MD:   this.state.txt_A4_P1_MD,
-      txt_A4_P2_ID:   this.state.txt_A4_P2_ID,
-      txt_A4_P3_FED:  this.state.txt_A4_P3_FED,
-      txt_A4_P4_HD:   this.state.txt_A4_P4_HD,
-      txt_A5_P1_UFC:  this.state.txt_A5_P1_UFC,
-      txt_A5_P2_SUEA: this.state.txt_A5_P2_SUEA,
-      txt_observacao: this.state.txt_observacao
+      txtA_empresa:     this.state.PickerValue,
+      Data:             this.state.Data,
+      txt_A1_P1_EAD:    this.state.txt_A1_P1_EAD,
+      txt_A1_P2_UFE:    this.state.txt_A1_P2_UFE,
+      txt_A2_P1_DP:     this.state.txt_A2_P1_DP,
+      txt_A2_P2_PQ:     this.state.txt_A2_P2_PQ,
+      txt_A2_P3_PA:     this.state.txt_A2_P3_PA,
+      txt_A2_P4_VA:     this.state.txt_A2_P4_VA,
+      txt_A3_P1_UEPC:   this.state.txt_A3_P1_UEPC,
+      txt_A3_P2_LC:     this.state.txt_A3_P2_LC,
+      txt_A3_P3_GC:     this.state.txt_A3_P3_GC,
+      txt_A3_P4_OD:     this.state.txt_A3_P4_OD,
+      txt_A3_P5_FER:    this.state.txt_A3_P5_FER,
+      txt_A4_P1_MD:     this.state.txt_A4_P1_MD,
+      txt_A4_P2_ID:     this.state.txt_A4_P2_ID,
+      txt_A4_P3_FED:    this.state.txt_A4_P3_FED,
+      txt_A4_P4_HD:     this.state.txt_A4_P4_HD,
+      txt_A5_P1_UFC:    this.state.txt_A5_P1_UFC,
+      txt_A5_P2_SUEA:   this.state.txt_A5_P2_SUEA,
+      txt_observacao:   this.state.txt_observacao
     }
       firebase.database().ref("CheckListAbrigoDeRampa/").push(userData)
       .then((snapshot) => {
         Alert.alert("Sucesso!", "Check List Enviado");
-        this.props.navigation.navigate('AbrigoRampa');
+        this.props.navigation.navigate('Menu');
       })
       .catch((error) =>{
         console.log("Error: ", error);
@@ -660,5 +687,23 @@ const styles = StyleSheet.create({
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  pickerStyle: {
+    width: '100%',
+    
+  },
+  estiloTexto:{
+    fontSize: 15,
+    color: 'black'
+  },
+  inputBox:{
+    height: 40, 
+    borderWidth: 1,
+    backgroundColor: '#FFFAFA',
+    borderRadius: 25,
+    textAlign: 'center',
+    paddingHorizontal: 16,
+    marginVertical: 10,
+    fontSize: 15
   },
 });
