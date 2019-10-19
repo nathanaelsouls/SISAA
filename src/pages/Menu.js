@@ -39,13 +39,13 @@ export default class Menu extends React.Component {
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('AbrigoRampa')} style={styles.menuButton} >
-                <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/shelter.png')}/>
+                <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/shelter.png')}/>
                 <Text/>
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.props.navigation.navigate('EquipVeiculo')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/vehicle.png')}/>
+              <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/vehicle.png')}/>
                 <Text style={styles.buttonText}>Equipamentos e Veículos</Text>                
               </TouchableOpacity>
             </TouchableOpacity>
@@ -53,19 +53,19 @@ export default class Menu extends React.Component {
           <View style={styles.colunasMenu}>            
             <TouchableOpacity style={styles.colunasBotao}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CadastroAeronave')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/airplane.png')}/>
+              <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/airplane.png')}/>
                 <Text style={styles.buttonText}>Cadastro de Aeronave</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.props.navigation.navigate('MenuDape')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/dape.png')}/>
+              <Image backgroundColor='white' style={{ width: '60%', height: '55%'}} source={require('../imagens/dape.png')}/>
                 <Text/>
                 <Text style={styles.buttonText}>Dape</Text>                
               </TouchableOpacity>
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={{color: 'black'}}> Versão 1.0 </Text>
+        <Text style={{color: 'white'}}> Versão 1.0 </Text>
       </View>
       
     );
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   buttonText:{
     color: "white",
     fontSize: 16,
-    textAlign: "center",  
+    textAlign: "center"
   },
   colunasBotao:{
     backgroundColor: "#104E8B",
@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     height: '80%'    
   },
   menuButton: {
-    backgroundColor: "#001A4D",
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
