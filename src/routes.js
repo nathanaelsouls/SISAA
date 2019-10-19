@@ -17,7 +17,7 @@ import FormularioAmbulift from './pages/Formulario_Ambulift';
 import FormularioLavagemTecnica from './pages/Formulario_LavagemTecnica';
 import FormularioTripulanteDesembarque from './pages/Formulario_TripulanteDesembarque';
 
-const StcakNavigator = createStackNavigator({
+const StackNavigator = createStackNavigator({
     Login: {
         screen: Login,
         navigationOptions: () => ({
@@ -28,9 +28,13 @@ const StcakNavigator = createStackNavigator({
         screen: Menu,
         navigationOptions: () => ({
             headerTitle: 'Menu',
-            headerTitleAlign: 'center',
+            headerLeft: null,
+            headerTitleStyle: { 
+                textAlign:"center", 
+                flex:1  
+            },
             headerStyle:{
-              backgroundColor: "#104E8B",                                   
+                backgroundColor: "#104E8B", 
             },
             headerTintColor: "#FFF",
         })
@@ -164,6 +168,6 @@ const StcakNavigator = createStackNavigator({
 }
 );
 
-const Routes = createAppContainer(StcakNavigator)
+const Routes = createAppContainer(StackNavigator)
 
 export default Routes;
