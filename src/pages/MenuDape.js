@@ -21,7 +21,7 @@ return (
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Formulario400Hz')} style={styles.menuButton} >
-            <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/dape.png')}/>
+            <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/energy.png')}/>
             <Text/>
             <Text style={styles.buttonText}>400 Hz</Text>
             </TouchableOpacity>
