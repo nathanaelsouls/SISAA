@@ -15,8 +15,8 @@ export default class CadastroAeronave extends React.Component{
           //Dados da Operação
           DataPouso:"" , PilotoComando: "", Telefone: "", Email: "", VOO_IntrucaoExperiencia: "",
           //Dados do Operador da Aeronave:
-          
-
+          Nome_RazaoSocial: "", CNPJ_CPF: "", N_AVANAC: "", DataNascimento: "", Endereco: "",
+          CEP: "", Cidade: "", Bairro: "", Estado: "", TelefoneOperador: "", EmailOperador: ""
         };
       }
 
@@ -26,7 +26,7 @@ export default class CadastroAeronave extends React.Component{
                 <View style={styles.container}>
                     <Card style={styles.containercard}>                        
                         <Text style={styles.Titulo}>Dados da Aeronave</Text>
-                        <Text style={styles.text}>Matrícula/Registration:</Text>
+                        <Text style={styles.text}>Matrícula/registration:</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({MatriculaRegistration: text})}
@@ -34,7 +34,7 @@ export default class CadastroAeronave extends React.Component{
                         value={this.state.MatriculaRegistration}
                         />
                         <View style={{flexDirection: 'row'}}>
-                            <Text style={styles.text}>Modelo/Model:</Text><Text style={styles.textObrig}>*</Text>
+                            <Text style={styles.text}>Modelo/model:</Text><Text style={styles.textObrig}>*</Text>
                         </View>
                         <TextInput
                         style={styles.inputBox}
@@ -49,7 +49,7 @@ export default class CadastroAeronave extends React.Component{
                         placeholder="MTOW"
                         value={this.state.MTOW}
                         />
-                        <Text style={styles.text}>Classe/CAO Type:</Text>
+                        <Text style={styles.text}>Classe/CAO type:</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({ClasseCAOType: text})}
@@ -57,6 +57,42 @@ export default class CadastroAeronave extends React.Component{
                         value={this.state.ClasseCAOType}
                         />
                         <Text style={styles.Titulo}>Dados da Operação</Text>
+                        <Text style={styles.text}>Data de pouso/arrival date:</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({DataPouso: text})}
+                        placeholder="Data"
+                        value={this.state.DataPouso}
+                        />
+                        <Text style={styles.text}>Piloto em comando/PIC:</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({PilotoComando: text})}
+                        placeholder="Piloto"
+                        value={this.state.PilotoComando}
+                        />
+                        <Text style={styles.text}>Telefone/Phone:</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({Telefone: text})}
+                        placeholder="Telefone"
+                        value={this.state.Telefone}
+                        />
+                        <Text style={styles.text}>Email:</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({Email: text})}
+                        placeholder="Email"
+                        value={this.state.Email}
+                        />
+                        <Text style={styles.text}>Voo de Instrução ou Experiência?</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({VOO_IntrucaoExperiencia: text})}
+                        placeholder="Instrução ou Experiência "
+                        value={this.state.VOO_IntrucaoExperiencia}
+                        />
+
                         <TouchableOpacity onPress={()=> alert('em Desenvolvimento')} style={styles.FormularioButton} >
                             <Text style={styles.buttonText}>Enviar Formulário</Text>
                         </TouchableOpacity>
@@ -85,7 +121,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     text: {
-        fontSize: 20,
+        fontSize: 16,
         color: 'black',
         flex: 1,
         alignSelf: 'flex-start',
