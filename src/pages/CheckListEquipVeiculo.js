@@ -793,18 +793,11 @@ const styles = StyleSheet.create({
     height: 40, 
     borderWidth: 1,
     backgroundColor: '#FFFAFA',
-    borderRadius: 25,
+    borderRadius: 10,
     textAlign: 'center',
     paddingHorizontal: 16,
     marginVertical: 10,
     fontSize: 15
-  },
-  inputStyle:{
-    height: height * 0.06, 
-    width: width * 0.80, 
-    borderColor: 'gray', 
-    borderBottomWidth: 1,
-    margin: width * 0.02
   },
   buttonText:{
     color: "white",

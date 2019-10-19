@@ -10,10 +10,12 @@ export default class CadastroAeronave extends React.Component{
         this.state = {
           deviceWidth: width,
           deviceHeight: height,
-          MatriculaRegistration: "",
-          ModeloModel: "",
-          MTOW: "",
-          ClasseCAOType: ""
+          //Dados da Aeronave
+          MatriculaRegistration: "", ModeloModel: "", MTOW: "", ClasseCAOType: "",
+          //Dados da Operação
+          DataPouso:"" , PilotoComando: "", Telefone: "", Email: "", VOO_IntrucaoExperiencia: "",
+          //Dados do Operador da Aeronave:
+
         };
       }
 
@@ -22,10 +24,10 @@ export default class CadastroAeronave extends React.Component{
             <ScrollView style={styles.container}>
                 <View style={styles.container}>
                     <Card style={styles.containercard}>                        
-                        <Text style={styles.Titulo}>Dados da Aeronave:</Text>
+                        <Text style={styles.Titulo}>Dados da Aeronave</Text>
                         <Text style={styles.text}>Matrícula/Registration:</Text>
                         <TextInput
-                        style={styles.inputStyle}
+                        style={styles.inputBox}
                         onChangeText={(text) => this.setState({MatriculaRegistration: text})}
                         placeholder="Matrícula"
                         value={this.state.MatriculaRegistration}
@@ -33,27 +35,27 @@ export default class CadastroAeronave extends React.Component{
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.text}>Modelo/Model:</Text><Text style={styles.textObrig}>*</Text>
                         </View>
-
                         <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({MatriculaRegistration: text})}
-                        placeholder="Matrícula"
-                        value={this.state.MatriculaRegistration}
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({ModeloModel: text})}
+                        placeholder="Modelo"
+                        value={this.state.ModeloModel}
                         />
                         <Text style={styles.text}>MTOW:</Text>
                         <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({MatriculaRegistration: text})}
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({MTOW: text})}
                         placeholder="Matrícula"
-                        value={this.state.MatriculaRegistration}
+                        value={this.state.MTOW}
                         />
                         <Text style={styles.text}>Classe/CAO Type:</Text>
                         <TextInput
-                        style={styles.inputStyle}
-                        onChangeText={(text) => this.setState({MatriculaRegistration: text})}
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({ClasseCAOType: text})}
                         placeholder="Matrícula"
-                        value={this.state.MatriculaRegistration}
+                        value={this.state.ClasseCAOType}
                         />
+                        <Text style={styles.Titulo}>Dados da Operação</Text>
                         <TouchableOpacity onPress={()=> alert('em Desenvolvimento')} style={styles.FormularioButton} >
                             <Text style={styles.buttonText}>Enviar Formulário</Text>
                         </TouchableOpacity>
@@ -89,13 +91,15 @@ const styles = StyleSheet.create({
     },
     textObrig:{
         color: 'red'
-    },    
-    inputStyle:{
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignSelf: 'flex-start',
-        borderBottomColor: 'gray',       
-        borderColor: 'black',
+    },
+    inputBox:{
+        height: 40, 
+        borderWidth: 1,
+        backgroundColor: '#FFFAFA',
+        borderRadius: 10,
+        textAlign: 'center',
+        paddingHorizontal: 16,
+        marginVertical: 10,
         fontSize: 15
     },
     FormularioButton:{
