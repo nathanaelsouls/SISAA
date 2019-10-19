@@ -62,15 +62,6 @@ export default class CheckList extends React.Component {
         }
     }.bind(this));
   }
-  applyMask(value){
-    this.maskTEL(value).then(masked => {
-        let userData = this.state.userData;
-        userData.telefone = masked;
-        this.setState({
-            userData: userData
-        })
-    })
-  }
 
   render() {
     //console.log("Dados do usuario", this.state.userData)
@@ -428,8 +419,8 @@ export default class CheckList extends React.Component {
   }
 
   askRegister(){
-    var data = this.state.PickerValue;
-    if(data == ""){
+    var empresaVerifica = this.state.PickerValue;
+    if(empresaVerifica == ""){
       Alert.alert(
         'Atenção', 'Por favor, Selecione a empresa!'
       )

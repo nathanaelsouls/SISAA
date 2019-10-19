@@ -50,10 +50,6 @@ export default class CheckList extends React.Component {
     this.setDate = this.setDate.bind(this);
   }
 
-  setDate(newDate) {
-    this.setState({chosenDate: newDate});
-  }
-
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
         if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
@@ -67,18 +63,7 @@ export default class CheckList extends React.Component {
             })
         }
     }.bind(this));
-  }
-  applyMask(value){
-    this.maskTEL(value).then(masked => {
-        let userData = this.state.userData;
-        userData.telefone = masked;
-        this.setState({
-            userData: userData
-        })
-    })
-  }
-
-  
+  }  
 
   render() {
     console.log("Dados do usuario", this.state.userData)

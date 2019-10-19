@@ -1,7 +1,5 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from 'react-native';
 
 import Login from './pages/Login';
 import Menu from './pages/Menu';
@@ -43,7 +41,10 @@ const StackNavigator = createStackNavigator({
         screen: Sisaa,
         navigationOptions: () => ({
             headerTitle: 'SISAA',
-            headerTitleAlign: 'center',
+            headerTitleStyle: { 
+                textAlign:"center",
+                flex: 1,
+            },
             headerBackTitleVisible: true,
             headerBackTitle: 'Menu',
             headerStyle:{
@@ -55,8 +56,11 @@ const StackNavigator = createStackNavigator({
     Colaboradores: {
         screen: Colaboradores,
         navigationOptions: () => ({
-            headerTitle: 'Desenvolvedores',
-            headerTitleAlign: 'center',
+            headerTitle: 'Colaboradores',
+            headerTitleStyle:{
+                textAlign: 'center',                
+                flex: 1
+            },
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -122,7 +126,10 @@ const StackNavigator = createStackNavigator({
         screen: Formulario400Hz,
         navigationOptions: () => ({
             headerTitle: '400 Hz',
-            headerTitleAlign: 'center',
+            headerTitleStyle: { 
+                textAlign:"center",
+                flex: 1 
+            },
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -133,7 +140,10 @@ const StackNavigator = createStackNavigator({
         screen: FormularioAmbulift,
         navigationOptions: () => ({
             headerTitle: 'Ambulift',
-            headerTitleAlign: 'center',
+            headerTitleStyle: { 
+                textAlign:"center",
+                flex: 1 
+            },
             headerStyle:{
               backgroundColor: "#104E8B",            
             },
@@ -144,7 +154,10 @@ const StackNavigator = createStackNavigator({
         screen: FormularioLavagemTecnica,
         navigationOptions: () => ({
             headerTitle: 'Lavagem Técnica',
-            headerTitleAlign: 'center',
+            headerTitleStyle: { 
+                textAlign:"center",
+                flex: 1 
+            },
             headerStyle:{
               backgroundColor: "#104E8B",            
             },

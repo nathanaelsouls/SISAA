@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, ScrollView,} from 'react-native';
+import { StyleSheet, Text, View, ScrollView,} from 'react-native';
 import { Card } from 'react-native-elements';
-
-var {height, width} = Dimensions.get('window');
 
 export default class Colaboradores extends React.Component{
     render() {

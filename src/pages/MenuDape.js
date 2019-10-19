@@ -27,7 +27,7 @@ return (
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioAmbulift')} style={styles.menuButton} >
-            <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/ambulift.png')}/>
+            <Image style={{ width: '53%', height: '50%' }} source={require('../imagens/ambulift.png')}/>
             <Text/>
             <Text style={styles.buttonText}>Ambulift</Text>                
             </TouchableOpacity>
