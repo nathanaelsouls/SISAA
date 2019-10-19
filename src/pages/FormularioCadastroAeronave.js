@@ -34,7 +34,7 @@ export default class CadastroAeronave extends React.Component{
                         value={this.state.MatriculaRegistration}
                         />
                         <View style={{flexDirection: 'row'}}>
-                            <Text style={styles.text}>Modelo/model:</Text><Text style={styles.textObrig}>*</Text>
+                            <Text style={styles.text}>Modelo/model:</Text>
                         </View>
                         <TextInput
                         style={styles.inputBox}
@@ -78,11 +78,11 @@ export default class CadastroAeronave extends React.Component{
                         placeholder="Telefone"
                         value={this.state.Telefone}
                         />
-                        <Text style={styles.text}>Email:</Text>
+                        <Text style={styles.text}>E-mail:</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({Email: text})}
-                        placeholder="Email"
+                        placeholder="E-mail"
                         value={this.state.Email}
                         />
                         <Text style={styles.text}>Voo de Instrução ou Experiência?</Text>
@@ -93,6 +93,14 @@ export default class CadastroAeronave extends React.Component{
                         value={this.state.VOO_IntrucaoExperiencia}
                         />
 
+                        <Text style={styles.Titulo}>Dados do Operador da Aeronave</Text>
+                        <Text style={styles.text}></Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({VOO_IntrucaoExperiencia: text})}
+                        placeholder="Instrução ou Experiência "
+                        value={this.state.VOO_IntrucaoExperiencia}
+                        />
                         <TouchableOpacity onPress={()=> alert('em Desenvolvimento')} style={styles.FormularioButton} >
                             <Text style={styles.buttonText}>Enviar Formulário</Text>
                         </TouchableOpacity>

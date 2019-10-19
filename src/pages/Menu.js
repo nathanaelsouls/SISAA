@@ -39,12 +39,12 @@ export default class Menu extends React.Component {
           <View style={styles.colunasMenu}>
             <TouchableOpacity style={styles.colunasBotao}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('AbrigoRampa')} style={styles.menuButton} >
-                <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/shelter.png')}/>
+                <Image style={{ width: '60%', height: '55%' }} source={require('../imagens/shelter.png')}/>
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.props.navigation.navigate('EquipVeiculo')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/vehicle.png')}/>
+              <Image style={{ width: '60%', height: '55%' }} source={require('../imagens/vehicle.png')}/>
                 <Text style={styles.buttonText}>Equipamentos e Veículos</Text>                
               </TouchableOpacity>
             </TouchableOpacity>
@@ -52,12 +52,12 @@ export default class Menu extends React.Component {
           <View style={styles.colunasMenu}>            
             <TouchableOpacity style={styles.colunasBotao}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CadastroAeronave')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/airplane.png')}/>
+              <Image style={{ width: '60%', height: '55%' }} source={require('../imagens/airplane.png')}/>
                 <Text style={styles.buttonText}>Cadastro de Aeronave</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.props.navigation.navigate('MenuDape')} style={styles.menuButton} >
-              <Image backgroundColor='white' style={{ width: '60%', height: '55%'}} source={require('../imagens/dape.png')}/>
+              <Image style={{ width: '60%', height: '55%'}} source={require('../imagens/dape.png')}/>
                 <Text/>
                 <Text style={styles.buttonText}>Dape</Text>                
               </TouchableOpacity>
