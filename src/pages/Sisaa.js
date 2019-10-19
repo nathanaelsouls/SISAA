@@ -17,7 +17,14 @@ export default class Sisaa extends React.Component{
                     </TouchableOpacity>
                 </View>                    
                 <Text style={styles.Titulo}>Sisaa o que é?</Text>
-                
+
+                <View>
+                    <Text style={styles.objective}>{`O Sistema Integrado de Soluções Aeroportuárias Airside, tem como objetivo prover as melhores aplicações para automatizar todo o processo no lado operacional dos aeroportos.\n\nCom este aplicativo os fiscais de pátio poderão realizar os checklist's e cadastros de formulários de uma maneira mais simples e prática.`}
+                    </Text>
+                   
+
+                </View>
+
             </View>                
         
         );
@@ -48,4 +55,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'flex-start',
     },
+    objective: {
+        fontSize: 20,
+        height: 480,
+        textAlign: 'center'
+    }
 })
