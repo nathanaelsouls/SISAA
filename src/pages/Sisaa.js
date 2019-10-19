@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     objective: {
         fontSize: 20,
-        height: 480,
+        height: 400,
         textAlign: 'center'
     }
 })
