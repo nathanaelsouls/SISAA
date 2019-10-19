@@ -21,13 +21,13 @@ return (
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Formulario400Hz')} style={styles.menuButton} >
-            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/dape.png')}/>
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/energy.png')}/>
             <Text/>
             <Text style={styles.buttonText}>400 Hz</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioAmbulift')} style={styles.menuButton} >
-            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/ambulift.png')}/>
             <Text/>
             <Text style={styles.buttonText}>Ambulift</Text>                
             </TouchableOpacity>
@@ -36,12 +36,12 @@ return (
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>                
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioTripulanteDesembarque')} style={styles.menuButton} >
-            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/landing.png')}/>
             <Text style={styles.buttonText}>Tripulante e/ou Desembarque Híbrido</Text>
             </TouchableOpacity>
             
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioLavagemTecnica')} style={styles.menuButton} >
-            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>            
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/wash.png')}/>            
             <Text/>
             <Text style={styles.buttonText}>Lavagem Técnica</Text>                            
             </TouchableOpacity>
