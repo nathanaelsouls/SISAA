@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     height: '80%'    
   },
   menuButton: {
+    backgroundColor: "#001A4D",
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
