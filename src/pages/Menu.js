@@ -40,7 +40,6 @@ export default class Menu extends React.Component {
             <TouchableOpacity style={styles.colunasBotao}>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('AbrigoRampa')} style={styles.menuButton} >
                 <Image backgroundColor='white' style={{ width: '60%', height: '55%' }} source={require('../imagens/shelter.png')}/>
-                <Text/>
                 <Text style={styles.buttonText}>Abrigo de Rampa</Text>
               </TouchableOpacity>
 

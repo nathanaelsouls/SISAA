@@ -15,6 +15,7 @@ export default class CadastroAeronave extends React.Component{
           //Dados da Operação
           DataPouso:"" , PilotoComando: "", Telefone: "", Email: "", VOO_IntrucaoExperiencia: "",
           //Dados do Operador da Aeronave:
+          
 
         };
       }
@@ -45,14 +46,14 @@ export default class CadastroAeronave extends React.Component{
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({MTOW: text})}
-                        placeholder="Matrícula"
+                        placeholder="MTOW"
                         value={this.state.MTOW}
                         />
                         <Text style={styles.text}>Classe/CAO Type:</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({ClasseCAOType: text})}
-                        placeholder="Matrícula"
+                        placeholder="Classe"
                         value={this.state.ClasseCAOType}
                         />
                         <Text style={styles.Titulo}>Dados da Operação</Text>
