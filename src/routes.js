@@ -42,7 +42,7 @@ const StackNavigator = createStackNavigator({
     Sisaa: {
         screen: Sisaa,
         navigationOptions: () => ({
-            headerTitle: 'Sisaa',
+            headerTitle: 'SISAA',
             headerTitleAlign: 'center',
             headerBackTitleVisible: true,
             headerBackTitle: 'Menu',
@@ -55,7 +55,7 @@ const StackNavigator = createStackNavigator({
     Colaboradores: {
         screen: Colaboradores,
         navigationOptions: () => ({
-            headerTitle: 'Colaboladores',
+            headerTitle: 'Desenvolvedores',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            

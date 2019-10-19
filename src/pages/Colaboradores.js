@@ -7,12 +7,48 @@ var {height, width} = Dimensions.get('window');
 export default class Colaboradores extends React.Component{
     render() {
         return(
-            <View style={styles.container}>
-                
-                <Text style={styles.Titulo}>Colaboradores</Text>
-                
-            </View>
- 
+            <ScrollView>
+                <View style={styles.container}>
+                    
+                    <Text style={styles.Titulo}>Equipe Projeto</Text>
+
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Natael Esdras Lima</Text>
+                        <Text>Gerente de Projetos</Text>
+                        <Text>E-mail: esdrasli@gmail.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Állef Luziano</Text>
+                        <Text>Desenvolvedor</Text>
+                        <Text>E-mail: allefluziano@gmail.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Nathanael Ferreira</Text>
+                        <Text>Desenvolvedor</Text>
+                        <Text>E-mail: nathanaelotaku28@gmail.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Ariele Castro Lucena</Text>
+                        <Text>Analista de Sistemas</Text>
+                        <Text>E-mail: ariele.lucena@gmail.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Thainara Patrícia</Text>
+                        <Text>Analista de Sistemas</Text>
+                        <Text>E-mail: tainara1921@live.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Marco Paulo</Text>
+                        <Text>Tester</Text>
+                        <Text>E-mail: marco.epr01@gmail.com</Text>
+                    </Card>
+                    <Card style={styles.containercard}>
+                        <Text style={{ fontWeight: "bold" }}>Paulo Fagner</Text>
+                        <Text>Tester</Text>
+                        <Text>E-mail: paulofagner32@yahoo.com.br</Text>
+                    </Card>  
+                </View>
+            </ScrollView>
         );
     }
 }

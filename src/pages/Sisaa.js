@@ -10,10 +10,10 @@ export default class Sisaa extends React.Component{
             <View style={styles.container}>
                 <View style={{width: '100%', height: '10%', flexDirection: 'row', justifyContent: 'space-around',
                 alignItems: 'center'}}>
-                    <Text style={{alignItems: 'flex-start', color: 'black', fontSize: 20,}}> Colaboradores: </Text>
+                    <Text style={{alignItems: 'flex-start', color: 'black', fontWeight: 'bold', fontSize: 20,}}> Desenvolvedores: </Text>
                     <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
                     width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Colaboradores')} >
-                        <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/pessoas.png')}/>
+                        <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/user.png')}/>
                     </TouchableOpacity>
                 </View>                    
                 <Text style={styles.Titulo}>Sisaa o que é?</Text>
