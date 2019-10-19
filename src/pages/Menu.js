@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: "#104E8B",
+    backgroundColor: "#001A4D",
   },
   buttonText:{
     color: "white",
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   colunasBotao:{
-    backgroundColor: "#104E8B",
+    backgroundColor: "#001A4D",
     justifyContent: 'space-around',
     borderRadius: 15,
     alignSelf: 'center',
@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
     height: '80%'    
   },
   menuButton: {
-    backgroundColor: "#001A4D",
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
