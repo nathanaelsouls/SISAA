@@ -21,13 +21,21 @@ return (
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Formulario400Hz')} style={styles.menuButton} >
+<<<<<<< HEAD
             <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/dape.png')}/>
+=======
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/energy.png')}/>
+>>>>>>> 4bb8889237f1fc455fc230a74c0808cdc483860a
             <Text/>
             <Text style={styles.buttonText}>400 Hz</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioAmbulift')} style={styles.menuButton} >
+<<<<<<< HEAD
             <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>
+=======
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/ambulift.png')}/>
+>>>>>>> 4bb8889237f1fc455fc230a74c0808cdc483860a
             <Text/>
             <Text style={styles.buttonText}>Ambulift</Text>                
             </TouchableOpacity>
@@ -36,12 +44,20 @@ return (
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>                
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioTripulanteDesembarque')} style={styles.menuButton} >
+<<<<<<< HEAD
             <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>
+=======
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/landing.png')}/>
+>>>>>>> 4bb8889237f1fc455fc230a74c0808cdc483860a
             <Text style={styles.buttonText}>Tripulante e/ou Desembarque Híbrido</Text>
             </TouchableOpacity>
             
             <TouchableOpacity onPress={() => this.props.navigation.navigate('FormularioLavagemTecnica')} style={styles.menuButton} >
+<<<<<<< HEAD
             <Image style={{ width: '50%', height: '50%' }} source={require('../imagens/duvida.png')}/>            
+=======
+            <Image backgroundColor='white' style={{ width: '50%', height: '50%' }} source={require('../imagens/wash.png')}/>            
+>>>>>>> 4bb8889237f1fc455fc230a74c0808cdc483860a
             <Text/>
             <Text style={styles.buttonText}>Lavagem Técnica</Text>                            
             </TouchableOpacity>
