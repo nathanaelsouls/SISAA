@@ -24,7 +24,7 @@ export default class Menu extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
-            <Image style={{ width: '40%', height: '28%'}} source={require('../imagens/info.png')}/>
+            <Image style={{ width: '42%', height: '28%'}} source={require('../imagens/info.png')}/>
           </TouchableOpacity>
           <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
             width: '25%', height: '161%', alignItems: 'flex-end'}} onPress={() => this.logout()} >
