@@ -407,6 +407,7 @@ export default class CheckList extends React.Component {
                 <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
                   <Text style={styles.buttonText}>Enviar CheckList</Text>
                 </TouchableOpacity>
+                <Text> </Text>
               </Card>              
           </View>
           <Text> </Text>
@@ -449,8 +450,8 @@ export default class CheckList extends React.Component {
   }
   confirmRegister () {
     const userData = {
-      _02_Fiscal_Patio:                   this.state.userData.nome,
       _01_Fiscal_Matricula:               this.state.userData.matricula,
+      _02_Fiscal_Patio:                   this.state.userData.nome,      
       _03_txtA_empresa:                   this.state.PickerValue,
       _04_Data:                           this.state.Data,
       _05_Certificado_Propriedade:        this.state.Certificado_Propriedade,
@@ -798,7 +799,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#001A4D",
     borderRadius: 10,
     padding: 10,
-    margin: 30,
+    margin: 8,
     alignItems: 'center',
     justifyContent: 'center'
   },

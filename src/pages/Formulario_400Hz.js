@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import firebase from "firebase";
 
@@ -107,7 +107,7 @@ export default class Formulario_400Hz extends React.Component{
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({HoraInicio: text})}
-                        placeholder="dd/mm/aaaa"
+                        placeholder="Formato: 24h"
                         value={this.state.HoraInicio}
                         />
                         <Text style={styles.text}>Data Fim:*</Text>
@@ -121,10 +121,10 @@ export default class Formulario_400Hz extends React.Component{
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({HoraFim: text})}
-                        placeholder="dd/mm/aaaa"
+                        placeholder="Formato: 24h"
                         value={this.state.HoraFim}
                         />
-                        <TouchableOpacity onPress={()=> alert('em Desenvolvimento')} style={styles.FormularioButton} >
+                        <TouchableOpacity onPress={()=> this.askRegister()} style={styles.FormularioButton} >
                             <Text style={styles.buttonText}>Enviar Formulário</Text>                            
                         </TouchableOpacity>
                     </Card>                    
@@ -144,8 +144,7 @@ export default class Formulario_400Hz extends React.Component{
         }else{    
           Alert.alert(
             'Registrar',
-            'Confirma Cadastro de Aeronave?\nModelo: ' + this.state.ModeloModel + "\n" + "Matrícula: "+
-            this.state.MatriculaRegistration + "\n" + "Classe: " + this.state.ClasseCAOType,
+            'Confirma Formulário 400 Hz?\nCIA Aérea: ' + this.state.CIAAerea ,
             [
               {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
               {text: 'OK', onPress: () =>
@@ -178,8 +177,8 @@ export default class Formulario_400Hz extends React.Component{
         }
           firebase.database().ref("DAPE_400Hz/").push(userData)
           .then((snapshot) => {
-            Alert.alert("Sucesso!", "Check List Enviado");
-            this.props.navigation.navigate('Menu');
+            Alert.alert("Sucesso!", "Formulário Enviado");
+            this.props.navigation.navigate('MenuDape');
           })
           .catch((error) =>{
             console.log("Error: ", error);
@@ -222,14 +221,6 @@ const styles = StyleSheet.create({
     },
     textObrig:{
         color: 'red'
-    },    
-    inputStyle:{
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignSelf: 'flex-start',
-        borderBottomColor: 'gray',       
-        borderColor: 'black',
-        fontSize: 15
     },
     FormularioButton:{
         backgroundColor: "#001A4D",

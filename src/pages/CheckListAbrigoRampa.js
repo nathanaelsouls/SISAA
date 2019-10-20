@@ -301,6 +301,7 @@ export default class CheckList extends React.Component {
                 <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
                   <Text style={styles.buttonText}>Enviar CheckList</Text>
                 </TouchableOpacity>
+                <Text> </Text>
               </Card>              
           </View>
           <Text> </Text>
@@ -358,28 +359,28 @@ export default class CheckList extends React.Component {
   }
   confirmRegister () {
     const userData = {      
-      Fiscal_Pátio:     this.state.userData.nome,
-      Fiscal_Matricula: this.state.userData.matricula,
-      txtA_empresa:     this.state.PickerValue,
-      Data:             this.state.Data,
-      txt_A1_P1_EAD:    this.state.txt_A1_P1_EAD,
-      txt_A1_P2_UFE:    this.state.txt_A1_P2_UFE,
-      txt_A2_P1_DP:     this.state.txt_A2_P1_DP,
-      txt_A2_P2_PQ:     this.state.txt_A2_P2_PQ,
-      txt_A2_P3_PA:     this.state.txt_A2_P3_PA,
-      txt_A2_P4_VA:     this.state.txt_A2_P4_VA,
-      txt_A3_P1_UEPC:   this.state.txt_A3_P1_UEPC,
-      txt_A3_P2_LC:     this.state.txt_A3_P2_LC,
-      txt_A3_P3_GC:     this.state.txt_A3_P3_GC,
-      txt_A3_P4_OD:     this.state.txt_A3_P4_OD,
-      txt_A3_P5_FER:    this.state.txt_A3_P5_FER,
-      txt_A4_P1_MD:     this.state.txt_A4_P1_MD,
-      txt_A4_P2_ID:     this.state.txt_A4_P2_ID,
-      txt_A4_P3_FED:    this.state.txt_A4_P3_FED,
-      txt_A4_P4_HD:     this.state.txt_A4_P4_HD,
-      txt_A5_P1_UFC:    this.state.txt_A5_P1_UFC,
-      txt_A5_P2_SUEA:   this.state.txt_A5_P2_SUEA,
-      txt_observacao:   this.state.txt_observacao
+      _01_FiscalPatio_Matricula:               this.state.userData.matricula,
+      _02_FiscalPatio_Nome:                    this.state.userData.nome,      
+      _03_txtA_Empresa:                        this.state.PickerValue,
+      _04_Data:                                this.state.Data,
+      _05_Equipamentos_Local:                  this.state.txt_A1_P1_EAD,
+      _06_Utilizando_Espaço_fisico:            this.state.txt_A1_P2_UFE,
+      _07_DerramamentoProdutos_Quimicos:       this.state.txt_A2_P1_DP,
+      _08_ProdutoQuimicos_MalACondicionados:   this.state.txt_A2_P2_PQ,
+      _09_Presença_Animais:                    this.state.txt_A2_P3_PA,
+      _10_Vestígios_Alimentos:                 this.state.txt_A2_P4_VA,
+      _11_EquipamentosProduzem_Centelha:       this.state.txt_A3_P1_UEPC,
+      _12_Lixo_Chão:                           this.state.txt_A3_P2_LC,
+      _13_Guimbas_Cigarro:                     this.state.txt_A3_P3_GC,
+      _14_Obstrução_Drenagem:                  this.state.txt_A3_P4_OD,
+      _15_Fiação_Exposta:                      this.state.txt_A3_P5_FER,
+      _16_Manutenção_Diversas:                 this.state.txt_A4_P1_MD,
+      _17_Iluminação_Danificada:               this.state.txt_A4_P2_ID,
+      _18_FiaçãoElétrica_Danificada:           this.state.txt_A4_P3_FED,
+      _19_Hidráulica_Danificada:               this.state.txt_A4_P4_HD,
+      _20_Uso_Colete:                          this.state.txt_A5_P1_UFC,
+      _21_SemUso_EPI:                          this.state.txt_A5_P2_SUEA,
+      _22_Outros_Relatar:                      this.state.txt_observacao
     }
       firebase.database().ref("CheckListAbrigoDeRampa/").push(userData)
       .then((snapshot) => {
@@ -661,7 +662,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#001A4D",
     borderRadius: 10,
     padding: 10,
-    margin: 1,
+    margin: 8,
     alignItems: 'center',
     justifyContent: 'center'
   },

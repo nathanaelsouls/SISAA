@@ -1,21 +1,101 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
+import firebase from "firebase";
+
+var {height, width} = Dimensions.get('window');
 
 export default class Formulario_LavagemTecnica extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          deviceWidth: width,
+          deviceHeight: height,
+          // Padrão
+          Fiscal_Patio:   "",  Fiscal_Matricula: "", Data: "",
+          //Dados
+          Voo: "", Prefixo: "", PosicaoLocal: "", NomeSolicitante: "",
+          EmpresaSolicitante: "" , HoraSolicitacao: "", EmpresaEnvolvida: ""
+        };
+    }
+
+    componentDidMount(){
+        firebase.auth().onAuthStateChanged(function(user) {        
+            if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
+              this.setState({userUid: user.uid});
+              firebase.database().ref("Users")
+                .orderByChild("uid")
+                .equalTo(user.uid)
+                .once("value")
+                .then((snapshot)=>{
+                  this.setState({userData: snapshot.val()[user.uid]})
+                })
+            }
+        }.bind(this));
+    }
+
     render() {
         return(
             <ScrollView style={styles.container}>
                 <View style={styles.container}>
                     <Card style={styles.containercard}>
-                        <Text style={styles.text}>Formulário Lavagem Técnica</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <Text style={styles.text}>Teste</Text>
-                        <TouchableOpacity onPress={()=> alert('em Desenvolvimento')} style={styles.FormularioButton} >
+                        <Text style={styles.text}>Favor informar a Data Atual:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({Data: text})}
+                        placeholder="dd/mm/aaaa"
+                        value={this.state.Data} 
+                        />
+                        <Text style={styles.text}>Voo (se aplicável):</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({Voo: text})}
+                        placeholder="Voo"
+                        value={this.state.Voo} 
+                        />
+                        <Text style={styles.text}>Prefixo (se aplicável):</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({Prefixo: text})}
+                        placeholder="Prefixo"
+                        value={this.state.Prefixo} 
+                        />
+                        <Text style={styles.text}>Posição ou local a ser lavado:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({PosicaoLocal: text})}
+                        placeholder="Posição ou Local"
+                        value={this.state.PosicaoLocal} 
+                        />
+                        <Text style={styles.text}>Nome do Solicitante:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({NomeSolicitante: text})}
+                        placeholder="Solicitante"
+                        value={this.state.NomeSolicitante} 
+                        />
+                        <Text style={styles.text}>Empresa solicitante:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({EmpresaSolicitante: text})}
+                        placeholder="Empresa Solicitante"
+                        value={this.state.EmpresaSolicitante} 
+                        />
+                        <Text style={styles.text}>Hora Solicitação:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({HoraSolicitacao: text})}
+                        placeholder="Formato: 24h"
+                        value={this.state.HoraSolicitacao} 
+                        />
+                        <Text style={styles.text}>Empresa envolvida no derramamento:*</Text>
+                        <TextInput
+                        style={styles.inputBox}
+                        onChangeText={(text) => this.setState({EmpresaEnvolvida: text})}
+                        placeholder="Empresa Envolvida"
+                        value={this.state.EmpresaEnvolvida} 
+                        />
+                        <TouchableOpacity onPress={()=> this.askRegister()} style={styles.FormularioButton} >
                             <Text style={styles.buttonText}>Enviar Formulário</Text>
                         </TouchableOpacity>
                     </Card>                    
@@ -24,6 +104,54 @@ export default class Formulario_LavagemTecnica extends React.Component{
             </ScrollView>
         );
     }
+
+    askRegister(){
+        var DataVerifica = this.state.Data;
+        if(DataVerifica == ""){
+          Alert.alert(
+            'Atenção', 'Por favor, Informe a Data Atual!'
+          )
+        }else{    
+          Alert.alert(
+            'Registrar',
+            'Confirma Formulário Lavagem Técnica?\nEmpresa: ' + this.state.EmpresaSolicitante ,
+            [
+              {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'OK', onPress: () =>
+                this.confirmRegister(this.state.userData.matricula,  this.state.userData.nome,           this.state.Data,
+                  this.state.userData.Voo,       this.state.Prefixo,         this.state.PosicaoLocal,    this.state.NomeSolicitante,
+                  this.state.EmpresaSolicitante, this.state.HoraSolicitacao, this.state.EmpresaEnvolvida,  
+                )},
+            ],
+            { cancelable: false }
+          )
+        }  
+      }
+      confirmRegister () {
+        const userData = {
+          _01_FiscalPatio_Matricula:          this.state.userData.matricula,
+          _02_FiscalPatio_Nome:               this.state.userData.nome,
+          _03_Data_Cadastro_Formulario:       this.state.Data,
+          _04_Voo:                            this.state.Voo,
+          _05_Prefixo:                        this.state.Prefixo,
+          _06_Posição_Local:                  this.state.PosicaoLocal,
+          _07_Nome_Solicitante:               this.state.NomeSolicitante,
+          _08_Empresa_Solicitante:            this.state.EmpresaSolicitante,          
+          _09_Hora_Solicitação:               this.state.HoraSolicitacao,
+          _10_Empresa_Envolvida:              this.state.EmpresaEnvolvida,
+              
+        }
+          firebase.database().ref("DAPE_LavagemTécinca/").push(userData)
+          .then((snapshot) => {
+            Alert.alert("Sucesso!", "Formulário Enviado");
+            this.props.navigation.navigate('MenuDape');
+          })
+          .catch((error) =>{
+            console.log("Error: ", error);
+            Alert.alert("Erro na persistência dos dados!", error.code)
+          })      
+      }
+
 }
 const styles = StyleSheet.create({
     container: {
@@ -43,10 +171,20 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     text: {
-        fontSize: 20,
+        fontSize: 16,
         color: 'black',
         flex: 1,
         alignSelf: 'flex-start',
+    },
+    inputBox:{
+        height: 40, 
+        borderWidth: 1,
+        backgroundColor: '#FFFAFA',
+        borderRadius: 10,
+        textAlign: 'center',
+        paddingHorizontal: 16,
+        marginVertical: 10,
+        fontSize: 15
     },
     textObrig:{
         color: 'red'
