@@ -16,8 +16,7 @@ constructor(props) {
 render() {
 return (
     <View style={styles.container}>
-    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-    
+    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>    
         <View style={styles.colunasMenu}>            
         <TouchableOpacity style={styles.colunasBotao}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Formulario400Hz')} style={styles.menuButton} >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, TextInput } from 'react-native';
 import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
@@ -10,8 +10,32 @@ export default class Menu extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
+      Nome: ""
     };
   }
+
+  //componentDidMount(){
+  //  firebase.auth().onAuthStateChanged(function(user) {        
+  //      if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
+  //        this.setState({userUid: user.uid});
+  //        firebase.database().ref("Users")
+  //          .orderByChild("uid")
+  //          .equalTo(user.uid)
+  //          .once("value")
+  //          .then((snapshot)=>{
+  //            this.setState({userData: snapshot.val()[user.uid]})
+  //        })
+  //          Nome= userData.nome;
+  //      }
+  //  }.bind(this));
+  //}
+//
+  //valueChanged(field, text){
+  //  let userData = this.state.userData;
+  //  userData[field] = text;
+//
+  //  this.setState({userData: userData});
+  //}
   
   render() {
     return (
@@ -32,8 +56,7 @@ export default class Menu extends React.Component {
           </TouchableOpacity>
         </View>
         <View>
-          <Text/>
-          <Text/>          
+        <Text></Text>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center'}}>
           <View style={styles.colunasMenu}>

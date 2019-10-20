@@ -11,8 +11,6 @@ export default class CheckList extends React.Component {
     super(props);
     
     this.state = {
-      chosenDate: new Date(),      
-
       deviceWidth: width,
       deviceHeight: height,
       Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "", Cadastro: "",
