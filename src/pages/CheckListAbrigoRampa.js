@@ -1,17 +1,10 @@
 import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
-         StatusBar, Dimensions, Picker, CheckBox, ScrollView,TextInput } from 'react-native';
+         Dimensions, Picker, CheckBox, ScrollView,TextInput } from 'react-native';
 import { Card } from 'react-native-elements';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
-//var dia = new Date().getDate();
-//var mes = new Date().getMonth();
-//var ano = new Date().getFullYear();
-
-//var horas = new Date().getHours();
-//var minutos = new Date().getMinutes();
-//var segundos = new Date().getSeconds();
 
 export default class CheckList extends React.Component {
   constructor(props) {
@@ -47,7 +40,6 @@ export default class CheckList extends React.Component {
       App_UFCCheck1:   false,   App_UFCCheck2:   false,
       App_SUEACheck1:  false,   App_SUEACheck2:  false,
     };
-    this.setDate = this.setDate.bind(this);
   }
 
   componentDidMount(){
