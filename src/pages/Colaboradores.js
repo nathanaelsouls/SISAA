@@ -11,7 +11,7 @@ export default class Colaboradores extends React.Component{
                     <Text style={styles.Titulo}>Equipe Projeto</Text>
 
                     <Card style={styles.containercard}>
-                        <Text style={{ fontWeight: "bold" }}>Natael Esdras Lima</Text>
+                        <Text style={{ fontWeight: "bold" }}>Natanael Esdras Lima</Text>
                         <Text>Gerente de Projetos</Text>
                         <Text>E-mail: esdrasli@gmail.com</Text>
                     </Card>

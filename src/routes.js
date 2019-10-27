@@ -32,7 +32,7 @@ const StackNavigator = createStackNavigator({
                 flex:1  
             },
             headerStyle:{
-                backgroundColor: "#104E8B", 
+                backgroundColor: "#1874CD", 
             },
             headerTintColor: "#FFF",
         })
