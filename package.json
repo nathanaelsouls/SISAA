@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "date-fns": "^2.6.0",
     "firebase": "^7.1.0",
     "react": "16.9.0",
     "react-native": "0.61.2",
+    "react-native-dates": "^2.0.4",
     "react-native-drawer": "^2.5.1",
     "react-native-elements": "^1.2.5",
     "react-native-gesture-handler": "^1.4.1",

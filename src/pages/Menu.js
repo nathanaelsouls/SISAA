@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, Alert } from 'react-native';
 import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
@@ -88,6 +88,7 @@ export default class Menu extends React.Component {
       
     );
   }
+
          
   logout(){
       firebase.auth().signOut()

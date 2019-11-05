@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
          Dimensions, Picker, CheckBox, ScrollView,TextInput } from 'react-native';
 import { Card } from 'react-native-elements';
+import { parseISO, isAfter } from 'date-fns';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
@@ -13,12 +14,12 @@ export default class CheckList extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "", Cadastro: "",
+      Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
       txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "", Data: "",
       txt_A2_P1_DP:   "", txt_A2_P2_PQ:   "", txt_A2_P3_PA:   "", txt_A2_P4_VA:     "",
       txt_A3_P1_UEPC: "", txt_A3_P2_LC:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
       txt_A4_P1_MD:   "", txt_A4_P2_ID:   "", txt_A4_P3_FED:  "", txt_A4_P4_HD:     "",
-      txt_A5_P1_UFC:  "", txt_A5_P2_SUEA: "", PickerValue:    '',
+      txt_A5_P1_UFC:  "", txt_A5_P2_SUEA: "", PickerValue:    "",
       userData: {      },
       Ac_EADCheck1:    false,   Ac_EADCheck2:    false,
       Ac_UFECheck1:    false,   Ac_UFECheck2:    false,      
@@ -38,7 +39,8 @@ export default class CheckList extends React.Component {
       App_UFCCheck1:   false,   App_UFCCheck2:   false,
       App_SUEACheck1:  false,   App_SUEACheck2:  false,
     };
-  }
+    
+  }  
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
@@ -56,251 +58,243 @@ export default class CheckList extends React.Component {
   }  
 
   render() {
-    console.log("Dados do usuario", this.state.userData)
     return (
         <ScrollView style={styles.container}>
-          <View style={styles.container}>            
-            <Card style={styles.containercard}>
-                
-                <Picker
-                style = {styles.pickerStyle}
-                selectedValue={this.state.PickerValue}
-                onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
-                >
-                  <Picker.Item label="Selecione Empresa..." value=""/>
-                  <Picker.Item label="Azul"              value="Azul"/>
-                  <Picker.Item label="Gol"               value="Gol"/>
-                  <Picker.Item label="LATAM"             value="LATAM"/>
-                  <Picker.Item label="Proair"            value="Proair"/>
-                  <Picker.Item label="Quicklink"         value="Quicklink"/>
-                  <Picker.Item label="Swissport"         value="Swissport"/>                  
-                </Picker>
-                
-                <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Data:</Text>
-                <TextInput
-                  style={styles.inputBox}
-                  onChangeText={(text) => this.setState({Data: text})} 
-                  placeholder="dd/mm/aaaa"
-                  value={this.state.Data}
-                  underlineColorAndroid='#0000'
+          <View style={styles.container} >
+            <Card style={styles.containercard}  >
+              
+              <Picker
+              style = {styles.pickerStyle}
+              selectedValue={this.state.PickerValue}
+              onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
+              >
+                <Picker.Item label="Selecione Empresa..." value=""/>
+                <Picker.Item label="Azul"              value="Azul"/>
+                <Picker.Item label="Gol"               value="Gol"/>
+                <Picker.Item label="LATAM"             value="LATAM"/>
+                <Picker.Item label="Proair"            value="Proair"/>
+                <Picker.Item label="Quicklink"         value="Quicklink"/>
+                <Picker.Item label="Swissport"         value="Swissport"/>                  
+              </Picker>
+              
+              <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Data:</Text>
+              <TextInput
+                style={styles.inputBox}
+                onChangeText={(text) => this.setState({Data: text})} 
+                placeholder="dd/mm/aaaa"
+                value={this.state.Data}
+                underlineColorAndroid='#0000'
+              />
+              <Text style={styles.estiloTexto}>1- Há Equipamentos fora da área delimitada?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não   </Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>2- Está Utilizando espaço físico de outra empresa?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+              <CheckBox value={this.state.Ac_UFECheck1} onChange={()=>this.Ac_UFECheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Ac_UFECheck2} onChange={()=>this.Ac_UFECheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>3- Tem derramamento de produtos químicos, óleo e/ou combustíveis?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Aqsm_DPCheck1} onChange={()=>this.Aqsm_DPCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Aqsm_DPCheck2} onChange={()=>this.Aqsm_DPCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>4- Tem produtos químicos mal acondicionados?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Aqsm_PQCheck1} onChange={()=>this.Aqsm_PQCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto} >Sim</Text>
+                </View>
+                <CheckBox value={this.state.Aqsm_PQCheck2} onChange={()=>this.Aqsm_PQCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>                  
+              </View>
+              
+              <Text style={styles.estiloTexto}>5- Encontrou presença de animais vivos ou mortos?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Aqsm_PACheck1} onChange={()=>this.Aqsm_PACheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Aqsm_PACheck2} onChange={()=>this.Aqsm_PACheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>6- Encontrou vestigios de alimentos?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Aqsm_VACheck1} onChange={()=>this.Aqsm_VACheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Aqsm_VACheck2} onChange={()=>this.Aqsm_VACheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>7- Utilização de equipamentos que produzem centelha?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Agso_UEPCCheck1} onChange={()=>this.Agso_UEPCCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Agso_UEPCCheck2} onChange={()=>this.Agso_UEPCCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>8- Tem lixo no chão?</Text>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Agso_LCCheck1} onChange={()=>this.Agso_LCCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Agso_LCCheck2} onChange={()=>this.Agso_LCCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+             <Text style={styles.estiloTexto}>9- Encontrou guimbas de cigarro?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Agso_GCCheck1} onChange={()=>this.Agso_GCCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Agso_GCCheck2} onChange={()=>this.Agso_GCCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>10- Econtrou alguma Obstrução na drenagem?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Agso_ODCheck1} onChange={()=>this.Agso_ODCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Agso_ODCheck2} onChange={()=>this.Agso_ODCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View> 
+             <Text style={styles.estiloTexto}>11- Tem fiação exposta, gerando algum risco?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Agso_FERCheck1} onChange={()=>this.Agso_FERCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Agso_FERCheck2} onChange={()=>this.Agso_FERCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View> 
+             <Text style={styles.estiloTexto}>12- Manutenção diversas(na infraestrutura)?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Am_MDCheck1} onChange={()=>this.Am_MDCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Am_MDCheck2} onChange={()=>this.Am_MDCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View> 
+             <Text style={styles.estiloTexto}>13- Iluminação danificada(acima de 2 refletores danificados)?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Am_IDCheck1} onChange={()=>this.Am_IDCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Am_IDCheck2} onChange={()=>this.Am_IDCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+             <Text style={styles.estiloTexto}>14- Fiação elétrica danificada?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Am_FEDCheck1} onChange={()=>this.Am_FEDCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Am_FEDCheck2} onChange={()=>this.Am_FEDCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>                
+              
+              <Text style={styles.estiloTexto}>15- hidráulica danificada?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.Am_HDCheck1} onChange={()=>this.Am_HDCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.Am_HDCheck2} onChange={()=>this.Am_HDCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+             <Text style={styles.estiloTexto}>16- Uso/falta de colete?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.App_UFCCheck1} onChange={()=>this.App_UFCCheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.App_UFCCheck2} onChange={()=>this.App_UFCCheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>17- Sem uso do EPI apropriado?</Text>
+              <View style= {{flex: 1, flexDirection: 'row'}}>
+                <CheckBox value={this.state.App_SUEACheck1} onChange={()=>this.App_SUEACheck1()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Sim</Text>
+                </View>
+                <CheckBox value={this.state.App_SUEACheck2} onChange={()=>this.App_SUEACheck2()}/>
+                <View style={{ justifyContent: 'center'}}>
+                  <Text style={styles.estiloTexto}>Não</Text>
+                </View>
+              </View>
+              
+              <Text style={styles.estiloTexto}>Outros: Relatar</Text>
+              <TextInput
+                style={styles.inputBox}
+                onChangeText={(text1) => this.setState({txt_observacao: text1})}
+                placeholder="Observação"
+                value={this.state.txt_observacao}
                 />
-
-                <Text style={styles.estiloTexto}>Há Equipamentos fora da área delimitada?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Ac_EADCheck2} onChange={()=>this.Ac_EADCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não   </Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Está Utilizando espaço físico de outra empresa?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                <CheckBox value={this.state.Ac_UFECheck1} onChange={()=>this.Ac_UFECheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Ac_UFECheck2} onChange={()=>this.Ac_UFECheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Tem derramamento de produtos químicos, óleo e/ou combustíveis?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Aqsm_DPCheck1} onChange={()=>this.Aqsm_DPCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Aqsm_DPCheck2} onChange={()=>this.Aqsm_DPCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Tem produtos químicos mal acondicionados?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Aqsm_PQCheck1} onChange={()=>this.Aqsm_PQCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Aqsm_PQCheck2} onChange={()=>this.Aqsm_PQCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>                  
-                </View>
-                
-                <Text style={styles.estiloTexto}>Encontrou presença de animais vivos ou mortos?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Aqsm_PACheck1} onChange={()=>this.Aqsm_PACheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Aqsm_PACheck2} onChange={()=>this.Aqsm_PACheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Encontrou vestigios de alimentos?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Aqsm_VACheck1} onChange={()=>this.Aqsm_VACheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Aqsm_VACheck2} onChange={()=>this.Aqsm_VACheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Utilização de equipamentos que produzem centelha?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Agso_UEPCCheck1} onChange={()=>this.Agso_UEPCCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Agso_UEPCCheck2} onChange={()=>this.Agso_UEPCCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Tem lixo no chão?</Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Agso_LCCheck1} onChange={()=>this.Agso_LCCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Agso_LCCheck2} onChange={()=>this.Agso_LCCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-
-                <Text style={styles.estiloTexto}>Encontrou guimbas de cigarro?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Agso_GCCheck1} onChange={()=>this.Agso_GCCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Agso_GCCheck2} onChange={()=>this.Agso_GCCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Econtrou alguma Obstrução na drenagem?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Agso_ODCheck1} onChange={()=>this.Agso_ODCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Agso_ODCheck2} onChange={()=>this.Agso_ODCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View> 
-
-                <Text style={styles.estiloTexto}>Tem fiação exposta, gerando algum risco?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Agso_FERCheck1} onChange={()=>this.Agso_FERCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Agso_FERCheck2} onChange={()=>this.Agso_FERCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View> 
-
-                <Text style={styles.estiloTexto}>Manutenção diversas(na infraestrutura)?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Am_MDCheck1} onChange={()=>this.Am_MDCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Am_MDCheck2} onChange={()=>this.Am_MDCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View> 
-
-                <Text style={styles.estiloTexto}>Iluminação danificada(acima de 2 refletores danificados)?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Am_IDCheck1} onChange={()=>this.Am_IDCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Am_IDCheck2} onChange={()=>this.Am_IDCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-
-                <Text style={styles.estiloTexto}>Fiação elétrica danificada?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Am_FEDCheck1} onChange={()=>this.Am_FEDCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Am_FEDCheck2} onChange={()=>this.Am_FEDCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>                
-                
-                <Text style={styles.estiloTexto}>hidráulica danificada?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.Am_HDCheck1} onChange={()=>this.Am_HDCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.Am_HDCheck2} onChange={()=>this.Am_HDCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-
-                <Text style={styles.estiloTexto}>Uso/falta de colete?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.App_UFCCheck1} onChange={()=>this.App_UFCCheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.App_UFCCheck2} onChange={()=>this.App_UFCCheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Sem uso do EPI apropriado?</Text>
-                <View style= {{flex: 1, flexDirection: 'row'}}>
-                  <CheckBox value={this.state.App_SUEACheck1} onChange={()=>this.App_SUEACheck1()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Sim</Text>
-                  </View>
-                  <CheckBox value={this.state.App_SUEACheck2} onChange={()=>this.App_SUEACheck2()}/>
-                  <View style={{ justifyContent: 'center'}}>
-                    <Text style={styles.estiloTexto}>Não</Text>
-                  </View>
-                </View>
-                
-                <Text style={styles.estiloTexto}>Outros: Relatar</Text>
-                <TextInput
-                  style={styles.inputBox}
-                  onChangeText={(text1) => this.setState({txt_observacao: text1})}
-                  placeholder="Observação"
-                  value={this.state.txt_observacao}
-                  />
-                <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
-                  <Text style={styles.buttonText}>Enviar CheckList</Text>
-                </TouchableOpacity>
-                <Text> </Text>
-              </Card>              
+              <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
+                <Text style={styles.buttonText}>Enviar CheckList</Text>
+              </TouchableOpacity>
+              <Text> </Text>
+            </Card>              
           </View>
           <Text> </Text>
         </ScrollView>
@@ -312,49 +306,52 @@ export default class CheckList extends React.Component {
   }
 
   askRegister(){
-    //Cadastro = dia+'/'+mes+'/'+ano+'  '+horas+':'+minutos+':'+segundos ;
+    //Cadastro = dia+'/'+mes+'/'+ano+'  '+horas+':'+minutos+':'+segundos ;    
     var data = this.state.PickerValue;
+    var validar = this.ValidarCheckBox();
     if(data == ""){
       Alert.alert(
         'ERRO', 'Selecione a empresa!!!'
-      )
-    }else{
+      ) 
+    }else if(this.validar) {
+          Alert.alert(
+            'Registrar',
+            'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
+            [
+              {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'OK', onPress: () => 
+                //this.openAlert()
+                this.confirmRegister(this.state.Data,
+                                    this.state.userData.nome,
+                                    this.state.userData.matricula,
+                                    this.state.PickerValue,
+                                    this.state.txt_A1_P1_EAD,
+                                    this.state.txt_A1_P2_UFE,
+                                    this.state.txt_A2_P1_DP,
+                                    this.state.txt_A2_P2_PQ,
+                                    this.state.txt_A2_P3_PA,
+                                    this.state.txt_A2_P4_VA,
+                                    this.state.txt_A3_P1_UEPC,
+                                    this.state.txt_A3_P2_LC,
+                                    this.state.txt_A3_P3_GC,
+                                    this.state.txt_A3_P4_OD,
+                                    this.state.txt_A3_P5_FER,
+                                    this.state.txt_A4_P1_MD,
+                                    this.state.txt_A4_P2_ID,
+                                    this.state.txt_A4_P3_FED,
+                                    this.state.txt_A4_P4_HD,
+                                    this.state.txt_A5_P1_UFC,
+                                    this.state.txt_A5_P2_SUEA,
+                                    this.state.txt_observacao,)
+              },
+            ],
+            { cancelable: false }
+          )
 
-      Alert.alert(
-        'Registrar',
-        'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
-        [
-          {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => 
-            //this.openAlert()
-            this.confirmRegister(this.state.Data,
-                                this.state.userData.nome,
-                                this.state.userData.matricula,
-                                this.state.PickerValue,
-                                this.state.txt_A1_P1_EAD,
-                                this.state.txt_A1_P2_UFE,
-                                this.state.txt_A2_P1_DP,
-                                this.state.txt_A2_P2_PQ,
-                                this.state.txt_A2_P3_PA,
-                                this.state.txt_A2_P4_VA,
-                                this.state.txt_A3_P1_UEPC,
-                                this.state.txt_A3_P2_LC,
-                                this.state.txt_A3_P3_GC,
-                                this.state.txt_A3_P4_OD,
-                                this.state.txt_A3_P5_FER,
-                                this.state.txt_A4_P1_MD,
-                                this.state.txt_A4_P2_ID,
-                                this.state.txt_A4_P3_FED,
-                                this.state.txt_A4_P4_HD,
-                                this.state.txt_A5_P1_UFC,
-                                this.state.txt_A5_P2_SUEA,
-                                this.state.txt_observacao,)
-          },
-        ],
-        { cancelable: false }
-      )
-    }  
-  }
+      } else {
+
+      }
+    }
   confirmRegister () {
     const userData = {      
       _01_FiscalPatio_Matricula:               this.state.userData.matricula,
@@ -395,7 +392,7 @@ export default class CheckList extends React.Component {
     this.setState({
       Ac_EADCheck1:!this.state.Ac_EADCheck1,
       Ac_EADCheck2: false,
-      txt_A1_P1_EAD: "Sim" 
+      txt_A1_P1_EAD: "Sim"
     })
   };
   Ac_EADCheck2(){
@@ -631,6 +628,79 @@ export default class CheckList extends React.Component {
       txt_A5_P2_SUEA: "Não"
     })
   };
+  //Validações de todas as perguntas
+  ValidarCheckBox(){
+    if(!this.state.Ac_EADCheck1& !this.state.Ac_EADCheck2) {
+      Alert.alert('Atenção', '1º pergunta não respondida');
+      return false;
+    }
+    if(!this.state.Ac_UFECheck1 & !this.state.Ac_UFECheck2) {
+      Alert.alert('Atenção', '2º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Aqsm_DPCheck1 & !this.state.Aqsm_DPCheck2) {
+      Alert.alert('Atenção', '3º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Aqsm_PQCheck1 & !this.state.Aqsm_PQCheck2) {
+      Alert.alert('Atenção', '4º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Aqsm_PACheck1 & !this.state.Aqsm_PACheck2) {
+      Alert.alert('Atenção', '5º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Aqsm_VACheck1 & !this.state.Aqsm_VACheck2) {
+      Alert.alert('Atenção', '6º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Agso_UEPCCheck1 & !this.state.Agso_UEPCCheck2) {
+      Alert.alert('Atenção', '7º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Agso_LCCheck1 & !this.state.Agso_LCCheck2) {
+      Alert.alert('Atenção', '8º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Agso_GCCheck1 & !this.state.Agso_GCCheck2) {
+      Alert.alert('Atenção', '9º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Agso_ODCheck1 & !this.state.Agso_ODCheck2) {
+      Alert.alert('Atenção', '10º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Agso_FERCheck1 & !this.state.Agso_FERCheck2) {
+      Alert.alert('Atenção', '11º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Am_MDCheck1 & !this.state.Am_MDCheck2) {
+      Alert.alert('Atenção', '12º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Am_IDCheck1 & !this.state.Am_IDCheck2) {
+      Alert.alert('Atenção', '13º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Am_FEDCheck1 & !this.state.Am_FEDCheck2) {
+      Alert.alert('Atenção', '14º pergunta não respondida');
+      return false
+    }
+    if(!this.state.Am_HDCheck1 & !this.state.Am_HDCheck2) {
+      Alert.alert('Atenção', '15º pergunta não respondida');
+      return false
+    }
+    if(!this.state.App_UFCCheck1 & !this.state.App_UFCCheck2) {
+      Alert.alert('Atenção', '16º pergunta não respondida');
+      return false
+    }
+    if(!this.state.App_SUEACheck1 & !this.state.App_SUEACheck2) {
+      Alert.alert('Atenção', '17º pergunta não respondida');
+      return false
+    }
+
+    return true;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -645,12 +715,15 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 1
   },
-  inputStyle:{
-    height: height * 0.06, 
-    width: width * 0.80, 
-    borderBottomColor: 'gray', 
-    borderBottomWidth: 1,
-    margin: width * 0.04
+  inputBox:{
+    height: 40, 
+    borderWidth: 1,
+    backgroundColor: '#FFFAFA',
+    borderRadius: 10,
+    textAlign: 'center',
+    paddingHorizontal: 16,
+    marginVertical: 10,
+    fontSize: 15
   },
   buttonText:{
     color: "white",
