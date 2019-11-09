@@ -306,15 +306,10 @@ export default class CheckList extends React.Component {
     alert('Check List Enviado com sucesso');
   }
 
-  askRegister(){
-    //Cadastro = dia+'/'+mes+'/'+ano+'  '+horas+':'+minutos+':'+segundos ;    
-    var data = this.state.PickerValue;
+  askRegister(){       
     var validar = this.ValidarCheckBox();
-    if(data == ""){
-      Alert.alert(
-        'ERRO', 'Selecione a empresa!!!'
-      )
-    }else if(validar) {
+    
+    if(validar) {
           Alert.alert(
             'Registrar',
             'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
@@ -631,6 +626,11 @@ export default class CheckList extends React.Component {
   };
   //Validações de todas as perguntas
   ValidarCheckBox(){
+    var data = this.state.PickerValue;
+    if(data == "") {
+      Alert.alert('ERRO', 'Selecione a empresa!!!');
+      return false;
+    }
     if(this.state.Data == null || this.state.Data == "") {
       Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
       return false;

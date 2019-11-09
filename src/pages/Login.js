@@ -100,11 +100,10 @@ export default class Login extends React.Component {
       this.props.navigation.navigate('Menu');
     })
     .catch((err) => {
-
         if(err.code == 'auth/user-not-found'){
-          Alert.alert('Atenção!', 'Usuário não encontrado.')
+          Alert.alert('Atenção!', 'Usuário sem Acesso.')
         } else {
-          Alert.alert('Atenção!', 'Erro ao logar no App.')
+          Alert.alert('Atenção!', 'Talvez você não tenha acesso a internet.')          
         }
     })    
   } 

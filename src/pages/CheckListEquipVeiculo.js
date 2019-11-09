@@ -82,7 +82,7 @@ export default class CheckList extends React.Component {
                   <Picker.Item label="Quicklink"         value="Quicklink"/>
                   <Picker.Item label="Swissport"         value="Swissport"/>                  
                 </Picker>
-                <Text style={styles.textPerguntas}>Data:</Text>
+                <Text style={styles.textPerguntas}>1- Data:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Data: text})} 
@@ -417,29 +417,24 @@ export default class CheckList extends React.Component {
     alert('Check List Enviado com sucesso');
   }
 
-  askRegister(){
-    var empresaVerifica = this.state.PickerValue;
-    if(empresaVerifica == ""){
-      Alert.alert(
-        'Atenção', 'Por favor, Selecione a empresa!'
-      )
-    }else{
-
+  askRegister(){    
+    var validar = this.ValidarCampos();
+    if (validar){
       Alert.alert(
         'Registrar',
         'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
         [
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => 
-            //this.openAlert()
-            this.confirmRegister(this.state.Data,   this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
-              this.state.Certificado_Propriedade,   this.state.Pintura_Lataria,           this.state.LogotipoID_Empresa,
-              this.state.Pintura_Amarela,           this.state.Pneus,                     this.state.Extintores,
-              this.state.Motor,                     this.state.Parte_Eletrica,            this.state.Direcao,
-              this.state.Vazamento_OleoCombustivel, this.state.Lubrificacao_Periodica,    this.state.Mecanica,
-              this.state.Acessorios,                this.state.VidracasEspelhoRetrovisor, this.state.Reboque,
-              this.state.Avarias,                   this.state.Ruidos,                    this.state.Giroflex_LuzInterminente,
-              this.state.Zebrados,                  this.state.Radiocomunicador,          this.state.txt_observacao,)
+          {text: 'OK', onPress: () =>
+
+            this.confirmRegister(this.state.Data, this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
+            this.state.Certificado_Propriedade,   this.state.Pintura_Lataria,           this.state.LogotipoID_Empresa,
+            this.state.Pintura_Amarela,           this.state.Pneus,                     this.state.Extintores,
+            this.state.Motor,                     this.state.Parte_Eletrica,            this.state.Direcao,
+            this.state.Vazamento_OleoCombustivel, this.state.Lubrificacao_Periodica,    this.state.Mecanica,
+            this.state.Acessorios,                this.state.VidracasEspelhoRetrovisor, this.state.Reboque,
+            this.state.Avarias,                   this.state.Ruidos,                    this.state.Giroflex_LuzInterminente,
+            this.state.Zebrados,                  this.state.Radiocomunicador,          this.state.txt_observacao,)
           },
         ],
         { cancelable: false }
@@ -767,6 +762,20 @@ export default class CheckList extends React.Component {
       Radiocomunicador: "Irregular"
     })
   };
+
+  ValidarCampos(){
+    var empresaVerifica = this.state.PickerValue;
+    if(empresaVerifica == "") {
+      Alert.alert('Atenção', 'Por favor, Selecione a empresa!')
+    }
+    if(this.state.Data == null || this.state.Data == "") {
+      Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
+      return false;
+    }
+    if() {
+      Alert.alert('Atenção!', '')
+    }
+  }
 }
 
 const styles = StyleSheet.create({
