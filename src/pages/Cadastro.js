@@ -76,7 +76,7 @@ export default class SignUp extends React.Component {
   askRegister(){
     Alert.alert(
       'Registrar',
-      'Confirma o seu registo?',
+      'Confirma o novo registo?',
       [
         {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: 'OK', onPress: () =>
@@ -86,7 +86,6 @@ export default class SignUp extends React.Component {
       { cancelable: false }
     )
   }
-
 
   registerUser (email, password, nome, matricula) {
     firebase.auth().createUserWithEmailAndPassword(email, password)

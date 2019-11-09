@@ -74,13 +74,28 @@ export default class CheckList extends React.Component {
                 selectedValue={this.state.PickerValue}
                 onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
                 >
-                  <Picker.Item label="Selecione Empresa" value="" fontSize/>
-                  <Picker.Item label="Azul"              value="Azul"/>
-                  <Picker.Item label="Gol"               value="Gol"/>
-                  <Picker.Item label="LATAM"             value="LATAM"/>
-                  <Picker.Item label="Proair"            value="Proair"/>
-                  <Picker.Item label="Quicklink"         value="Quicklink"/>
-                  <Picker.Item label="Swissport"         value="Swissport"/>                  
+                  <Picker.Item label="Selecione Empresa"            value="" fontSize/>
+                  <Picker.Item label="AIR NAV"                      value="AIR NAV"/>
+                  <Picker.Item label="ANVISA"                       value="ANVISA"/>
+                  <Picker.Item label="AZUL"                         value="AZUL"/>
+                  <Picker.Item label="BH AIRPORT"                   value="BH AIRPORT"/>
+                  <Picker.Item label="ENGIE BRASIL"                 value="ENGIE BRASIL"/>
+                  <Picker.Item label="GOL"                          value="GOL"/>
+                  <Picker.Item label="LATAM LINHAS AERAS S/A"       value="LATAM LINHAS AERAS S/A"/>
+                  <Picker.Item label="LIDER TAXI AÉREO"             value="LIDER TAXI AÉREO"/>
+                  <Picker.Item label="LOCAVIA"                      value="LOCAVIA"/>
+                  <Picker.Item label="MANSERV"                      value="MANSERV"/>
+                  <Picker.Item label="ORBITAL"                      value="ORBITAL"/>
+                  <Picker.Item label="PETROBAS"                     value="PETROBAS"/>
+                  <Picker.Item label="PROAIR"                       value="PROAIR"/>
+                  <Picker.Item label="QUICK LINK"                   value="QUICK LINK"/>
+                  <Picker.Item label="RA CATERING"                  value="RA CATERING"/>
+                  <Picker.Item label="RAIZEN"                       value="RAIZEN"/>
+                  <Picker.Item label="RECEITA FEDERAL"              value="RECEITA FEDERAL"/>
+                  <Picker.Item label="SWISSPORT"                    value="SWISSPORT"/>
+                  <Picker.Item label="TAM EXECUTIVA"                value="TAM EXECUTIVA"/>
+                  <Picker.Item label="TRAFFIC"                      value="TRAFFIC"/>
+                  <Picker.Item label="TRI-START"                    value="TRI-START"/>
                 </Picker>
                 <Text style={styles.textPerguntas}>1- Data:</Text>
                 <TextInput
@@ -90,7 +105,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Data}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Tipo de Equipamento:</Text>
+                <Text style={styles.textPerguntas}>2- Tipo de Equipamento:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({TipoEquip: text})} 
@@ -98,7 +113,7 @@ export default class CheckList extends React.Component {
                   value={this.state.TipoEquip}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Modelo:</Text>
+                <Text style={styles.textPerguntas}>3- Modelo:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Modelo: text})} 
@@ -106,7 +121,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Modelo}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Placa:</Text>
+                <Text style={styles.textPerguntas}>4- Placa:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Placa: text})} 
@@ -114,7 +129,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Placa}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Número de Série:</Text>
+                <Text style={styles.textPerguntas}>5- Número de Série:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({N_Serie: text})} 
@@ -122,7 +137,7 @@ export default class CheckList extends React.Component {
                   value={this.state.N_Serie}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Número ATIV:</Text>
+                <Text style={styles.textPerguntas}>6- Número ATIV:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({N_ATIV: text})} 
@@ -130,7 +145,7 @@ export default class CheckList extends React.Component {
                   value={this.state.N_ATIV}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Validade ATIV:</Text>
+                <Text style={styles.textPerguntas}>7- Validade ATIV:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Validade_ATIV: text})} 
@@ -138,7 +153,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Validade_ATIV}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Contato:</Text>
+                <Text style={styles.textPerguntas}>8- Contato:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Contato: text})} 
@@ -146,7 +161,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Contato}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Telefone:</Text>
+                <Text style={styles.textPerguntas}>9- Telefone:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({TelefoneForm: text})} 
@@ -155,7 +170,7 @@ export default class CheckList extends React.Component {
                   underlineColorAndroid='#0000'
                 />                
 
-                <Text style={styles.estiloTexto}>Certificado de Propriedade:</Text>
+                <Text style={styles.estiloTexto}>10- Certificado de Propriedade:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_CDPCheck1} onChange={()=>this.equip_CDPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -167,7 +182,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pintura da lataria (limpeza e conservação):</Text>
+                <Text style={styles.estiloTexto}>11- Pintura da lataria (limpeza e conservação):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PDLCheck1} onChange={()=>this.equip_PDLCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -179,7 +194,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Logotipo/ Identificação (Alfanumérica) da Empresa (Padrão NBR-8919):</Text>
+                <Text style={styles.estiloTexto}>12- Logotipo/ Identificação (Alfanumérica) da Empresa (Padrão NBR-8919):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_LIDCheck1} onChange={()=>this.equip_LIDCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -191,7 +206,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pintura Amarela:</Text>
+                <Text style={styles.estiloTexto}>13- Pintura Amarela:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PIACheck1} onChange={()=>this.equip_PIACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -203,7 +218,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pneus (estado de uso):</Text>
+                <Text style={styles.estiloTexto}>14- Pneus (estado de uso):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PNECheck1} onChange={()=>this.equip_PNECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -215,7 +230,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Extintores (Carga e aspecto de funcionamento):</Text>
+                <Text style={styles.estiloTexto}>15- Extintores (Carga e aspecto de funcionamento):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_EXTCheck1} onChange={()=>this.equip_EXTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -227,7 +242,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Motor (estado de funcionamento):</Text>
+                <Text style={styles.estiloTexto}>16- Motor (estado de funcionamento):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_MOTCheck1} onChange={()=>this.equip_MOTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -239,7 +254,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Parte Elétrica (buzina, sinaleiros, faróis, etc.):</Text>
+                <Text style={styles.estiloTexto}>17- Parte Elétrica (buzina, sinaleiros, faróis, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PAECheck1} onChange={()=>this.equip_PAECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -251,7 +266,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Direção (Folga excessiva, puxando para o lado, etc.):</Text>
+                <Text style={styles.estiloTexto}>18- Direção (Folga excessiva, puxando para o lado, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_DIRCheck1} onChange={()=>this.equip_DIRCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -263,7 +278,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Vazamento de oléo e combustíveis:</Text>
+                <Text style={styles.estiloTexto}>19- Vazamento de oléo e combustíveis:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_VOCCheck1} onChange={()=>this.equip_VOCCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -275,7 +290,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Lubrificação Periódica:</Text>
+                <Text style={styles.estiloTexto}>20- Lubrificação Periódica:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_LUPCheck1} onChange={()=>this.equip_LUPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -287,7 +302,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Mecânicas (caixa de marcha, freios, embreagem, etc.):</Text>
+                <Text style={styles.estiloTexto}>21- Mecânicas (caixa de marcha, freios, embreagem, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_MECCheck1} onChange={()=>this.equip_MECCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -299,7 +314,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Acessórios:</Text>
+                <Text style={styles.estiloTexto}>22- Acessórios:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_ACECheck1} onChange={()=>this.equip_ACECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -311,7 +326,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Vidraças e espelhos retrovisores (estado em geral):</Text>
+                <Text style={styles.estiloTexto}>23- Vidraças e espelhos retrovisores (estado em geral):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_VETCheck1} onChange={()=>this.equip_VETCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -323,7 +338,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Reboque (toldos, pneus, pintura, etc.):</Text>
+                <Text style={styles.estiloTexto}>24- Reboque (toldos, pneus, pintura, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_REBCheck1} onChange={()=>this.equip_REBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -335,7 +350,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Avarias (partes: frouxas, faltando, quebradas):</Text>
+                <Text style={styles.estiloTexto}>25- Avarias (partes: frouxas, faltando, quebradas):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_AVACheck1} onChange={()=>this.equip_AVACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -347,7 +362,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
                 
-                <Text style={styles.estiloTexto}>Ruídos (níveis suportáveis):</Text>
+                <Text style={styles.estiloTexto}>26- Ruídos (níveis suportáveis):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_RUICheck1} onChange={()=>this.equip_RUICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -359,7 +374,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Giroflex ou Luz Intermitente bem visível sobre o veículo, em conformidade:</Text>
+                <Text style={styles.estiloTexto}>27- Giroflex ou Luz Intermitente bem visível sobre o veículo, em conformidade:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_GLICheck1} onChange={()=>this.equip_GLICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -371,7 +386,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Zebrados:</Text>
+                <Text style={styles.estiloTexto}>28- Zebrados:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_ZEBCheck1} onChange={()=>this.equip_ZEBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -383,7 +398,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Radiocomunicador:</Text>
+                <Text style={styles.estiloTexto}>29- Radiocomunicador:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_RADCheck1} onChange={()=>this.equip_RADCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -771,9 +786,6 @@ export default class CheckList extends React.Component {
     if(this.state.Data == null || this.state.Data == "") {
       Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
       return false;
-    }
-    if() {
-      Alert.alert('Atenção!', '')
     }
   }
 }

@@ -61,13 +61,11 @@ export default class CheckList extends React.Component {
     return (
         <ScrollView style={styles.container}>
           <View style={styles.container} >
-            <Card style={styles.containercard}  >
-              
+            <Card style={styles.containercard}>              
               <Picker
               style = {styles.pickerStyle}
               selectedValue={this.state.PickerValue}
-              onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
-
+              onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
               >
                 <Picker.Item label="Selecione Empresa..." value=""/>
                 <Picker.Item label="Azul"              value="Azul"/>
@@ -75,7 +73,7 @@ export default class CheckList extends React.Component {
                 <Picker.Item label="LATAM"             value="LATAM"/>
                 <Picker.Item label="Proair"            value="Proair"/>
                 <Picker.Item label="Quicklink"         value="Quicklink"/>
-                <Picker.Item label="Swissport"         value="Swissport"/>                  
+                <Picker.Item label="Swissport"         value="Swissport"/>
               </Picker>
               
               <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Data:</Text>
@@ -628,15 +626,16 @@ export default class CheckList extends React.Component {
   ValidarCheckBox(){
     var data = this.state.PickerValue;
     if(data == "") {
-      Alert.alert('ERRO', 'Selecione a empresa!!!');
+      Alert.alert('Atenção!', 'Selecione a empresa!!!');
       return false;
     }
     if(this.state.Data == null || this.state.Data == "") {
       Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
       return false;
     }
-    if(!this.state.Ac_EADCheck1& !this.state.Ac_EADCheck2) {
+    if(!this.state.Ac_EADCheck1 & !this.state.Ac_EADCheck2) {
       Alert.alert('Atenção!', '1º pergunta não respondida.');
+
       return false;
     }
     if(!this.state.Ac_UFECheck1 & !this.state.Ac_UFECheck2) {
