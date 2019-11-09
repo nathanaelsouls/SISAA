@@ -69,8 +69,6 @@ export default class CheckList extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
-                
-                <Text style={styles.estiloTexto}>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>
                 <Picker
                 style = {{width:'100%', height:'3%'}}                
                 selectedValue={this.state.PickerValue}
@@ -779,7 +777,9 @@ const styles = StyleSheet.create({
   },
   containercard:{
     flex: 2,
-    width:'90%'
+    width:'90%',
+    margin: 10,
+    borderRadius: 1
   },
   inputBox:{
     height: 40, 

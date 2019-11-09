@@ -13,8 +13,8 @@ export default class Login extends React.Component {
     this.state = {
       deviceWidth: width,
       deviceHeight: height,
-      email: "nathanaelotaku@hotmail.com",
-      senha: "123456"
+      email: "",
+      senha: ""
     };
   }
   

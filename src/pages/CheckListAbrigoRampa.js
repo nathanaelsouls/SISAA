@@ -67,6 +67,7 @@ export default class CheckList extends React.Component {
               style = {styles.pickerStyle}
               selectedValue={this.state.PickerValue}
               onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
+
               >
                 <Picker.Item label="Selecione Empresa..." value=""/>
                 <Picker.Item label="Azul"              value="Azul"/>
@@ -312,8 +313,8 @@ export default class CheckList extends React.Component {
     if(data == ""){
       Alert.alert(
         'ERRO', 'Selecione a empresa!!!'
-      ) 
-    }else if(this.validar) {
+      )
+    }else if(validar) {
           Alert.alert(
             'Registrar',
             'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
@@ -630,73 +631,77 @@ export default class CheckList extends React.Component {
   };
   //Validações de todas as perguntas
   ValidarCheckBox(){
+    if(this.state.Data == null || this.state.Data == "") {
+      Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
+      return false;
+    }
     if(!this.state.Ac_EADCheck1& !this.state.Ac_EADCheck2) {
-      Alert.alert('Atenção', '1º pergunta não respondida');
+      Alert.alert('Atenção!', '1º pergunta não respondida.');
       return false;
     }
     if(!this.state.Ac_UFECheck1 & !this.state.Ac_UFECheck2) {
-      Alert.alert('Atenção', '2º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '2º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Aqsm_DPCheck1 & !this.state.Aqsm_DPCheck2) {
-      Alert.alert('Atenção', '3º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '3º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Aqsm_PQCheck1 & !this.state.Aqsm_PQCheck2) {
-      Alert.alert('Atenção', '4º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '4º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Aqsm_PACheck1 & !this.state.Aqsm_PACheck2) {
-      Alert.alert('Atenção', '5º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '5º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Aqsm_VACheck1 & !this.state.Aqsm_VACheck2) {
-      Alert.alert('Atenção', '6º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '6º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Agso_UEPCCheck1 & !this.state.Agso_UEPCCheck2) {
-      Alert.alert('Atenção', '7º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '7º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Agso_LCCheck1 & !this.state.Agso_LCCheck2) {
-      Alert.alert('Atenção', '8º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '8º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Agso_GCCheck1 & !this.state.Agso_GCCheck2) {
-      Alert.alert('Atenção', '9º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '9º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Agso_ODCheck1 & !this.state.Agso_ODCheck2) {
-      Alert.alert('Atenção', '10º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '10º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Agso_FERCheck1 & !this.state.Agso_FERCheck2) {
-      Alert.alert('Atenção', '11º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '11º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Am_MDCheck1 & !this.state.Am_MDCheck2) {
-      Alert.alert('Atenção', '12º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '12º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Am_IDCheck1 & !this.state.Am_IDCheck2) {
-      Alert.alert('Atenção', '13º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '13º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Am_FEDCheck1 & !this.state.Am_FEDCheck2) {
-      Alert.alert('Atenção', '14º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '14º pergunta não respondida.');
+      return false;
     }
     if(!this.state.Am_HDCheck1 & !this.state.Am_HDCheck2) {
-      Alert.alert('Atenção', '15º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '15º pergunta não respondida.');
+      return false;
     }
     if(!this.state.App_UFCCheck1 & !this.state.App_UFCCheck2) {
-      Alert.alert('Atenção', '16º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '16º pergunta não respondida.');
+      return false;
     }
     if(!this.state.App_SUEACheck1 & !this.state.App_SUEACheck2) {
-      Alert.alert('Atenção', '17º pergunta não respondida');
-      return false
+      Alert.alert('Atenção!', '17º pergunta não respondida.');
+      return false;
     }
 
     return true;
@@ -738,8 +743,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   pickerStyle: {
-    width: '100%',
-    
+    width: '100%',    
   },
   estiloTexto:{
     fontSize: 15,
