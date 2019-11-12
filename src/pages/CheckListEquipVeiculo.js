@@ -338,7 +338,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>24- Reboque (toldos, pneus, pintura, etc.):</Text>
+                <Text style={styles.estiloTexto}>24- Reboque (toldos, pneus, pintura, etc...):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_REBCheck1} onChange={()=>this.equip_REBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -419,11 +419,13 @@ export default class CheckList extends React.Component {
                   />
                 <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
                   <Text style={styles.buttonText}>Enviar CheckList</Text>
-                </TouchableOpacity>
-                <Text> </Text>
+                </TouchableOpacity>                
               </Card>              
+              <Text></Text>
           </View>
-          <Text> </Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
         </ScrollView>
     );
   }
@@ -781,12 +783,126 @@ export default class CheckList extends React.Component {
   ValidarCampos(){
     var empresaVerifica = this.state.PickerValue;
     if(empresaVerifica == "") {
-      Alert.alert('Atenção', 'Por favor, Selecione a empresa!')
-    }
-    if(this.state.Data == null || this.state.Data == "") {
-      Alert.alert('Atenção!', 'Preenchimento de Data Obrigatório.');
+      Alert.alert('Atenção!', 'Por favor, Selecione a empresa!')
       return false;
     }
+    if(this.state.Data == null || this.state.Data == "") {
+      Alert.alert('Atenção!', 'Preenchimento da Data obrigatória.');
+      return false;
+    }
+    if(this.state.TipoEquip == null || this.state.TipoEquip == "") {
+      Alert.alert('Atenção!', '2º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Modelo == null || this.state.Modelo == "") {
+      Alert.alert('Atenção!', '3º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Placa == null || this.state.Placa == "") {
+      Alert.alert('Atenção!', '4º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.N_Serie == null || this.state.N_Serie == "") {
+      Alert.alert('Atenção!', '5º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.N_ATIV == null || this.state.N_ATIV == "") {
+      Alert.alert('Atenção!', '6º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Validade_ATIV == null || this.state.Validade_ATIV == "") {
+      Alert.alert('Atenção!', '7º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Contato == null || this.state.Contato == "") {
+      Alert.alert('Atenção!', '8º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.TelefoneForm == null || this.state.TelefoneForm == "") {
+      Alert.alert('Atenção!', '9º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_CDPCheck1 & !this.state.equip_CDPCheck2) {
+      Alert.alert('Atenção!', '10º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PDLCheck1 & !this.state.equip_PDLCheck2) {
+      Alert.alert('Atenção!', '11º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_LIDCheck1 & !this.state.equip_LIDCheck2) {
+      Alert.alert('Atenção!', '12º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PIACheck1 & !this.state.equip_PIACheck2) {
+      Alert.alert('Atenção!', '13º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PNECheck1 & !this.state.equip_PNECheck2) {
+      Alert.alert('Atenção!', '14º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_EXTCheck1 & !this.state.equip_EXTCheck2) {
+      Alert.alert('Atenção!', '15º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_MOTCheck1 & !this.state.equip_MOTCheck2) {
+      Alert.alert('Atenção!', '16º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PAECheck1 & !this.state.equip_PAECheck2) {
+      Alert.alert('Atenção!', '17º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_DIRCheck1 & !this.state.equip_DIRCheck2) {
+      Alert.alert('Atenção!', '18º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_VOCCheck1 & !this.state.equip_VOCCheck2) {
+      Alert.alert('Atenção!', '19º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_LUPCheck1 & !this.state.equip_LUPCheck2) {
+      Alert.alert('Atenção!', '20º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_MECCheck1 & !this.state.equip_MECCheck2) {
+      Alert.alert('Atenção!', '21º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_ACECheck1 & !this.state.equip_ACECheck2) {
+      Alert.alert('Atenção!', '22º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_VETCheck1 & !this.state.equip_VETCheck2) {
+      Alert.alert('Atenção!', '23º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_REBCheck1 & !this.state.equip_REBCheck2) {
+      Alert.alert('Atenção!', '24º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_AVACheck1 & !this.state.equip_AVACheck2) {
+      Alert.alert('Atenção!', '25º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_RUICheck1 & !this.state.equip_RUICheck2) {
+      Alert.alert('Atenção!', '26º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_GLICheck1 & !this.state.equip_GLICheck2) {
+      Alert.alert('Atenção!', '27º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_ZEBCheck1 & !this.state.equip_ZEBCheck2) {
+      Alert.alert('Atenção!', '28º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_RADCheck1 & !this.state.equip_RADCheck2) {
+      Alert.alert('Atenção!', '29º pergunta obrigatória.');
+      return false;
+    }
+    return true;
   }
 }
 
