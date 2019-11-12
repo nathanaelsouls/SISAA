@@ -264,7 +264,15 @@ export default class CadastroAeronave extends React.Component{
           firebase.database().ref("CadastroAeronave/").push(userData)
           .then((snapshot) => {
             Alert.alert("Sucesso!", "Check List Enviado");
+            if(this.state.userData.nome == 'Nathanael' || this.state.userData.nome == 'Natanael' ||
+               this.state.userData.nome == 'Paulo Fagner') 
+            {
             this.props.navigation.navigate('Menu');
+            }
+            else
+            {
+            this.props.navigation.navigate('MenuUsuario');
+            }
           })
           .catch((error) =>{
             console.log("Error: ", error);

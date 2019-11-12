@@ -11,7 +11,6 @@ constructor(props) {
         deviceHeight: height,
     };
     }
-
     
 render() {
 return (

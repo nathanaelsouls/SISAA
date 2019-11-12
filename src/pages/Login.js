@@ -2,10 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Image,
          Dimensions, TextInput } from 'react-native';
 import firebase from "firebase";
-import Menu from './Menu';
 
 var {height, width} = Dimensions.get('window');
-
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -98,14 +96,14 @@ export default class Login extends React.Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
       if(this.state.email == 'nathanaelotaku@hotmail.com' || this.state.email == 'esdrasli@gmail.com' ||
-         this.state.email == 'marco.epr01@gmail.com') 
+         this.state.email == 'paulo.fagnerdeoliveira@gmail.com') 
       {
         this.props.navigation.navigate('Menu');
       }
       else
       {
         this.props.navigation.navigate('MenuUsuario');
-      }            
+      }
     })
     .catch((err) => {
         if(err.code == 'auth/user-not-found'){
