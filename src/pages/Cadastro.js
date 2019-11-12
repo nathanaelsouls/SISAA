@@ -64,10 +64,10 @@ export default class SignUp extends React.Component {
           <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{backgroundColor: "#0000", justifyContent: 'center',
-              width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('MenuUsuario')} >
-              <Image style={{ width: '40%', height: '28%'}} source={require('../imagens/newuser.png')}/>
-          </TouchableOpacity>
+          <Text>
+            Em Conformidade com a LGPD, os dados coletados acima são para a identificação do usuário
+            no sistema.
+          </Text>
           </View>
         </ScrollView>
     );
@@ -108,7 +108,6 @@ export default class SignUp extends React.Component {
             this.props.navigation.navigate('Menu')
           }
         ]);
-      //this.Actions.pop();
     })
     .catch((error) => { 
       console.log("firebase error: " + error);
@@ -121,7 +120,6 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
@@ -136,6 +134,10 @@ const styles = StyleSheet.create({
   buttonText:{
     color: "white",
     fontSize: 35
+  },
+  TextInformation:{
+    color: 'black',
+    fontSize: 20
   },
   inputStyle:{
     height: height * 0.1, 
