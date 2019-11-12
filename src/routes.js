@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './pages/Login';
 import Menu from './pages/Menu';
+import MenuUsuario from './pages/MenuUsuario';
 import Sisaa from './pages/Sisaa';
 import Colaboradores from './pages/Colaboradores';
 import Cadastro from './pages/Cadastro';
@@ -25,6 +26,21 @@ const StackNavigator = createStackNavigator({
     },
     Menu: {
         screen: Menu,
+        navigationOptions: () => ({
+            headerTitle: 'Menu',
+            headerLeft: null,
+            headerTitleStyle: { 
+                textAlign:"center", 
+                flex:1  
+            },
+            headerStyle:{
+                backgroundColor: "#1874CD", 
+            },
+            headerTintColor: "#FFF",
+        })
+    },
+    MenuUsuario: {
+        screen: MenuUsuario,
         navigationOptions: () => ({
             headerTitle: 'Menu',
             headerLeft: null,

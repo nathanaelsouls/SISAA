@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Dimensions, StatusBar, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Alert, Dimensions, Image, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import firebase from "firebase"
 
 var {height, width} = Dimensions.get('window');
@@ -63,6 +63,10 @@ export default class SignUp extends React.Component {
           />
           <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
             <Text style={styles.buttonText}>Cadastrar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor: "#0000", justifyContent: 'center',
+              width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('MenuUsuario')} >
+              <Image style={{ width: '40%', height: '28%'}} source={require('../imagens/newuser.png')}/>
           </TouchableOpacity>
           </View>
         </ScrollView>

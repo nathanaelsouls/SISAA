@@ -96,8 +96,12 @@ export default class Login extends React.Component {
 
   loginUser(email, password){
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {      
-      this.props.navigation.navigate('Menu');
+    .then(() => {
+      if(this.state.email == 'Nathanaelotaku@hotmail.com') {
+        this.props.navigation.navigate('Menu');
+      }else{
+        this.props.navigation.navigate('MenuUsuario');
+      }            
     })
     .catch((err) => {
         if(err.code == 'auth/user-not-found'){
