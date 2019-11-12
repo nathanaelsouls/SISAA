@@ -37,42 +37,42 @@ export default class Formulario_Ambulift extends React.Component{
       <ScrollView style={styles.container}>
        <View style={styles.container}>
          <Card style={styles.containercard}>
-           <Text style={styles.text}>Favor informar a Data Atual:*</Text>
+           <Text style={styles.text}>Favor informar a Data Atual:</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({Data: text})}
            placeholder="dd/mm/aaaa"
            value={this.state.Data} 
            />
-           <Text style={styles.text}>Empresa solicitante do Serviço:*</Text>
+           <Text style={styles.text}>Empresa solicitante do Serviço:</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({EmpresaSolicitante: text})}
            placeholder="Empresa Solicitante"
            value={this.state.EmpresaSolicitante} 
            />
-           <Text style={styles.text}>Prefixo:*</Text>
+           <Text style={styles.text}>Prefixo:</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({Prefixo: text})}
            placeholder="Prefixo"
            value={this.state.Prefixo} 
            />
-           <Text style={styles.text}>Nome do Solicitante(representante da cia Aérea ou esata):*</Text>
+           <Text style={styles.text}>Nome do Solicitante(representante da cia Aérea ou esata):</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({NomeSolicitante: text})}
            placeholder="Solicitante"
            value={this.state.NomeSolicitante} 
            />
-           <Text style={styles.text}>Hora Solicitação:*</Text>
+           <Text style={styles.text}>Hora Solicitação:</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({HoraSolicitacao: text})}
            placeholder="Formato: 24h"
            value={this.state.HoraSolicitacao} 
            />
-           <Text style={styles.text}>Posição:*</Text>
+           <Text style={styles.text}>Posição:</Text>
            <TextInput
            style={styles.inputBox}
            onChangeText={(text) => this.setState({Posicao: text})}
@@ -89,13 +89,8 @@ export default class Formulario_Ambulift extends React.Component{
     );
   }
  askRegister(){
-    var DataVerifica = this.state.Data;
-    var validar = this.ValidarCampos();
-    if(DataVerifica == ""){
-      Alert.alert(
-        'Atenção', 'Por favor, Informe a Data Atual!'
-      )
-    }else{    
+   var validar = this.ValidarCampos();
+   if(validar){    
       Alert.alert(
         'Registrar',
         'Confirma Formulário Ambulift?\nEmpresa: ' + this.state.EmpresaSolicitante ,
@@ -135,16 +130,31 @@ export default class Formulario_Ambulift extends React.Component{
       })      
   }
 
-  ValidarCampos(){
-    var DataVerifica = this.state.Data;
-    if(DataVerifica == ""){
-      Alert.alert('Atenção', 'Por favor, Informe a Data Atual!')
+  ValidarCampos(){    
+    if(this.state.Data == null || this.state.Data == ""){
+      Alert.alert('Atenção!', 'Por favor, Informe a Data Atual.');
       return false;
     }
     if(this.state.EmpresaSolicitante == null || this.state.EmpresaSolicitante == "") {
-      
+      Alert.alert('Atenção!', 'Informe a Empresa solicitante.');
+      return false;
     }
-
+    if(this.state.Prefixo == null || this.state.Prefixo == "") {
+      Alert.alert('Atenção!', 'Informe o prefixo.');
+      return false;
+    }
+    if(this.state.NomeSolicitante == null || this.state.NomeSolicitante == "") {
+      Alert.alert('Atenção!', 'Informe o Nome do solicitante.');
+      return false;
+    }
+    if(this.state.HoraSolicitacao == null || this.state.HoraSolicitacao == "") {
+      Alert.alert('Atenção!', 'Informe a Hora da solicitação.');
+      return false;
+    }
+    if(this.state.Posicao == null || this.state.Posicao == "") {
+      Alert.alert('Atenção!', 'Informe a Posição.');
+      return false;
+    }
     return true;
   }
 

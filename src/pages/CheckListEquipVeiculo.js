@@ -780,9 +780,8 @@ export default class CheckList extends React.Component {
     })
   };
 
-  ValidarCampos(){
-    var empresaVerifica = this.state.PickerValue;
-    if(empresaVerifica == "") {
+  ValidarCampos(){    
+    if(this.state.PickerValue == "" || this.state.PickerValue == null) {
       Alert.alert('Atenção!', 'Por favor, Selecione a empresa!')
       return false;
     }

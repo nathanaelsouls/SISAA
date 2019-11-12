@@ -622,9 +622,8 @@ export default class CheckList extends React.Component {
     })
   };
   //Validações de todas as perguntas
-  ValidarCheckBox(){
-    var data = this.state.PickerValue;
-    if(data == "") {
+  ValidarCheckBox(){    
+    if(this.state.PickerValue == "" || this.state.PickerValue == null) {
       Alert.alert('Atenção!', 'Selecione a empresa!!!');
       return false;
     }
