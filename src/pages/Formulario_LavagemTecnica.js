@@ -106,12 +106,8 @@ export default class Formulario_LavagemTecnica extends React.Component{
     }
 
     askRegister(){
-        var DataVerifica = this.state.Data;
-        if(DataVerifica == ""){
-          Alert.alert(
-            'Atenção', 'Por favor, Informe a Data Atual!'
-          )
-        }else{    
+      var validar = this.ValidarCampos();
+      if(validar){    
           Alert.alert(
             'Registrar',
             'Confirma Formulário Lavagem Técnica?\nEmpresa: ' + this.state.EmpresaSolicitante ,
@@ -150,6 +146,38 @@ export default class Formulario_LavagemTecnica extends React.Component{
             console.log("Error: ", error);
             Alert.alert("Erro na persistência dos dados!", error.code)
           })      
+      }
+
+      ValidarCampos(){    
+        if(this.state.Data == null || this.state.Data == ""){
+          Alert.alert('Atenção!', 'Por favor, informe a data Atual.');
+          return false;
+        }
+        if(this.state.PosicaoLocal == null || this.state.PosicaoLocal == "") {
+          Alert.alert('Atenção!', 'Informe a posição ou local a ser lavado.');
+          return false;
+        }
+        if(this.state.NomeSolicitante == null || this.state.NomeSolicitante == "") {
+          Alert.alert('Atenção!', 'Informe o nome do solicitante.');
+          return false;
+        }
+        if(this.state.EmpresaSolicitante == null || this.state.EmpresaSolicitante == "") {
+          Alert.alert('Atenção!', 'Informe a empresa solicitante.');
+          return false;
+        }
+        if(this.state.Prefixo == null || this.state.Prefixo == "") {
+          Alert.alert('Atenção!', 'Informe o prefixo.');
+          return false;
+        }        
+        if(this.state.HoraSolicitacao == null || this.state.HoraSolicitacao == "") {
+          Alert.alert('Atenção!', 'Informe a hora da solicitação.');
+          return false;
+        }
+        if(this.state.EmpresaEnvolvida == null || this.state.EmpresaEnvolvida == "") {
+          Alert.alert('Atenção!', 'Informe a empresa envolvida.');
+          return false;
+        }        
+        return true;
       }
 
 }

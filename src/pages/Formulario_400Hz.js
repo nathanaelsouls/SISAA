@@ -47,14 +47,14 @@ export default class Formulario_400Hz extends React.Component{
                         placeholder="dd/mm/aaaa"
                         value={this.state.Data}
                         />
-                        <Text style={styles.text}>Matrícula solicitante CIA Aérea:*</Text>
+                        <Text style={styles.text}>Matrícula solicitante da CIA Aérea:*</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({MatriculaSoliCIAAerea: text})}
                         placeholder="Matrícula"
                         value={this.state.MatriculaSoliCIAAerea}
                         />
-                        <Text style={styles.text}>Nome solicitante CIA Aérea:*</Text>
+                        <Text style={styles.text}>Nome solicitante da CIA Aérea:*</Text>
                         <TextInput
                         style={styles.inputBox}
                         onChangeText={(text) => this.setState({NomeSoliCIAAerea: text})}
@@ -136,12 +136,8 @@ export default class Formulario_400Hz extends React.Component{
 
 
     askRegister(){
-        var DataVerifica = this.state.Data;
-        if(DataVerifica == ""){
-          Alert.alert(
-            'Atenção', 'Por favor, Informe a Data Atual!'
-          )
-        }else{    
+      var validar = this.ValidarCampos();
+      if(validar){    
           Alert.alert(
             'Registrar',
             'Confirma Formulário 400 Hz?\nCIA Aérea: ' + this.state.CIAAerea ,
@@ -184,6 +180,57 @@ export default class Formulario_400Hz extends React.Component{
             console.log("Error: ", error);
             Alert.alert("Erro na persistência dos dados!", error.code)
           })      
+      }
+      ValidarCampos(){    
+        if(this.state.Data == null || this.state.Data == ""){
+          Alert.alert('Atenção!', 'Por favor, informe a data Atual.');
+          return false;
+        }
+        if(this.state.MatriculaSoliCIAAerea == null || this.state.MatriculaSoliCIAAerea == "") {
+          Alert.alert('Atenção!', 'Informe a matrícula solicitante da CIA Aérea.');
+          return false;
+        }
+        if(this.state.NomeSoliCIAAerea == null || this.state.NomeSoliCIAAerea == "") {
+          Alert.alert('Atenção!', 'Informe o nome do solicitante da CIA Aérea.');
+          return false;
+        }
+        if(this.state.CIAAerea == null || this.state.CIAAerea == "") {
+          Alert.alert('Atenção!', 'Informe a CIA Aérea.');
+          return false;
+        }
+        if(this.state.FiscalAtendimento == null || this.state.FiscalAtendimento == "") {
+          Alert.alert('Atenção!', 'Informe o fiscal em atendimento.');
+          return false;
+        }
+        if(this.state.Prefixo == null || this.state.Prefixo == "") {
+          Alert.alert('Atenção!', 'Informe o prefixo.');
+          return false;
+        }        
+        if(this.state.TipoICAOAICRT == null || this.state.TipoICAOAICRT == "") {
+          Alert.alert('Atenção!', 'Informe o tipo de ICAO AICRT.');
+          return false;
+        }
+        if(this.state.Categoria == null || this.state.Categoria == "") {
+          Alert.alert('Atenção!', 'Informe a categoria.');
+          return false;
+        }
+        if(this.state.DataInicio == null || this.state.DataInicio == "") {
+          Alert.alert('Atenção!', 'Informe a data de início.');
+          return false;
+        }
+        if(this.state.HoraInicio == null || this.state.HoraInicio == "") {
+          Alert.alert('Atenção!', 'Informe a hora de início.');
+          return false;
+        }
+        if(this.state.DataFim == null || this.state.DataFim == "") {
+          Alert.alert('Atenção!', 'Informe a data da finalização do serviço.');
+          return false;
+        }
+        if(this.state.HoraFim == null || this.state.HoraFim == "") {
+          Alert.alert('Atenção!', 'Informe a hora da finalização do serviço.');
+          return false;
+        }
+        return true;
       }
 }
 const styles = StyleSheet.create({
