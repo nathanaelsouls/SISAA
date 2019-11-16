@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import firebase from "firebase";
+import DatePicker from 'react-native-datepicker';
 
 var {height, width} = Dimensions.get('window');
 
@@ -12,7 +13,7 @@ export default class CadastroAeronave extends React.Component{
       deviceWidth: width,
       deviceHeight: height,
       // Padrão
-      Fiscal_Patio:   "",  Fiscal_Matricula: "", Data: "",
+      Fiscal_Patio:   "",  Fiscal_Matricula: "", date: "",
       //Dados da Aeronave
       MatriculaRegistration: "", ModeloModel: "", MTOW: "", ClasseCAOType: "",
       //Dados da Operação
@@ -21,6 +22,10 @@ export default class CadastroAeronave extends React.Component{
       Nome_RazaoSocial: "", CNPJ_CPF: "", N_AVANAC: "", DataNascimento: "", Endereco: "",
       CEP: "", Cidade: "", Bairro: "", Estado: "", TelefoneOperador: "", EmailOperador: ""
     };
+  }
+
+  selectDate = (date) => {
+    this.setState({date: date});
   }
 
   componentDidMount(){
@@ -44,12 +49,19 @@ render() {
     <ScrollView style={styles.container}>    
       <View style={styles.container}>      
         <Card style={styles.containercard}>
-            <Text style={styles.text}>Favor informar a Data Atual:</Text>
+            <DatePicker
+            style={{width: 200, marginVertical: 10}}
+            date={this.state.date}
+            format="DD-MM-YYYY"
+            minDate="01-11-2019"
+            maxDate="31-12-2020"
+            onDateChange={this.selectDate}                                   
+            />
+            <Text style={styles.text}>Selecione a data do ícone do calendário:</Text>
             <TextInput
             style={styles.inputBox}
-            onChangeText={(text) => this.setState({Data: text})}
-            placeholder="dd/mm/aaaa"
-            value={this.state.Data}
+            value={this.state.date}
+            placeholder="data do formulário"
             />
             <Text style={styles.Titulo}>Dados da Aeronave</Text>
             <Text style={styles.text}>Matrícula/registration:</Text>
@@ -58,10 +70,8 @@ render() {
             onChangeText={(text) => this.setState({MatriculaRegistration: text})}
             placeholder="Matrícula"
             value={this.state.MatriculaRegistration}
-            />
-            <View style={{flexDirection: 'row'}}>
-                <Text style={styles.text}>Modelo/model:</Text>
-            </View>
+            />           
+            <Text style={styles.text}>Modelo/model:</Text>            
             <TextInput
             style={styles.inputBox}
             onChangeText={(text) => this.setState({ModeloModel: text})}
@@ -217,7 +227,7 @@ render() {
         [
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () =>
-            this.confirmRegister(this.state.Data,   this.state.userData.nome, this.state.userData.matricula,
+            this.confirmRegister(this.state.date,   this.state.userData.nome, this.state.userData.matricula,
               this.state.userData.MatriculaRegistration,    this.state.ModeloModel,
               this.state.MTOW,                              this.state.ClasseCAOType,               
               this.state.DataPouso,                         this.state.PilotoComando,     this.state.Telefone,
@@ -236,7 +246,7 @@ render() {
     const userData = {
       _01_FiscalPatio_Matricula:          this.state.userData.matricula,
       _02_FiscalPatio_Nome:               this.state.userData.nome,
-      _03_Data_Cadastro_Formulario:       this.state.Data,
+      _03_Data_Cadastro_Formulario:       this.state.date,
       _04_Matrícula_Aeronave:             this.state.MatriculaRegistration,
       _05_Modelo_Aeronave:                this.state.ModeloModel,
       _06_MTOW_Aeronave:                  this.state.MTOW,
@@ -278,8 +288,8 @@ render() {
   }
 
   ValidarCampos(){    
-    if(this.state.Data == null || this.state.Data == ""){
-      Alert.alert('Atenção!', 'Por favor, Informe a data atual.');
+    if(this.state.date == null || this.state.date == ""){
+      Alert.alert('Atenção!', 'Selecione a data do formulário');
       return false;
     }
     if(this.state.MatriculaRegistration == null || this.state.MatriculaRegistration == "") {

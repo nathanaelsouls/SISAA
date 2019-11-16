@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
          Dimensions, Picker, CheckBox, ScrollView,TextInput } from 'react-native';
 import { Card } from 'react-native-elements';
-import { parseISO, isAfter } from 'date-fns';
+import DatePicker from 'react-native-datepicker';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
@@ -11,11 +11,11 @@ export default class CheckList extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {
+    this.state = {      
       deviceWidth: width,
       deviceHeight: height,
       Fiscal_Pátio:   "", txtA_empresa:   "", txt_observacao: "", Fiscal_Matricula: "",
-      txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "", Data: "",
+      txt_A1_P1_EAD:  "", txt_A1_P2_UFE:  "", date: "",
       txt_A2_P1_DP:   "", txt_A2_P2_PQ:   "", txt_A2_P3_PA:   "", txt_A2_P4_VA:     "",
       txt_A3_P1_UEPC: "", txt_A3_P2_LC:   "", txt_A3_P3_GC:   "", txt_A3_P4_OD:     "", txt_A3_P5_FER: "",
       txt_A4_P1_MD:   "", txt_A4_P2_ID:   "", txt_A4_P3_FED:  "", txt_A4_P4_HD:     "",
@@ -38,9 +38,11 @@ export default class CheckList extends React.Component {
       Am_HDCheck1:     false,   Am_HDCheck2:     false,
       App_UFCCheck1:   false,   App_UFCCheck2:   false,
       App_SUEACheck1:  false,   App_SUEACheck2:  false,
-    };
-    
+    };    
   }  
+  selectDate = (date) => {
+    this.setState({date: date});
+  }
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
@@ -62,12 +64,27 @@ export default class CheckList extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.container} >
             <Card style={styles.containercard}>              
+              <DatePicker
+                style={{width: 200, marginVertical: 10}}
+                date={this.state.date}
+                format="DD-MM-YYYY"
+                minDate="01-11-2019"
+                maxDate="31-12-2020"
+                onDateChange={this.selectDate}                                   
+              />
+              <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Selecione a Data no ícone do calendário:</Text>
+              <TextInput
+                style={styles.inputBox}
+                value={this.state.date}
+                placeholder='Data Do Check List'
+              />
+
               <Picker
-              style = {styles.pickerStyle}
-              selectedValue={this.state.PickerValue}
-              onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                style = {{width: '100%', fontSize: 25, marginVertical:5}}
+                selectedValue={this.state.PickerValue}
+                onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
               >
-                <Picker.Item label="Selecione Empresa..." value=""/>
+                <Picker.Item label="Selecione a Empresa..." value=""/>
                 <Picker.Item label="Azul"              value="Azul"/>
                 <Picker.Item label="Gol"               value="Gol"/>
                 <Picker.Item label="LATAM"             value="LATAM"/>
@@ -75,15 +92,7 @@ export default class CheckList extends React.Component {
                 <Picker.Item label="Quicklink"         value="Quicklink"/>
                 <Picker.Item label="Swissport"         value="Swissport"/>
               </Picker>
-              
-              <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Data:</Text>
-              <TextInput
-                style={styles.inputBox}
-                onChangeText={(text) => this.setState({Data: text})} 
-                placeholder="dd/mm/aaaa"
-                value={this.state.Data}
-                underlineColorAndroid='#0000'
-              />
+
               <Text style={styles.estiloTexto}>1- Há Equipamentos fora da área delimitada?</Text>
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <CheckBox value={this.state.Ac_EADCheck1} onChange={()=>this.Ac_EADCheck1()}/>
@@ -314,7 +323,7 @@ export default class CheckList extends React.Component {
               {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
               {text: 'OK', onPress: () => 
                 //this.openAlert()
-                this.confirmRegister(this.state.Data,
+                this.confirmRegister(this.state.date,
                                     this.state.userData.nome,
                                     this.state.userData.matricula,
                                     this.state.PickerValue,
@@ -350,7 +359,7 @@ export default class CheckList extends React.Component {
       _01_FiscalPatio_Matricula:               this.state.userData.matricula,
       _02_FiscalPatio_Nome:                    this.state.userData.nome,      
       _03_txtA_Empresa:                        this.state.PickerValue,
-      _04_Data:                                this.state.Data,
+      _04_Data:                                this.state.date,
       _05_Equipamentos_Local:                  this.state.txt_A1_P1_EAD,
       _06_Utilizando_Espaço_fisico:            this.state.txt_A1_P2_UFE,
       _07_DerramamentoProdutos_Quimicos:       this.state.txt_A2_P1_DP,
@@ -630,13 +639,13 @@ export default class CheckList extends React.Component {
     })
   };
   //Validações de todas as perguntas
-  ValidarCheckBox(){    
-    if(this.state.PickerValue == "" || this.state.PickerValue == null) {
-      Alert.alert('Atenção!', 'Selecione a empresa!!!');
+  ValidarCheckBox(){        
+    if(this.state.date == null || this.state.date == "") {
+      Alert.alert('Atenção!', 'Selecione a Data do Check List.');
       return false;
     }
-    if(this.state.Data == null || this.state.Data == "") {
-      Alert.alert('Atenção!', 'Preenchimento de Data Obrigatória.');
+    if(this.state.PickerValue == "" || this.state.PickerValue == null) {
+      Alert.alert('Atenção!', 'Selecione a empresa!');
       return false;
     }
     if(!this.state.Ac_EADCheck1 & !this.state.Ac_EADCheck2) {
@@ -746,9 +755,6 @@ const styles = StyleSheet.create({
     margin: 8,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  pickerStyle: {
-    width: '100%',    
   },
   estiloTexto:{
     fontSize: 15,

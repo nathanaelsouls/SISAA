@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import firebase from "firebase";
+import DatePicker from 'react-native-datepicker';
 
 var {height, width} = Dimensions.get('window');
 
@@ -12,10 +13,14 @@ export default class Formulario_Ambulift extends React.Component{
       deviceWidth: width,
       deviceHeight: height,
       // Padrão
-      Fiscal_Patio:   "",  Fiscal_Matricula: "", Data: "",
+      Fiscal_Patio:   "",  Fiscal_Matricula: "", date: "",
       //Dados
       Voo: "", EmpresaSolicitante: "", Prefixo: "", NomeSolicitante: "", HoraSolicitacao: "", Posicao: ""
     };
+  }
+
+  selectDate = (date) => {
+    this.setState({date: date});
   }
 
   componentDidMount(){
@@ -37,13 +42,20 @@ export default class Formulario_Ambulift extends React.Component{
       <ScrollView style={styles.container}>
        <View style={styles.container}>
          <Card style={styles.containercard}>
-           <Text style={styles.text}>Favor informar a Data Atual:</Text>
-           <TextInput
-           style={styles.inputBox}
-           onChangeText={(text) => this.setState({Data: text})}
-           placeholder="dd/mm/aaaa"
-           value={this.state.Data} 
-           />
+            <DatePicker
+            style={{width: 200, marginVertical: 10}}
+            date={this.state.date}
+            format="DD-MM-YYYY"
+            minDate="01-11-2019"
+            maxDate="31-12-2020"
+            onDateChange={this.selectDate}                                   
+            />
+            <Text style={styles.text}>Selecione a data no ícone do calendário:</Text>
+            <TextInput
+            style={styles.inputBox}
+            value={this.state.date}
+            placeholder="data do formulário"
+            />
            <Text style={styles.text}>Empresa solicitante do Serviço:</Text>
            <TextInput
            style={styles.inputBox}
@@ -98,7 +110,7 @@ export default class Formulario_Ambulift extends React.Component{
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () =>
             this.confirmRegister(
-              this.state.userData.matricula,  this.state.userData.nome,      this.state.Data,
+              this.state.userData.matricula,  this.state.userData.nome,      this.state.date,
               this.state.userData.Voo,        this.state.EmpresaSolicitante, this.state.Prefixo,
               this.state.NomeSolicitante,     this.state.HoraSolicitacao,    this.state.Posicao
             )},
@@ -111,7 +123,7 @@ export default class Formulario_Ambulift extends React.Component{
     const userData = {
       _01_FiscalPatio_Matricula:          this.state.userData.matricula,
       _02_FiscalPatio_Nome:               this.state.userData.nome,
-      _03_Data_Cadastro_Formulario:       this.state.Data,
+      _03_Data_Cadastro_Formulario:       this.state.date,
       _04_Voo:                            this.state.Voo,
       _05_Empresa_Solicitante:            this.state.EmpresaSolicitante,
       _06_Prefixo:                        this.state.Prefixo,
@@ -131,8 +143,8 @@ export default class Formulario_Ambulift extends React.Component{
   }
 
   ValidarCampos(){    
-    if(this.state.Data == null || this.state.Data == ""){
-      Alert.alert('Atenção!', 'Por favor, Informe a Data Atual.');
+    if(this.state.date == null || this.state.date == ""){
+      Alert.alert('Atenção!', 'Selecione a data do formulário.');
       return false;
     }
     if(this.state.EmpresaSolicitante == null || this.state.EmpresaSolicitante == "") {

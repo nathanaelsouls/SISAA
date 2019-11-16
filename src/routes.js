@@ -15,7 +15,6 @@ import Formulario400Hz from './pages/Formulario_400Hz';
 import FormularioAmbulift from './pages/Formulario_Ambulift';
 import FormularioLavagemTecnica from './pages/Formulario_LavagemTecnica';
 import FormularioTripulanteDesembarque from './pages/Formulario_TripulanteDesembarque';
-import Calendario from './pages/Calendário';
 
 const StackNavigator = createStackNavigator({
     Login: {
@@ -185,17 +184,6 @@ const StackNavigator = createStackNavigator({
         screen: FormularioTripulanteDesembarque,
         navigationOptions: () => ({
             headerTitle: 'Tripulante e/ou Desembarque Híbrido',
-            headerTitleAlign: 'center',
-            headerStyle:{
-              backgroundColor: "#104E8B",            
-            },
-            headerTintColor: "#FFF"
-        })
-    },
-    Calendario: {
-        screen: Calendario,
-        navigationOptions: () => ({
-            headerTitle: 'Calendário',
             headerTitleAlign: 'center',
             headerStyle:{
               backgroundColor: "#104E8B",            

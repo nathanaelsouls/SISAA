@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
-         StatusBar, Dimensions, Picker, CheckBox, ScrollView,TextInput} from 'react-native';
+         Dimensions, Picker, CheckBox, ScrollView,TextInput} from 'react-native';
 import { Card } from 'react-native-elements';
+import DatePicker from 'react-native-datepicker';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
@@ -11,13 +12,14 @@ export default class CheckList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: '',
       deviceWidth: width,
       deviceHeight: height,
       // Padrão
       Fiscal_Patio:   "",  Fiscal_Matricula: "", txtA_empresa:   "", txt_observacao:   "", PickerValue:    "",
       // Caixas de Texto
       TipoEquip:      "", Modelo:         "", Placa:            "", N_Serie:          "", 
-      N_ATIV:         "", Validade_ATIV:  "", Contato:          "", Data:             "", TelefoneForm:   "", 
+      N_ATIV:         "", Validade_ATIV:  "", Contato:          "", TelefoneForm:   "", 
       // Check Box, Uma variavel para cada pergunta
       Certificado_Propriedade:   "", Pintura_Lataria:           "", LogotipoID_Empresa:     "", Pintura_Amarela:   "",
       Pneus:                     "", Extintores:                "", Motor:                  "", Parte_Eletrica:    "",
@@ -48,6 +50,10 @@ export default class CheckList extends React.Component {
     };
   }
 
+  selectDate = (date) => {
+    this.setState({date: date});
+  }
+
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
         if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
@@ -69,12 +75,27 @@ export default class CheckList extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
+              <DatePicker
+                style={{width: 200, marginVertical: 10}}
+                date={this.state.date}
+                format="DD-MM-YYYY"
+                minDate="01-11-2019"
+                maxDate="31-12-2020"
+                onDateChange={this.selectDate}                                   
+              />
+              <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Selecione a Data no ícone do calendário:</Text>
+              <TextInput
+                style={styles.inputBox}                  
+                value={this.state.date}                  
+                placeholder="Data Do Check List"
+              />
+
                 <Picker
                 style = {{width:'100%', height:'3%'}}                
                 selectedValue={this.state.PickerValue}
                 onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
                 >
-                  <Picker.Item label="Selecione Empresa"            value="" fontSize/>
+                  <Picker.Item label="Selecione a Empresa"          value=""/>
                   <Picker.Item label="AIR NAV"                      value="AIR NAV"/>
                   <Picker.Item label="ANVISA"                       value="ANVISA"/>
                   <Picker.Item label="AZUL"                         value="AZUL"/>
@@ -97,14 +118,7 @@ export default class CheckList extends React.Component {
                   <Picker.Item label="TRAFFIC"                      value="TRAFFIC"/>
                   <Picker.Item label="TRI-START"                    value="TRI-START"/>
                 </Picker>
-                <Text style={styles.textPerguntas}>1- Data:</Text>
-                <TextInput
-                  style={styles.inputBox}
-                  onChangeText={(text) => this.setState({Data: text})} 
-                  placeholder="dd/mm/aaaa"
-                  value={this.state.Data}
-                  underlineColorAndroid='#0000'
-                />
+                
                 <Text style={styles.textPerguntas}>2- Tipo de Equipamento:</Text>
                 <TextInput
                   style={styles.inputBox}
@@ -444,7 +458,7 @@ export default class CheckList extends React.Component {
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
           {text: 'OK', onPress: () =>
 
-            this.confirmRegister(this.state.Data, this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
+            this.confirmRegister(this.state.date, this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
             this.state.Certificado_Propriedade,   this.state.Pintura_Lataria,           this.state.LogotipoID_Empresa,
             this.state.Pintura_Amarela,           this.state.Pneus,                     this.state.Extintores,
             this.state.Motor,                     this.state.Parte_Eletrica,            this.state.Direcao,
@@ -463,7 +477,7 @@ export default class CheckList extends React.Component {
       _01_Fiscal_Matricula:               this.state.userData.matricula,
       _02_Fiscal_Patio:                   this.state.userData.nome,      
       _03_txtA_empresa:                   this.state.PickerValue,
-      _04_Data:                           this.state.Data,
+      _04_Data:                           this.state.date,
       _05_Certificado_Propriedade:        this.state.Certificado_Propriedade,
       _06_Pintura_Lataria:                this.state.Pintura_Lataria,
       _07_LogotipoID_Empresa:             this.state.LogotipoID_Empresa,
@@ -789,14 +803,14 @@ export default class CheckList extends React.Component {
   };
 
   ValidarCampos(){    
+    if(this.state.date == null || this.state.date == "") {
+      Alert.alert('Atenção!', 'Selecione a Data do Check List.');
+      return false;
+    }
     if(this.state.PickerValue == "" || this.state.PickerValue == null) {
       Alert.alert('Atenção!', 'Por favor, Selecione a empresa!')
       return false;
-    }
-    if(this.state.Data == null || this.state.Data == "") {
-      Alert.alert('Atenção!', 'Preenchimento da Data obrigatória.');
-      return false;
-    }
+    }    
     if(this.state.TipoEquip == null || this.state.TipoEquip == "") {
       Alert.alert('Atenção!', '2º pergunta obrigatória.');
       return false;
