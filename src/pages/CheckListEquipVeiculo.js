@@ -75,21 +75,15 @@ export default class CheckList extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
+            <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Confirme a Data pelo o calendário:</Text>
               <DatePicker
-                style={{width: 200, marginVertical: 10}}
+                style={{width: 290, marginVertical: 10}}
                 date={this.state.date}
                 format="DD-MM-YYYY"
                 minDate="01-11-2019"
                 maxDate="31-12-2020"
                 onDateChange={this.selectDate}                                   
               />
-              <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Selecione a Data no ícone do calendário:</Text>
-              <TextInput
-                style={styles.inputBox}                  
-                value={this.state.date}                  
-                placeholder="Data Do Check List"
-              />
-
                 <Picker
                 style = {{width:'100%', height:'3%'}}                
                 selectedValue={this.state.PickerValue}
@@ -804,7 +798,7 @@ export default class CheckList extends React.Component {
 
   ValidarCampos(){    
     if(this.state.date == null || this.state.date == "") {
-      Alert.alert('Atenção!', 'Selecione a Data do Check List.');
+      Alert.alert('Atenção!', 'Confirme a data no calendário.');
       return false;
     }
     if(this.state.PickerValue == "" || this.state.PickerValue == null) {

@@ -45,20 +45,15 @@ export default class Formulario_400Hz extends React.Component{
             <ScrollView style={styles.container}>
                 <View style={styles.container}>
                     <Card style={styles.containercard}>
+                        <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Confirme a Data pelo o calendário:</Text>
                         <DatePicker
-                        style={{width: 200, marginVertical: 10}}
+                        style={{width: 305, marginVertical: 10}}
                         date={this.state.date}
                         format="DD-MM-YYYY"
                         minDate="01-11-2019"
                         maxDate="31-12-2020"
                         onDateChange={this.selectDate}                                   
-                        />
-                        <Text style={styles.text}>Selecione a data no ícone do calendário:</Text>
-                        <TextInput
-                        style={styles.inputBox}
-                        value={this.state.date}
-                        placeholder="data do formulário"
-                        />
+                        />                        
                         <Text style={styles.text}>Matrícula solicitante da CIA Aérea:*</Text>
                         <TextInput
                         style={styles.inputBox}
@@ -195,7 +190,7 @@ export default class Formulario_400Hz extends React.Component{
       }
       ValidarCampos(){    
         if(this.state.date == null || this.state.date == ""){
-          Alert.alert('Atenção!', 'Selecione a data do formulário.');
+          Alert.alert('Atenção!', 'Confirme a data no calendário.');
           return false;
         }
         if(this.state.MatriculaSoliCIAAerea == null || this.state.MatriculaSoliCIAAerea == "") {
