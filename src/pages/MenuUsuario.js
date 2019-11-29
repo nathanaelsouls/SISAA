@@ -4,7 +4,7 @@ import firebase from "firebase";
 
 var { height, width } = Dimensions.get('window');
 
-export default class Menu extends React.Component {
+export default class MenuUsuario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,11 +41,7 @@ export default class Menu extends React.Component {
     return (
       <View style={styles.container}>
           <View style={{width: '100%', height: '15%', flexDirection: 'row', justifyContent: 'space-around',
-                        alignItems: 'center', backgroundColor: '#104E8B'}}>
-            <TouchableOpacity style={{backgroundColor: "#0000", justifyContent: 'center',
-              width: '25%', height: '161%', alignItems: 'flex-start'}} onPress={() => this.props.navigation.navigate('Cadastro')} >
-              <Image style={{ width: '40%', height: '28%'}} source={require('../imagens/newuser.png')}/>
-            </TouchableOpacity>
+                        alignItems: 'center', backgroundColor: '#104E8B'}}>            
             <TouchableOpacity style={{backgroundColor: "transparente", justifyContent: 'center',
               width: '25%', height: '161%', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Sisaa')} >
               <Image style={{ width: '42%', height: '28%'}} source={require('../imagens/info.png')}/>

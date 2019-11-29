@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, ScrollView, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity} from 'react-native';
 import { Card } from 'react-native-elements';
 
 var {height, width} = Dimensions.get('window');
@@ -19,6 +19,8 @@ export default class Sisaa extends React.Component{
                         <Image style={{ width: '45%', height: '45%' }} source={require('../imagens/user.png')}/>
                     </TouchableOpacity>
                 </View>
+
+                
 
             </View>                
         

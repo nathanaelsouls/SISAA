@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Alert, Text, View, TouchableOpacity,
-         StatusBar, Dimensions, Picker, CheckBox, ScrollView,TextInput} from 'react-native';
+         Dimensions, Picker, CheckBox, ScrollView,TextInput} from 'react-native';
 import { Card } from 'react-native-elements';
+import DatePicker from 'react-native-datepicker';
 import firebase from "firebase";
 
 var {height, width} = Dimensions.get('window');
@@ -11,13 +12,14 @@ export default class CheckList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: '',
       deviceWidth: width,
       deviceHeight: height,
       // Padrão
       Fiscal_Patio:   "",  Fiscal_Matricula: "", txtA_empresa:   "", txt_observacao:   "", PickerValue:    "",
       // Caixas de Texto
       TipoEquip:      "", Modelo:         "", Placa:            "", N_Serie:          "", 
-      N_ATIV:         "", Validade_ATIV:  "", Contato:          "", Data:             "", TelefoneForm:   "", 
+      N_ATIV:         "", Validade_ATIV:  "", Contato:          "", TelefoneForm:   "", 
       // Check Box, Uma variavel para cada pergunta
       Certificado_Propriedade:   "", Pintura_Lataria:           "", LogotipoID_Empresa:     "", Pintura_Amarela:   "",
       Pneus:                     "", Extintores:                "", Motor:                  "", Parte_Eletrica:    "",
@@ -48,6 +50,10 @@ export default class CheckList extends React.Component {
     };
   }
 
+  selectDate = (date) => {
+    this.setState({date: date});
+  }
+
   componentDidMount(){
     firebase.auth().onAuthStateChanged(function(user) {        
         if (user){//Se é diferente de null, se é true, se é diferente de vazio, se é diferente de undefind
@@ -69,30 +75,45 @@ export default class CheckList extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.container}>            
             <Card style={styles.containercard}>
-                
-                <Text style={styles.estiloTexto}>Área Relacionada: Operações, Planejamento Operacional, Segurança Operacional</Text>
+            <Text style={{color: 'black', alignSelf: 'flex-start', fontSize: 15}}>Confirme a Data pelo o calendário:</Text>
+              <DatePicker
+                style={{width: 290, marginVertical: 10}}
+                date={this.state.date}
+                format="DD-MM-YYYY"
+                minDate="01-11-2019"
+                maxDate="31-12-2020"
+                onDateChange={this.selectDate}                                   
+              />
                 <Picker
                 style = {{width:'100%', height:'3%'}}                
                 selectedValue={this.state.PickerValue}
                 onValueChange={(itemValue, itemIndex) =>  this.setState({PickerValue:itemValue})}
                 >
-                  <Picker.Item label="Selecione Empresa" value="" fontSize/>
-                  <Picker.Item label="Azul"              value="Azul"/>
-                  <Picker.Item label="Gol"               value="Gol"/>
-                  <Picker.Item label="LATAM"             value="LATAM"/>
-                  <Picker.Item label="Proair"            value="Proair"/>
-                  <Picker.Item label="Quicklink"         value="Quicklink"/>
-                  <Picker.Item label="Swissport"         value="Swissport"/>                  
+                  <Picker.Item label="Selecione a Empresa"          value=""/>
+                  <Picker.Item label="AIR NAV"                      value="AIR NAV"/>
+                  <Picker.Item label="ANVISA"                       value="ANVISA"/>
+                  <Picker.Item label="AZUL"                         value="AZUL"/>
+                  <Picker.Item label="BH AIRPORT"                   value="BH AIRPORT"/>
+                  <Picker.Item label="ENGIE BRASIL"                 value="ENGIE BRASIL"/>
+                  <Picker.Item label="GOL"                          value="GOL"/>
+                  <Picker.Item label="LATAM LINHAS AERAS S/A"       value="LATAM LINHAS AERAS S/A"/>
+                  <Picker.Item label="LIDER TAXI AÉREO"             value="LIDER TAXI AÉREO"/>
+                  <Picker.Item label="LOCAVIA"                      value="LOCAVIA"/>
+                  <Picker.Item label="MANSERV"                      value="MANSERV"/>
+                  <Picker.Item label="ORBITAL"                      value="ORBITAL"/>
+                  <Picker.Item label="PETROBAS"                     value="PETROBAS"/>
+                  <Picker.Item label="PROAIR"                       value="PROAIR"/>
+                  <Picker.Item label="QUICK LINK"                   value="QUICK LINK"/>
+                  <Picker.Item label="RA CATERING"                  value="RA CATERING"/>
+                  <Picker.Item label="RAIZEN"                       value="RAIZEN"/>
+                  <Picker.Item label="RECEITA FEDERAL"              value="RECEITA FEDERAL"/>
+                  <Picker.Item label="SWISSPORT"                    value="SWISSPORT"/>
+                  <Picker.Item label="TAM EXECUTIVA"                value="TAM EXECUTIVA"/>
+                  <Picker.Item label="TRAFFIC"                      value="TRAFFIC"/>
+                  <Picker.Item label="TRI-START"                    value="TRI-START"/>
                 </Picker>
-                <Text style={styles.textPerguntas}>Data:</Text>
-                <TextInput
-                  style={styles.inputBox}
-                  onChangeText={(text) => this.setState({Data: text})} 
-                  placeholder="dd/mm/aaaa"
-                  value={this.state.Data}
-                  underlineColorAndroid='#0000'
-                />
-                <Text style={styles.textPerguntas}>Tipo de Equipamento:</Text>
+                
+                <Text style={styles.textPerguntas}>2- Tipo de Equipamento:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({TipoEquip: text})} 
@@ -100,7 +121,7 @@ export default class CheckList extends React.Component {
                   value={this.state.TipoEquip}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Modelo:</Text>
+                <Text style={styles.textPerguntas}>3- Modelo:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Modelo: text})} 
@@ -108,7 +129,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Modelo}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Placa:</Text>
+                <Text style={styles.textPerguntas}>4- Placa:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Placa: text})} 
@@ -116,7 +137,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Placa}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Número de Série:</Text>
+                <Text style={styles.textPerguntas}>5- Número de Série:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({N_Serie: text})} 
@@ -124,7 +145,7 @@ export default class CheckList extends React.Component {
                   value={this.state.N_Serie}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Número ATIV:</Text>
+                <Text style={styles.textPerguntas}>6- Número ATIV:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({N_ATIV: text})} 
@@ -132,7 +153,7 @@ export default class CheckList extends React.Component {
                   value={this.state.N_ATIV}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Validade ATIV:</Text>
+                <Text style={styles.textPerguntas}>7- Validade ATIV:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Validade_ATIV: text})} 
@@ -140,7 +161,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Validade_ATIV}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Contato:</Text>
+                <Text style={styles.textPerguntas}>8- Contato:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({Contato: text})} 
@@ -148,7 +169,7 @@ export default class CheckList extends React.Component {
                   value={this.state.Contato}
                   underlineColorAndroid='#0000'
                 />
-                <Text style={styles.textPerguntas}>Telefone:</Text>
+                <Text style={styles.textPerguntas}>9- Telefone:</Text>
                 <TextInput
                   style={styles.inputBox}
                   onChangeText={(text) => this.setState({TelefoneForm: text})} 
@@ -157,7 +178,7 @@ export default class CheckList extends React.Component {
                   underlineColorAndroid='#0000'
                 />                
 
-                <Text style={styles.estiloTexto}>Certificado de Propriedade:</Text>
+                <Text style={styles.estiloTexto}>10- Certificado de Propriedade:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_CDPCheck1} onChange={()=>this.equip_CDPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -169,7 +190,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pintura da lataria (limpeza e conservação):</Text>
+                <Text style={styles.estiloTexto}>11- Pintura da lataria (limpeza e conservação):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PDLCheck1} onChange={()=>this.equip_PDLCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -181,7 +202,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Logotipo/ Identificação (Alfanumérica) da Empresa (Padrão NBR-8919):</Text>
+                <Text style={styles.estiloTexto}>12- Logotipo/ Identificação (Alfanumérica) da Empresa (Padrão NBR-8919):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_LIDCheck1} onChange={()=>this.equip_LIDCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -193,7 +214,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pintura Amarela:</Text>
+                <Text style={styles.estiloTexto}>13- Pintura Amarela:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PIACheck1} onChange={()=>this.equip_PIACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -205,7 +226,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Pneus (estado de uso):</Text>
+                <Text style={styles.estiloTexto}>14- Pneus (estado de uso):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PNECheck1} onChange={()=>this.equip_PNECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -217,7 +238,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Extintores (Carga e aspecto de funcionamento):</Text>
+                <Text style={styles.estiloTexto}>15- Extintores (Carga e aspecto de funcionamento):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_EXTCheck1} onChange={()=>this.equip_EXTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -229,7 +250,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Motor (estado de funcionamento):</Text>
+                <Text style={styles.estiloTexto}>16- Motor (estado de funcionamento):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_MOTCheck1} onChange={()=>this.equip_MOTCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -241,7 +262,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Parte Elétrica (buzina, sinaleiros, faróis, etc.):</Text>
+                <Text style={styles.estiloTexto}>17- Parte Elétrica (buzina, sinaleiros, faróis, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_PAECheck1} onChange={()=>this.equip_PAECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -253,7 +274,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Direção (Folga excessiva, puxando para o lado, etc.):</Text>
+                <Text style={styles.estiloTexto}>18- Direção (Folga excessiva, puxando para o lado, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_DIRCheck1} onChange={()=>this.equip_DIRCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -265,7 +286,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Vazamento de oléo e combustíveis:</Text>
+                <Text style={styles.estiloTexto}>19- Vazamento de oléo e combustíveis:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_VOCCheck1} onChange={()=>this.equip_VOCCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -277,7 +298,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Lubrificação Periódica:</Text>
+                <Text style={styles.estiloTexto}>20- Lubrificação Periódica:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_LUPCheck1} onChange={()=>this.equip_LUPCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -289,7 +310,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Mecânicas (caixa de marcha, freios, embreagem, etc.):</Text>
+                <Text style={styles.estiloTexto}>21- Mecânicas (caixa de marcha, freios, embreagem, etc.):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_MECCheck1} onChange={()=>this.equip_MECCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -301,7 +322,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Acessórios:</Text>
+                <Text style={styles.estiloTexto}>22- Acessórios:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_ACECheck1} onChange={()=>this.equip_ACECheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -313,7 +334,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Vidraças e espelhos retrovisores (estado em geral):</Text>
+                <Text style={styles.estiloTexto}>23- Vidraças e espelhos retrovisores (estado em geral):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_VETCheck1} onChange={()=>this.equip_VETCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -325,7 +346,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Reboque (toldos, pneus, pintura, etc.):</Text>
+                <Text style={styles.estiloTexto}>24- Reboque (toldos, pneus, pintura, etc...):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_REBCheck1} onChange={()=>this.equip_REBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -337,7 +358,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Avarias (partes: frouxas, faltando, quebradas):</Text>
+                <Text style={styles.estiloTexto}>25- Avarias (partes: frouxas, faltando, quebradas):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_AVACheck1} onChange={()=>this.equip_AVACheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -349,7 +370,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
                 
-                <Text style={styles.estiloTexto}>Ruídos (níveis suportáveis):</Text>
+                <Text style={styles.estiloTexto}>26- Ruídos (níveis suportáveis):</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_RUICheck1} onChange={()=>this.equip_RUICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -361,7 +382,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Giroflex ou Luz Intermitente bem visível sobre o veículo, em conformidade:</Text>
+                <Text style={styles.estiloTexto}>27- Giroflex ou Luz Intermitente bem visível sobre o veículo, em conformidade:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_GLICheck1} onChange={()=>this.equip_GLICheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -373,7 +394,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Zebrados:</Text>
+                <Text style={styles.estiloTexto}>28- Zebrados:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_ZEBCheck1} onChange={()=>this.equip_ZEBCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -385,7 +406,7 @@ export default class CheckList extends React.Component {
                   </View>
                 </View>
 
-                <Text style={styles.estiloTexto}>Radiocomunicador:</Text>
+                <Text style={styles.estiloTexto}>29- Radiocomunicador:</Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <CheckBox value={this.state.equip_RADCheck1} onChange={()=>this.equip_RADCheck1()}/>
                   <View style={{ justifyContent: 'center'}}>
@@ -406,10 +427,13 @@ export default class CheckList extends React.Component {
                   />
                 <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
                   <Text style={styles.buttonText}>Enviar CheckList</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>                
               </Card>              
+              <Text></Text>
           </View>
-          <Text> </Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
         </ScrollView>
     );
   }
@@ -418,29 +442,24 @@ export default class CheckList extends React.Component {
     alert('Check List Enviado com sucesso');
   }
 
-  askRegister(){
-    var empresaVerifica = this.state.PickerValue;
-    if(empresaVerifica == ""){
-      Alert.alert(
-        'Atenção', 'Por favor, Selecione a empresa!'
-      )
-    }else{
-
+  askRegister(){    
+    var validar = this.ValidarCampos();
+    if (validar){
       Alert.alert(
         'Registrar',
         'Confirma o registro com os seguintes dados?\nEmpresa: ' + this.state.PickerValue + "\n",
         [
           {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => 
-            //this.openAlert()
-            this.confirmRegister(this.state.Data,   this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
-              this.state.Certificado_Propriedade,   this.state.Pintura_Lataria,           this.state.LogotipoID_Empresa,
-              this.state.Pintura_Amarela,           this.state.Pneus,                     this.state.Extintores,
-              this.state.Motor,                     this.state.Parte_Eletrica,            this.state.Direcao,
-              this.state.Vazamento_OleoCombustivel, this.state.Lubrificacao_Periodica,    this.state.Mecanica,
-              this.state.Acessorios,                this.state.VidracasEspelhoRetrovisor, this.state.Reboque,
-              this.state.Avarias,                   this.state.Ruidos,                    this.state.Giroflex_LuzInterminente,
-              this.state.Zebrados,                  this.state.Radiocomunicador,          this.state.txt_observacao,)
+          {text: 'OK', onPress: () =>
+
+            this.confirmRegister(this.state.date, this.state.userData.nome,             this.state.userData.matricula, this.state.PickerValue,
+            this.state.Certificado_Propriedade,   this.state.Pintura_Lataria,           this.state.LogotipoID_Empresa,
+            this.state.Pintura_Amarela,           this.state.Pneus,                     this.state.Extintores,
+            this.state.Motor,                     this.state.Parte_Eletrica,            this.state.Direcao,
+            this.state.Vazamento_OleoCombustivel, this.state.Lubrificacao_Periodica,    this.state.Mecanica,
+            this.state.Acessorios,                this.state.VidracasEspelhoRetrovisor, this.state.Reboque,
+            this.state.Avarias,                   this.state.Ruidos,                    this.state.Giroflex_LuzInterminente,
+            this.state.Zebrados,                  this.state.Radiocomunicador,          this.state.txt_observacao,)
           },
         ],
         { cancelable: false }
@@ -449,10 +468,10 @@ export default class CheckList extends React.Component {
   }
   confirmRegister () {
     const userData = {
-      _02_Fiscal_Patio:                   this.state.userData.nome,
       _01_Fiscal_Matricula:               this.state.userData.matricula,
+      _02_Fiscal_Patio:                   this.state.userData.nome,      
       _03_txtA_empresa:                   this.state.PickerValue,
-      _04_Data:                           this.state.Data,
+      _04_Data:                           this.state.date,
       _05_Certificado_Propriedade:        this.state.Certificado_Propriedade,
       _06_Pintura_Lataria:                this.state.Pintura_Lataria,
       _07_LogotipoID_Empresa:             this.state.LogotipoID_Empresa,
@@ -478,7 +497,15 @@ export default class CheckList extends React.Component {
       firebase.database().ref("CheckListEquipVeiculo/").push(userData)
       .then((snapshot) => {
         Alert.alert("Sucesso!", "Check List Enviado");
+        if(this.state.userData.nome == 'Nathanael' || this.state.userData.nome == 'Natanael' ||
+           this.state.userData.nome == 'Paulo Fagner') 
+        {
         this.props.navigation.navigate('Menu');
+        }
+        else
+        {
+        this.props.navigation.navigate('MenuUsuario');
+        }
       })
       .catch((error) =>{
         console.log("Error: ", error);
@@ -768,6 +795,130 @@ export default class CheckList extends React.Component {
       Radiocomunicador: "Irregular"
     })
   };
+
+  ValidarCampos(){    
+    if(this.state.date == null || this.state.date == "") {
+      Alert.alert('Atenção!', 'Confirme a data no calendário.');
+      return false;
+    }
+    if(this.state.PickerValue == "" || this.state.PickerValue == null) {
+      Alert.alert('Atenção!', 'Por favor, Selecione a empresa!')
+      return false;
+    }    
+    if(this.state.TipoEquip == null || this.state.TipoEquip == "") {
+      Alert.alert('Atenção!', '2º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Modelo == null || this.state.Modelo == "") {
+      Alert.alert('Atenção!', '3º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Placa == null || this.state.Placa == "") {
+      Alert.alert('Atenção!', '4º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.N_Serie == null || this.state.N_Serie == "") {
+      Alert.alert('Atenção!', '5º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.N_ATIV == null || this.state.N_ATIV == "") {
+      Alert.alert('Atenção!', '6º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Validade_ATIV == null || this.state.Validade_ATIV == "") {
+      Alert.alert('Atenção!', '7º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.Contato == null || this.state.Contato == "") {
+      Alert.alert('Atenção!', '8º pergunta obrigatória.');
+      return false;
+    }
+    if(this.state.TelefoneForm == null || this.state.TelefoneForm == "") {
+      Alert.alert('Atenção!', '9º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_CDPCheck1 & !this.state.equip_CDPCheck2) {
+      Alert.alert('Atenção!', '10º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PDLCheck1 & !this.state.equip_PDLCheck2) {
+      Alert.alert('Atenção!', '11º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_LIDCheck1 & !this.state.equip_LIDCheck2) {
+      Alert.alert('Atenção!', '12º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PIACheck1 & !this.state.equip_PIACheck2) {
+      Alert.alert('Atenção!', '13º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PNECheck1 & !this.state.equip_PNECheck2) {
+      Alert.alert('Atenção!', '14º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_EXTCheck1 & !this.state.equip_EXTCheck2) {
+      Alert.alert('Atenção!', '15º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_MOTCheck1 & !this.state.equip_MOTCheck2) {
+      Alert.alert('Atenção!', '16º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_PAECheck1 & !this.state.equip_PAECheck2) {
+      Alert.alert('Atenção!', '17º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_DIRCheck1 & !this.state.equip_DIRCheck2) {
+      Alert.alert('Atenção!', '18º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_VOCCheck1 & !this.state.equip_VOCCheck2) {
+      Alert.alert('Atenção!', '19º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_LUPCheck1 & !this.state.equip_LUPCheck2) {
+      Alert.alert('Atenção!', '20º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_MECCheck1 & !this.state.equip_MECCheck2) {
+      Alert.alert('Atenção!', '21º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_ACECheck1 & !this.state.equip_ACECheck2) {
+      Alert.alert('Atenção!', '22º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_VETCheck1 & !this.state.equip_VETCheck2) {
+      Alert.alert('Atenção!', '23º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_REBCheck1 & !this.state.equip_REBCheck2) {
+      Alert.alert('Atenção!', '24º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_AVACheck1 & !this.state.equip_AVACheck2) {
+      Alert.alert('Atenção!', '25º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_RUICheck1 & !this.state.equip_RUICheck2) {
+      Alert.alert('Atenção!', '26º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_GLICheck1 & !this.state.equip_GLICheck2) {
+      Alert.alert('Atenção!', '27º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_ZEBCheck1 & !this.state.equip_ZEBCheck2) {
+      Alert.alert('Atenção!', '28º pergunta obrigatória.');
+      return false;
+    }
+    if(!this.state.equip_RADCheck1 & !this.state.equip_RADCheck2) {
+      Alert.alert('Atenção!', '29º pergunta obrigatória.');
+      return false;
+    }
+    return true;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -778,7 +929,9 @@ const styles = StyleSheet.create({
   },
   containercard:{
     flex: 2,
-    width:'90%'
+    width:'90%',
+    margin: 10,
+    borderRadius: 1
   },
   inputBox:{
     height: 40, 
@@ -798,7 +951,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#001A4D",
     borderRadius: 10,
     padding: 10,
-    margin: 30,
+    margin: 8,
     alignItems: 'center',
     justifyContent: 'center'
   },

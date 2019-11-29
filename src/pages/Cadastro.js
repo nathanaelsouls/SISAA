@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Dimensions, StatusBar, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Alert, Dimensions, Image, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import firebase from "firebase"
 
 var {height, width} = Dimensions.get('window');
@@ -64,6 +64,10 @@ export default class SignUp extends React.Component {
           <TouchableOpacity onPress={()=> this.askRegister()} style={styles.registerButton} >
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
+          <Text>
+            Em Conformidade com a LGPD, os dados coletados acima são para a identificação do usuário
+            no sistema.
+          </Text>
           </View>
         </ScrollView>
     );
@@ -76,7 +80,7 @@ export default class SignUp extends React.Component {
   askRegister(){
     Alert.alert(
       'Registrar',
-      'Confirma o seu registo?',
+      'Confirma o novo registo?',
       [
         {text: 'Cancelar', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: 'OK', onPress: () =>
@@ -86,7 +90,6 @@ export default class SignUp extends React.Component {
       { cancelable: false }
     )
   }
-
 
   registerUser (email, password, nome, matricula) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -105,7 +108,6 @@ export default class SignUp extends React.Component {
             this.props.navigation.navigate('Menu')
           }
         ]);
-      //this.Actions.pop();
     })
     .catch((error) => { 
       console.log("firebase error: " + error);
@@ -118,7 +120,6 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
@@ -133,6 +134,10 @@ const styles = StyleSheet.create({
   buttonText:{
     color: "white",
     fontSize: 35
+  },
+  TextInformation:{
+    color: 'black',
+    fontSize: 20
   },
   inputStyle:{
     height: height * 0.1, 
