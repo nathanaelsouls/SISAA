@@ -5,9 +5,9 @@ import Routes from './routes';
 
 import './config/StatusBarConfig'
 
-import Drawer from './navigation/DrawerNavigator';
-
 import firebase from 'firebase';
+
+console.disableYellowBox = true;
 
 class App extends React.Component {
     UNSAFE_componentWillMount () {
@@ -24,10 +24,10 @@ class App extends React.Component {
         })
       }
     }
+
   
     render() {
       return (
-        //<Drawer/>
         <Routes/>        
       );
     }
